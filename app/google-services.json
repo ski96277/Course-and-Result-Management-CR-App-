@@ -1,0 +1,130 @@
+{
+  "project_info": {
+    "project_number": "183283610298",
+    "firebase_url": "https://loginregister-a8a3c.firebaseio.com",
+    "project_id": "loginregister-a8a3c",
+    "storage_bucket": "loginregister-a8a3c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183283610298:android:40ec9187c64ffd2b",
+        "android_client_info": {
+          "package_name": "imran.sk.tourmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "183283610298-o0ubt9sml9ht720o8oq8hsht8f3atj6l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALHZRyofmexg-4gQOABopzNAYrOU9HAmA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183283610298:android:322f11ff20f6f009",
+        "android_client_info": {
+          "package_name": "com.example.imransk.bitmtourmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "183283610298-du9p6884e85bnfpi7204uh47sqisqnng.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.imransk.bitmtourmate",
+            "certificate_hash": "cf93257cb8ba63692f323129202f8ddaf8412413"
+          }
+        },
+        {
+          "client_id": "183283610298-o0ubt9sml9ht720o8oq8hsht8f3atj6l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALHZRyofmexg-4gQOABopzNAYrOU9HAmA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "183283610298-o0ubt9sml9ht720o8oq8hsht8f3atj6l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183283610298:android:b1d619c59601f438",
+        "android_client_info": {
+          "package_name": "com.example.imransk.buproject1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "183283610298-bomvb2tjbgmk99itgaguumdb9oddkn3d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.imransk.buproject1",
+            "certificate_hash": "cf93257cb8ba63692f323129202f8ddaf8412413"
+          }
+        },
+        {
+          "client_id": "183283610298-o0ubt9sml9ht720o8oq8hsht8f3atj6l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALHZRyofmexg-4gQOABopzNAYrOU9HAmA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "183283610298-o0ubt9sml9ht720o8oq8hsht8f3atj6l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

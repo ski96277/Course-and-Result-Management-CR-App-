@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LogInActivity">
+
+    <LinearLayout
+        android:id="@+id/subLinear"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:layout_margin="10sp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/email_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="    E-mail"
+            android:textScaleX="1.5"
+            android:drawableLeft="@drawable/mail"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:layout_marginBottom="10sp"
+            android:singleLine="true" />
+
+
+
+        <EditText
+            android:id="@+id/password_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:hint="    Password"
+            android:textScaleX="1.5"
+            android:layout_marginBottom="10sp"
+            android:drawableLeft="@drawable/lock"
+            android:imeOptions="actionUnspecified"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+
+        <Button
+            android:id="@+id/log_in_button"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Login"
+            android:layout_marginBottom="10sp"
+            android:background="#3F51B5"
+            android:textAllCaps="false"
+            android:textSize="25sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <!-- Link to Login Screen -->
+
+        <Button
+            android:id="@+id/sign_Up_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:background="@null"
+            android:text="Are you new user?\nClick Here"
+            android:textAllCaps="false"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar_login"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".5"
+        android:visibility="gone"
+        android:layout_below="@id/subLinear"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="20dp" />
+</LinearLayout>
