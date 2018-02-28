@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LogInActivity"
+        <activity
+            android:name=".LogInActivity"
             android:label="Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -19,9 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity"
+        <activity
+            android:name=".SignUpActivity"
             android:label="Registration"
             android:parentActivityName=".LogInActivity">
+        </activity>
+        <activity android:name=".LoginSuccessActivity">
         </activity>
     </application>
 

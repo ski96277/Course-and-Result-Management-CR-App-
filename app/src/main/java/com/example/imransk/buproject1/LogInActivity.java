@@ -22,7 +22,7 @@ public class LogInActivity extends AppCompatActivity {
     private Button logInBtn, sign_UpBtn;
     private ProgressBar progressBar;
 
-    FirebaseAuth auth;
+    FirebaseAuth auth=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +36,10 @@ public class LogInActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar_login);
 
         auth=FirebaseAuth.getInstance();
-/*
-        final String email_login=email_log.getText().toString();
-        final String password_login=password_log.getText().toString();*/
+        if (auth.getCurrentUser()!=null){
+            startActivity(new Intent(getApplicationContext(),LoginSuccessActivity.class));
+        }
+
 
         sign_UpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,10 +90,10 @@ public class LogInActivity extends AppCompatActivity {
                                 Toast.makeText(LogInActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                             }
                         } else {
-                            /*Intent intent = new Intent(LogInActivity.this, MainActivity.class);
-                            startActivity(intent);*/
+
                             Toast.makeText(LogInActivity.this, "Success Login ", Toast.LENGTH_SHORT).show();
-//                            finish();
+                            startActivity(new Intent(getApplicationContext(),LoginSuccessActivity.class));
+                            finish();
                         }
 
                         // ...
