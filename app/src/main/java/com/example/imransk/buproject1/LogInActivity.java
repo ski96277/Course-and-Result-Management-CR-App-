@@ -1,5 +1,7 @@
 package com.example.imransk.buproject1;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +9,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -17,7 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LogInActivity extends AppCompatActivity {
+public class LogInActivity extends Activity {
     private EditText email_log, password_log;
     private Button logInBtn, sign_UpBtn;
     private ProgressBar progressBar;
@@ -27,7 +31,13 @@ public class LogInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
+
+      /*  ActionBar actionBar = getActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);//hide title
+        actionBar.setDisplayShowHomeEnabled(false);//hide icon*/
+
 
         email_log = findViewById(R.id.email_login);
         password_log = findViewById(R.id.password_login);

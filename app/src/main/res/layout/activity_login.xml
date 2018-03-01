@@ -1,63 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background_color"
     tools:context=".LogInActivity">
 
     <LinearLayout
-        android:id="@+id/subLinear"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
-        android:gravity="center"
         android:layout_margin="10sp"
+        android:layout_weight="3"
+        android:gravity="bottom"
         android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logo"
+            android:textColor="#fff"
+            android:layout_gravity="center"
+            android:textSize="30sp"/>
 
         <EditText
             android:id="@+id/email_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            android:drawableLeft="@drawable/user"
             android:hint="    E-mail"
-            android:textScaleX="1.5"
-            android:drawableLeft="@drawable/mail"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:layout_marginBottom="10sp"
-            android:singleLine="true" />
-
-
+            android:singleLine="true"
+            android:textScaleX="1.5"/>
 
         <EditText
             android:id="@+id/password_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusableInTouchMode="true"
-            android:hint="    Password"
-            android:textScaleX="1.5"
             android:layout_marginBottom="10sp"
             android:drawableLeft="@drawable/lock"
+            android:focusableInTouchMode="true"
+            android:hint="    Password"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
             android:imeOptions="actionUnspecified"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textScaleX="1.5"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@android:color/transparent"
+            android:text="Forgot Password?"
+            android:textColor="#fff"
+            android:textAllCaps="false"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/stock"
+            android:textColor="#fff"
+            android:drawableLeft="@drawable/facebook"
+            android:layout_marginRight="2dp"
+            android:text="Facebook"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/stock"
+            android:layout_marginLeft="2dp"
+            android:textColor="#fff"
+            android:paddingLeft="4dp"
+            android:drawableLeft="@drawable/twitter"
+            android:text="Twitter"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/log_in_button"
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Login"
             android:layout_marginBottom="10sp"
-            android:background="#3F51B5"
+            android:layout_marginTop="16dp"
+            android:background="#003AB7"
+            android:text="Sign In"
             android:textAllCaps="false"
-            android:textSize="25sp"
             android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            android:textSize="25sp"
+            android:textStyle="bold"/>
 
         <!-- Link to Login Screen -->
 
@@ -66,19 +123,21 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
-            android:background="@null"
-            android:text="Are you new user?\nClick Here"
+            android:background="#043173"
+            android:textColor="#fff"
+            android:text="Don't Have An Account?   Click Here"
             android:textAllCaps="false"
-            android:textSize="15dp" />
+            android:textSize="15dp"/>
     </LinearLayout>
+
 
     <ProgressBar
         android:id="@+id/progressBar_login"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="20dp"
         android:layout_weight=".5"
         android:visibility="gone"
-        android:layout_below="@id/subLinear"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="20dp" />
+        />
 </LinearLayout>

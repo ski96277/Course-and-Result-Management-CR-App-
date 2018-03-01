@@ -1,6 +1,7 @@
 package com.example.imransk.buproject1;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -18,7 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends Activity {
     private EditText email_input, password_input;
     private Button signIn_btn, signUp_btn;
     private ProgressBar progressBar;
@@ -27,6 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_sign_up);
 
         //Get Firebase auth instance
