@@ -13,6 +13,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,6 +27,9 @@ public class SignUpActivity extends Activity {
     private Button signIn_btn, signUp_btn;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
+    private RadioGroup radioGroup;
+    private RadioButton radioButton_ST, radioButton_FT;
+    String radioText = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,10 @@ public class SignUpActivity extends Activity {
         email_input = (EditText) findViewById(R.id.email);
         password_input = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        radioGroup = findViewById(R.id.radiogroup);
+
+        radioButton_ST = findViewById(R.id.radio_student);
+        radioButton_FT = findViewById(R.id.radio_faculty);
 
         signIn_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +69,7 @@ public class SignUpActivity extends Activity {
         String email = email_input.getText().toString().trim();
         String password = password_input.getText().toString().trim();
 
+
         if (TextUtils.isEmpty(email)) {
             email_input.setError("Enter E-mail");
             email_input.requestFocus();
@@ -79,30 +89,50 @@ public class SignUpActivity extends Activity {
             return;
         }
 
-        progressBar.setVisibility(View.VISIBLE);
-        //create user
-        auth.createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+        if (radioButton_FT.isChecked() || radioButton_ST.isChecked()){
+           /* radioButton_FT.setFocusable(false);
+            radioButton_ST.setFocusable(false);*/
+            String status = "";
+            status = ((RadioButton) findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
+            Toast.makeText(this, "" + status, Toast.LENGTH_SHORT).show();
 
-                            Toast.makeText(SignUpActivity.this, " SignUp Success", Toast.LENGTH_SHORT).show();
+        /*}else {
+            Toast.makeText(this, "Check radioButton", Toast.LENGTH_SHORT).show();
+        }*/
 
-                            progressBar.setVisibility(View.GONE);
-                            startActivity(new Intent(getApplicationContext(),LogInActivity.class));
-                        } else {
-                            // If sign in fails, display a message to the user.
+            progressBar.setVisibility(View.VISIBLE);
+            //create user
+            auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
 
-                            Toast.makeText(SignUpActivity.this, "Sorry Having some problem \nSignUp Failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, " SignUp Success", Toast.LENGTH_SHORT).show();
 
-                            progressBar.setVisibility(View.GONE);
+                                progressBar.setVisibility(View.GONE);
+                                startActivity(new Intent(getApplicationContext(), LogInActivity.class));
+                            } else {
+                                // If sign in fails, display a message to the user.
+
+                                Toast.makeText(SignUpActivity.this, "Sorry Having some problem \nSignUp Failed", Toast.LENGTH_SHORT).show();
+
+                                progressBar.setVisibility(View.GONE);
+                            }
+
+                            // ...
                         }
+                    });
 
-                        // ...
-                    }
-                });
+        }else {
+            radioButton_FT.setError("check radio Button");
+            radioButton_ST.setError("check radio Button");
+            radioButton_ST.requestFocus();
+            radioButton_FT.requestFocus();
+            Toast.makeText(this, "checked radio button", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

@@ -21,10 +21,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"
             android:text="Create an Account"
             android:textColor="#fff"
-            android:layout_marginBottom="40dp"
-            android:layout_gravity="center"
             android:textSize="30sp"/>
 
         <EditText
@@ -34,11 +34,11 @@
             android:layout_marginBottom="10sp"
             android:drawableLeft="@drawable/user"
             android:hint="    E-mail"
-            android:textColor="#fff"
-            android:textColorHint="#fff"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:singleLine="true"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
             android:textScaleX="1.5"/>
 
         <EditText
@@ -49,60 +49,83 @@
             android:drawableLeft="@drawable/lock"
             android:focusableInTouchMode="true"
             android:hint="    Password"
-            android:textColor="#fff"
-            android:textColorHint="#fff"
             android:imeOptions="actionUnspecified"
             android:inputType="textPassword"
             android:maxLines="1"
             android:singleLine="true"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
             android:textScaleX="1.5"/>
 
-        <!--<Button
-            android:layout_width="wrap_content"
+
+        <RadioGroup
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/radiogroup"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:background="@android:color/transparent"
-            android:text="Forgot Password?"
-            android:textColor="#fff"
-            android:textAllCaps="false"/>-->
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_student"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:padding="2dp"
+                android:text="Student"
+                android:textColor="#ffffff"
+                android:textSize="25sp"/>
+
+            <RadioButton
+                android:id="@+id/radio_faculty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:padding="2dp"
+                android:text="faculty"
+                android:textColor="#ffffff"
+                android:textSize="25sp"/>
+        </RadioGroup>
+
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
         android:layout_marginLeft="10sp"
         android:layout_marginRight="10sp"
+        android:layout_weight="1"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <Button
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:background="@drawable/stock"
-            android:textColor="#fff"
-            android:drawableLeft="@drawable/facebook"
             android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/stock"
+            android:drawableLeft="@drawable/facebook"
             android:text="Facebook"
+            android:textColor="#fff"
             />
 
         <Button
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:background="@drawable/stock"
             android:layout_marginLeft="2dp"
-            android:textColor="#fff"
-            android:paddingLeft="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/stock"
             android:drawableLeft="@drawable/twitter"
-            android:text="Twitter"/>
+            android:paddingLeft="4dp"
+            android:text="Twitter"
+            android:textColor="#fff"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_gravity="bottom"
         android:layout_weight="2"
         android:orientation="vertical">
 
@@ -128,9 +151,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="#043173"
-            android:textColor="#fff"
             android:text="Have An Account?   Click Here"
             android:textAllCaps="false"
+            android:textColor="#fff"
             android:textSize="15dp"/>
     </LinearLayout>
 
