@@ -1,16 +1,12 @@
 package com.example.imransk.buproject1;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -26,18 +22,17 @@ public class LogInActivity extends Activity {
     private Button logInBtn, sign_UpBtn;
     private ProgressBar progressBar;
 
-    FirebaseAuth auth=null;
+    FirebaseAuth auth = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-requestWindowFeature(Window.FEATURE_NO_TITLE);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
 
       /*  ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(false);//hide title
         actionBar.setDisplayShowHomeEnabled(false);//hide icon*/
-
 
         email_log = findViewById(R.id.email_login);
         password_log = findViewById(R.id.password_login);
@@ -45,9 +40,9 @@ requestWindowFeature(Window.FEATURE_NO_TITLE);
         sign_UpBtn = findViewById(R.id.sign_Up_button);
         progressBar = findViewById(R.id.progressBar_login);
 
-        auth=FirebaseAuth.getInstance();
-        if (auth.getCurrentUser()!=null){
-            startActivity(new Intent(getApplicationContext(),LoginSuccessActivity.class));
+        auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            startActivity(new Intent(getApplicationContext(), LoginSuccessActivity.class));
         }
 
 
@@ -102,13 +97,31 @@ requestWindowFeature(Window.FEATURE_NO_TITLE);
                         } else {
 
                             Toast.makeText(LogInActivity.this, "Success Login ", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),LoginSuccessActivity.class));
+                            startActivity(new Intent(getApplicationContext(), LoginSuccessActivity.class));
                             finish();
                         }
 
                         // ...
                     }
                 });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        int backButtonCount=0;
+        if(backButtonCount >= 1)
+        {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+        else
+        {
+            Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
+            backButtonCount++;
+        }
     }
 }
 

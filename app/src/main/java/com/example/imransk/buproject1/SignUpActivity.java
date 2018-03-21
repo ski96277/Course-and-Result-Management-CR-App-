@@ -17,19 +17,27 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.imransk.buproject1.pojoClass.SignUpPojo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends Activity {
     private EditText email_input, password_input;
     private Button signIn_btn, signUp_btn;
     private ProgressBar progressBar;
-    private FirebaseAuth auth;
     private RadioGroup radioGroup;
     private RadioButton radioButton_ST, radioButton_FT;
     String radioText = "";
+
+    String userID="";
+    private FirebaseAuth auth;
+    private FirebaseUser firebaseUser;
+    private FirebaseDatabase firebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,9 @@ public class SignUpActivity extends Activity {
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
+
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
         signIn_btn = (Button) findViewById(R.id.sign_in_button);
         signUp_btn = (Button) findViewById(R.id.sign_up_button);
@@ -50,13 +61,14 @@ public class SignUpActivity extends Activity {
         radioButton_ST = findViewById(R.id.radio_student);
         radioButton_FT = findViewById(R.id.radio_faculty);
 
+        //Go Login Page
         signIn_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), LogInActivity.class));
             }
         });
-
+//Call signup method
         signUp_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,10 +78,10 @@ public class SignUpActivity extends Activity {
     }
 
     public void signUP() {
-        String email = email_input.getText().toString().trim();
+        final String email = email_input.getText().toString().trim();
         String password = password_input.getText().toString().trim();
 
-
+//validation signUp
         if (TextUtils.isEmpty(email)) {
             email_input.setError("Enter E-mail");
             email_input.requestFocus();
@@ -90,18 +102,15 @@ public class SignUpActivity extends Activity {
         }
 
         if (radioButton_FT.isChecked() || radioButton_ST.isChecked()){
-           /* radioButton_FT.setFocusable(false);
-            radioButton_ST.setFocusable(false);*/
-            String status = "";
-            status = ((RadioButton) findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
-            Toast.makeText(this, "" + status, Toast.LENGTH_SHORT).show();
 
-        /*}else {
-            Toast.makeText(this, "Check radioButton", Toast.LENGTH_SHORT).show();
-        }*/
+//get radio button status
+            String rdGroup = "";
+            rdGroup = ((RadioButton) findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
+            Toast.makeText(this, "" + rdGroup, Toast.LENGTH_SHORT).show();
 
             progressBar.setVisibility(View.VISIBLE);
             //create user
+            final String finalRdGroup = rdGroup;
             auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -111,7 +120,19 @@ public class SignUpActivity extends Activity {
 
                                 Toast.makeText(SignUpActivity.this, " SignUp Success", Toast.LENGTH_SHORT).show();
 
+                                //Add data to database
+                                firebaseUser =FirebaseAuth.getInstance().getCurrentUser();
+                                userID=firebaseUser.getUid();
+                                DatabaseReference databaseReference=firebaseDatabase.getReference(finalRdGroup);
+
+                                String status="0";
+                                SignUpPojo signUpPojo=new SignUpPojo(status,userID,finalRdGroup,email);
+
+                                databaseReference.child(userID).setValue(signUpPojo);
+
                                 progressBar.setVisibility(View.GONE);
+
+                                //go Login Activity and than go LoginSuccess Activity
                                 startActivity(new Intent(getApplicationContext(), LogInActivity.class));
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -130,7 +151,7 @@ public class SignUpActivity extends Activity {
             radioButton_ST.setError("check radio Button");
             radioButton_ST.requestFocus();
             radioButton_FT.requestFocus();
-            Toast.makeText(this, "checked radio button", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please checked the radio button", Toast.LENGTH_SHORT).show();
         }
 
     }

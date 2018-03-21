@@ -1,34 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:padding="5sp"
     android:background="@drawable/background_color"
     tools:context=".LogInActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="10sp"
-        android:layout_weight="3"
-        android:gravity="bottom"
+        android:layout_weight="4"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="40sp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Logo"
-            android:textColor="#fff"
             android:layout_gravity="center"
-            android:textSize="30sp"/>
+            android:gravity="center"
+            android:text="Bangladesh University"
+            android:textColor="#fff"
+            android:textSize="25sp"/>
 
         <EditText
             android:id="@+id/email_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10sp"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="20sp"
             android:drawableLeft="@drawable/user"
             android:hint="    E-mail"
             android:textColor="#fff"
@@ -36,13 +39,12 @@
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:singleLine="true"
-            android:textScaleX="1.5"/>
+            android:textScaleX="1"/>
 
         <EditText
             android:id="@+id/password_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10sp"
             android:drawableLeft="@drawable/lock"
             android:focusableInTouchMode="true"
             android:hint="    Password"
@@ -52,7 +54,7 @@
             android:inputType="textPassword"
             android:maxLines="1"
             android:singleLine="true"
-            android:textScaleX="1.5"/>
+            android:textScaleX="1"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -67,8 +69,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
+        android:layout_weight="1.5"
         android:layout_marginLeft="10sp"
         android:layout_marginRight="10sp"
         android:orientation="horizontal">
@@ -104,10 +105,8 @@
 
         <Button
             android:id="@+id/log_in_button"
-            style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10sp"
             android:layout_marginTop="16dp"
             android:background="#003AB7"
             android:text="Sign In"
@@ -120,7 +119,7 @@
 
         <Button
             android:id="@+id/sign_Up_button"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="#043173"
@@ -136,8 +135,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center|bottom"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_weight=".5"
         android:visibility="gone"
         />
+
+
 </LinearLayout>
