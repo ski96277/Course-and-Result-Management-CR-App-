@@ -1,5 +1,7 @@
 package com.example.imransk.buproject1.FragmentClass;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,7 +38,7 @@ public class HomePageF extends Fragment {
     String status_admin = "";
     TextView statusTV;
 
-
+Context context;
     AlertDialog.Builder builder;
 
     @Nullable
@@ -49,6 +51,8 @@ public class HomePageF extends Fragment {
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        this.context=view.getContext();
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -112,12 +116,13 @@ public class HomePageF extends Fragment {
 
         //show alert dialog
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Dialog_Alert);
+            builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Dialog_Alert);
         } else {
             builder = new AlertDialog.Builder(getContext());
         }
-        builder.setTitle("Your Staus is "+status_student)
+        builder.setTitle("Your Staus is 0")
                 .setMessage("You need to Admin Aproval, So Wait for Admin Aprove")
+                .setCancelable(false)//Can't Cancel when User Click on outside of my alertDailog or Backpressed
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // continue with delete
@@ -128,8 +133,13 @@ public class HomePageF extends Fragment {
                         // do nothing
                     }
                 })
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
+                .setIcon(android.R.drawable.ic_dialog_alert);
+        //use this code for need to crush off
+        if(!((Activity) context).isFinishing())
+        {
+            builder.show();
+        }
+
 
     }
 }

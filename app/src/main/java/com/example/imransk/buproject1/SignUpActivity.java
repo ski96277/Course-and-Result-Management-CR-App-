@@ -136,25 +136,6 @@ public class SignUpActivity extends Activity {
 
                                 progressBar.setVisibility(View.GONE);
 
-                                //retrive Data from Database
-                               /* databaseReference=FirebaseDatabase.getInstance().getReference();
-                                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-
-                                    @Override
-                                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                        String statusDB=dataSnapshot.child(finalRdGroup).child(userID).child(status).getValue(String.class);
-
-                                        Log.e("Data Come From Database", "onDataChange: "+statusDB );
-                                        Toast.makeText(SignUpActivity.this, ""+statusDB, Toast.LENGTH_SHORT).show();
-                                    }
-
-                                    @Override
-                                    public void onCancelled(DatabaseError databaseError) {
-
-                                    }
-                                });*/
-
 
                                 //go Login Activity and than go LoginSuccess Activity
                                 startActivity(new Intent(getApplicationContext(), LogInActivity.class));
