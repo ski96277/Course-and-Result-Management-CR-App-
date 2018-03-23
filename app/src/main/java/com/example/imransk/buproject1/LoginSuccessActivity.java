@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,16 +17,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.imransk.buproject1.FragmentClass.EditProfileF;
 import com.example.imransk.buproject1.FragmentClass.HomePageF;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginSuccessActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     FirebaseAuth firebaseAuth;
+    /*FirebaseUser firebaseUser;
+    DatabaseReference databaseReference;
+    String userId;
+    String status_student = "";
+    String status_faculty = "";
+    String status_admin = "";
+    TextView statusTV;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +58,18 @@ public class LoginSuccessActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+
         //Set Default Fragment
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.screenArea, new HomePageF());
         fragmentTransaction.commit();
 
 
-        firebaseAuth = FirebaseAuth.getInstance();
     }
+
 
     @Override
     public void onBackPressed() {
@@ -87,15 +106,18 @@ public class LoginSuccessActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        Fragment fragment=null;
+        Fragment fragment = null;
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_home_page) {
             // Handle the camera action
-            fragment=new HomePageF();
+            fragment = new HomePageF();
+//            checkStatus();
+
+
         } else if (id == R.id.nav_edit_profile) {
-            fragment=new EditProfileF();
+            fragment = new EditProfileF();
 
         } else if (id == R.id.nav_log_out) {
             firebaseAuth.signOut();
@@ -114,9 +136,9 @@ public class LoginSuccessActivity extends AppCompatActivity
 
         }
         // skip null pointer exception and set fragment
-        if (fragment!=null){
-            FragmentTransaction fragmentTransaction =getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.screenArea,fragment);
+        if (fragment != null) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.screenArea, fragment);
             fragmentTransaction.commit();
         }
 

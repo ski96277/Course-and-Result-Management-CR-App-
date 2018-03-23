@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -23,8 +24,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignUpActivity extends Activity {
     private EditText email_input, password_input;
@@ -125,12 +129,32 @@ public class SignUpActivity extends Activity {
                                 userID=firebaseUser.getUid();
                                 DatabaseReference databaseReference=firebaseDatabase.getReference(finalRdGroup);
 
-                                String status="0";
-                                SignUpPojo signUpPojo=new SignUpPojo(status,userID,finalRdGroup,email);
+                                final String status="0";
+                                final SignUpPojo signUpPojo=new SignUpPojo(status,userID,finalRdGroup,email);
 
                                 databaseReference.child(userID).setValue(signUpPojo);
 
                                 progressBar.setVisibility(View.GONE);
+
+                                //retrive Data from Database
+                               /* databaseReference=FirebaseDatabase.getInstance().getReference();
+                                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                        String statusDB=dataSnapshot.child(finalRdGroup).child(userID).child(status).getValue(String.class);
+
+                                        Log.e("Data Come From Database", "onDataChange: "+statusDB );
+                                        Toast.makeText(SignUpActivity.this, ""+statusDB, Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });*/
+
 
                                 //go Login Activity and than go LoginSuccess Activity
                                 startActivity(new Intent(getApplicationContext(), LogInActivity.class));
