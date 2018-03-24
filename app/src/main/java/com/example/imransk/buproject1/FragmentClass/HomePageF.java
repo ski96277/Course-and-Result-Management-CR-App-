@@ -8,13 +8,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.imransk.buproject1.Adapter.UserListAdapter;
 import com.example.imransk.buproject1.R;
+import com.example.imransk.buproject1.pojoClass.SignUpPojo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +26,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * Created by imran sk on 3/22/2018.
@@ -38,13 +44,16 @@ public class HomePageF extends Fragment {
     String status_admin = "";
     TextView statusTV;
 
-Context context;
+    ListView listViewUser;
+    private ArrayList<SignUpPojo> signUpList;
+
+    Context context;
     AlertDialog.Builder builder;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.homepagef,null);
+        return inflater.inflate(R.layout.homepagef, null);
 
     }
 
@@ -52,12 +61,15 @@ Context context;
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        this.context=view.getContext();
+        this.context = view.getContext();
+
+        signUpList = new ArrayList<>();
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         userId = firebaseUser.getUid();
         statusTV = view.findViewById(R.id.homepageTV);
+        listViewUser = view.findViewById(R.id.userList);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -85,7 +97,7 @@ Context context;
                     status_faculty = dataSnapshot.child("faculty").child(userId).child("status").getValue(String.class).trim();
                     if (status_faculty.equals("0")) {
                         statusTV.setText("Your Faculty Status is 0");
-                        Toast.makeText(view.getContext(), ""+status_faculty, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(view.getContext(), "" + status_faculty, Toast.LENGTH_SHORT).show();
                         //Call alert dialog method
                         alert();
 
@@ -94,11 +106,39 @@ Context context;
                         Toast.makeText(view.getContext(), "" + status_faculty, Toast.LENGTH_SHORT).show();
 
                     }
-                }else if (aTrue) {
+                } else if (aTrue) {
+                    listViewUser.setVisibility(View.VISIBLE);
+
                     status_admin = dataSnapshot.child("admin").child(userId).child("status").getValue(String.class).trim();
                     if (status_admin.equals("1")) {
-                        statusTV.setText("Your admin Status is 1");
+                        statusTV.setText("Your admin Status is 1\n");
                         Toast.makeText(view.getContext(), "" + status_admin, Toast.LENGTH_SHORT).show();
+
+                        // add student user to my array
+                        signUpList.clear();
+                        SignUpPojo signUpPojo = null;
+                        for (DataSnapshot snapshot : dataSnapshot.child("Student").getChildren()) {
+                            signUpPojo = snapshot.getValue(SignUpPojo.class);
+                            if (signUpPojo.getStatus().equals("0")) {
+                                signUpList.add(signUpPojo);
+                            }
+
+                        }
+
+                        // add Faculty user to my array
+                        for (DataSnapshot snapshot : dataSnapshot.child("faculty").getChildren()) {
+                            signUpPojo = snapshot.getValue(SignUpPojo.class);
+                            if (signUpPojo.getStatus().equals("0")) {
+                                signUpList.add(signUpPojo);
+                            }
+
+                        }
+                        UserListAdapter adapter=new UserListAdapter(getContext(),signUpList);
+                        listViewUser.setAdapter(adapter);
+
+                        statusTV.append("Total User" + String.valueOf(signUpList.size()));
+//                        statusTV.append(signUpList.get(0).getStatus());
+                        Log.e("Come from data Base", "onDataChange: " + signUpList);
 
                     }
                 }
@@ -111,8 +151,9 @@ Context context;
         });
 
     }
+
     //Create alert dialog method
-    private void alert(){
+    private void alert() {
 
         //show alert dialog
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -135,8 +176,7 @@ Context context;
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert);
         //use this code for need to crush off
-        if(!((Activity) context).isFinishing())
-        {
+        if (!((Activity) context).isFinishing()) {
             builder.show();
         }
 
