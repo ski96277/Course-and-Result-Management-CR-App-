@@ -70,6 +70,7 @@ public class SignUpActivity extends Activity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), LogInActivity.class));
+                finish();
             }
         });
 //Call signup method
@@ -139,6 +140,7 @@ public class SignUpActivity extends Activity {
 
                                 //go Login Activity and than go LoginSuccess Activity
                                 startActivity(new Intent(getApplicationContext(), LogInActivity.class));
+                                finish();
                             } else {
                                 // If sign in fails, display a message to the user.
 
