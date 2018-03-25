@@ -3,6 +3,7 @@ package com.example.imransk.buproject1.FragmentClass;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.imransk.buproject1.AboutActivity;
 import com.example.imransk.buproject1.Adapter.UserListAdapter;
 import com.example.imransk.buproject1.R;
 import com.example.imransk.buproject1.pojoClass.SignUpPojo;
@@ -111,10 +113,10 @@ public class HomePageF extends Fragment {
 
                     status_admin = dataSnapshot.child("admin").child(userId).child("status").getValue(String.class).trim();
                     if (status_admin.equals("1")) {
-                        statusTV.setText("Your admin Status is 1\n");
+                        statusTV.setText("WelCome Dear Admin \n");
                         Toast.makeText(view.getContext(), "" + status_admin, Toast.LENGTH_SHORT).show();
 
-                        // add student user to my array
+     // add student user to my array
                         signUpList.clear();
                         SignUpPojo signUpPojo = null;
                         for (DataSnapshot snapshot : dataSnapshot.child("Student").getChildren()) {
@@ -125,7 +127,7 @@ public class HomePageF extends Fragment {
 
                         }
 
-                        // add Faculty user to my array
+   // add Faculty user to my array
                         for (DataSnapshot snapshot : dataSnapshot.child("faculty").getChildren()) {
                             signUpPojo = snapshot.getValue(SignUpPojo.class);
                             if (signUpPojo.getStatus().equals("0")) {
@@ -136,7 +138,7 @@ public class HomePageF extends Fragment {
                         UserListAdapter adapter=new UserListAdapter(getContext(),signUpList);
                         listViewUser.setAdapter(adapter);
 
-                        statusTV.append("Total User" + String.valueOf(signUpList.size()));
+                        statusTV.append("Pending User" + String.valueOf(signUpList.size()));
 //                        statusTV.append(signUpList.get(0).getStatus());
                         Log.e("Come from data Base", "onDataChange: " + signUpList);
 
@@ -167,15 +169,18 @@ public class HomePageF extends Fragment {
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // continue with delete
+
+                        startActivity(new Intent(getContext(), AboutActivity.class));
+                        getActivity().finish();
                     }
                 })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                /*.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // do nothing
                     }
-                })
+                })*/
                 .setIcon(android.R.drawable.ic_dialog_alert);
-        //use this code for need to crush off
+//use this code for need to crush off
         if (!((Activity) context).isFinishing()) {
             builder.show();
         }

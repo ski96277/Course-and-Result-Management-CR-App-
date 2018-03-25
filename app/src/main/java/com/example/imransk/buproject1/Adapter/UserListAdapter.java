@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.example.imransk.buproject1.R;
 import com.example.imransk.buproject1.pojoClass.SignUpPojo;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 import java.util.List;
@@ -30,6 +32,8 @@ public class UserListAdapter extends ArrayAdapter {
     Button right_button;
     Context context;
     List<SignUpPojo> signUpPojoList;
+
+    FirebaseDatabase firebaseDatabase;
 
     public UserListAdapter(Context context, List<SignUpPojo> signUpPojoList) {
         super(context, R.layout.user_list, signUpPojoList);
@@ -60,17 +64,14 @@ public class UserListAdapter extends ArrayAdapter {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(context, ""+signUpPojo.getUser_id(), Toast.LENGTH_SHORT).show();
+//set status 1 by default inside DataBase useing pojo class
+                SignUpPojo signUpPojoForset = new SignUpPojo("1", signUpPojo.getUser_id(), signUpPojo.getType(), signUpPojo.getEmail());
+                firebaseDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference databaseReference = firebaseDatabase.getReference();
+                databaseReference.child(signUpPojoForset.getType()).child(signUpPojoForset.getUser_id()).setValue(signUpPojoForset);
+                Toast.makeText(context, "" + signUpPojoForset.getStatus(), Toast.LENGTH_SHORT).show();
             }
         });
-       /* listViewItem.setOnContextClickListener(new View.OnContextClickListener() {
-          @Override
-          public boolean onContextClick(View view) {
-
-              Toast.makeText(context, ""+ signUpPojo.getUser_id(), Toast.LENGTH_SHORT).show();
-              return true;
-          }
-      });*/
 
         return listViewItem;
     }

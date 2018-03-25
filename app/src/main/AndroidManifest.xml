@@ -32,6 +32,8 @@
             android:label="@string/title_activity_login_success"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".AboutActivity">
+        </activity>
     </application>
 
 </manifest>
