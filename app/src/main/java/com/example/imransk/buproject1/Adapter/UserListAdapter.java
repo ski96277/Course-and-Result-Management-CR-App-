@@ -27,8 +27,9 @@ import java.util.List;
 
 public class UserListAdapter extends ArrayAdapter {
 
-    TextView useridET;
+    TextView userNameET;
     TextView userTypeET;
+    TextView departmentTypeET;
     Button right_button;
     Context context;
     List<SignUpPojo> signUpPojoList;
@@ -52,20 +53,24 @@ public class UserListAdapter extends ArrayAdapter {
         View listViewItem = inflater.inflate(R.layout.user_list, null);
 
 
-        useridET = listViewItem.findViewById(R.id.user_Id);
+        userNameET = listViewItem.findViewById(R.id.user_Id);
         userTypeET = listViewItem.findViewById(R.id.user_Type);
+        departmentTypeET = listViewItem.findViewById(R.id.department_Type);
+
         right_button = listViewItem.findViewById(R.id.right_button);
 
         final SignUpPojo signUpPojo = signUpPojoList.get(position);
 
-        useridET.append(signUpPojo.getUser_id());
+        userNameET.append(signUpPojo.getFull_name());
         userTypeET.append(signUpPojo.getType());
+        departmentTypeET.append(signUpPojo.getDepartment_name());
+
         right_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 //set status 1 by default inside DataBase useing pojo class
-                SignUpPojo signUpPojoForset = new SignUpPojo("1", signUpPojo.getUser_id(), signUpPojo.getType(), signUpPojo.getEmail());
+                SignUpPojo signUpPojoForset = new SignUpPojo("1", signUpPojo.getUser_id(), signUpPojo.getType(), signUpPojo.getEmail(),signUpPojo.getFull_name(),signUpPojo.getDepartment_name(),signUpPojo.getBatch_number());
                 firebaseDatabase = FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference = firebaseDatabase.getReference();
                 databaseReference.child(signUpPojoForset.getType()).child(signUpPojoForset.getUser_id()).setValue(signUpPojoForset);

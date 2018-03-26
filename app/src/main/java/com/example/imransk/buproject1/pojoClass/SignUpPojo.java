@@ -9,15 +9,33 @@ public class SignUpPojo {
     String user_id;
     String type;
     String email;
+    String full_name;
+    String department_name;
+    String batch_number;
 
     public SignUpPojo() {
     }
 
-    public SignUpPojo(String status, String user_id, String type,String email) {
+    public SignUpPojo(String status, String user_id, String type,String email,String full_name,String department_name,String batch_number) {
         this.status = status;
         this.user_id = user_id;
         this.type = type;
         this.email = email;
+        this.full_name =full_name;
+        this.department_name = department_name;
+        this.batch_number =batch_number;
+    }
+
+    public String getFull_name() {
+        return full_name;
+    }
+
+    public String getDepartment_name() {
+        return department_name;
+    }
+
+    public String getBatch_number() {
+        return batch_number;
     }
 
     public String getEmail() {
