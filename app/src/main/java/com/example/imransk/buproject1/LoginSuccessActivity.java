@@ -48,7 +48,8 @@ public class LoginSuccessActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_success);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //hide notification bar
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

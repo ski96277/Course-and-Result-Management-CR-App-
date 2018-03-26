@@ -107,8 +107,8 @@ public class LogInActivity extends Activity {
                 });
     }
 
-    @Override
-    public void onBackPressed() {/*
+    /*@Override
+    public void onBackPressed() {*//*
         super.onBackPressed();
         int backButtonCount=0;
         if(backButtonCount >= 1)
@@ -122,7 +122,7 @@ public class LogInActivity extends Activity {
         {
             Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
             backButtonCount++;
-        }*/
-    }
+        }*//*
+    }*/
 }
 
