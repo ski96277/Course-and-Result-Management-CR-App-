@@ -132,7 +132,7 @@ public class SignUpActivity extends Activity {
     }
     private void showTheInformationField() {
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this,R.style.AlertDialog);
         LayoutInflater inflater = this.getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.customdialogwithinput, null);
         dialogBuilder.setView(dialogView);
@@ -141,10 +141,10 @@ public class SignUpActivity extends Activity {
         depart_ET = (EditText) dialogView.findViewById(R.id.department_ET);
         batch_ET = (EditText) dialogView.findViewById(R.id.batch_number_ET);
 
-        dialogBuilder.setTitle("Enter Your Information");
-        dialogBuilder.setMessage("Enter text below");
+        /*dialogBuilder.setTitle("Enter Your Information");
+        dialogBuilder.setMessage("Enter text below");*/
         dialogBuilder.setCancelable(false);
-        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+        dialogBuilder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 //do something with edt.getText().toString();
                /* if (TextUtils.isEmpty(fullName)){
@@ -166,9 +166,10 @@ public class SignUpActivity extends Activity {
             public void onClick(DialogInterface dialog, int whichButton) {
                 //pass
             }
-        });
+        }).create();
+
         dialogBuilder.show();
-    }
+      }
     public void signUP() {
 
 //get radio button status
