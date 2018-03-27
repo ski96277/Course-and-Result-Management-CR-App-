@@ -238,9 +238,4 @@ public class SignUpActivity extends Activity {
 
 
     }
-   /* @Override
-    protected void onResume() {
-        super.onResume();
-        progressBar.setVisibility(View.GONE);
-    }*/
 }
