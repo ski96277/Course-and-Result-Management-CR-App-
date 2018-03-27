@@ -125,6 +125,7 @@ public class LoginSuccessActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_log_out) {
             firebaseAuth.signOut();
+            finish();
             if (firebaseAuth.getCurrentUser() == null) {
                 Toast.makeText(getApplicationContext(), "Log out Success", Toast.LENGTH_SHORT).show();
 

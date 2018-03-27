@@ -47,7 +47,7 @@ public class HomePageF extends Fragment {
     TextView statusTV;
 
     ListView listViewUser;
-    private ArrayList<SignUpPojo> signUpList;
+    private ArrayList<SignUpPojo> signUpList=null;
 
     Context context;
     AlertDialog.Builder builder;
@@ -135,8 +135,13 @@ public class HomePageF extends Fragment {
                             }
 
                         }
-                        UserListAdapter adapter=new UserListAdapter(getContext(),signUpList);
-                        listViewUser.setAdapter(adapter);
+                        UserListAdapter adapter;
+//use if Condition for skip nullpointer exception
+                        if (getActivity()!=null){
+                            adapter = new UserListAdapter(getActivity(),signUpList);
+                            listViewUser.setAdapter(adapter);
+                        }
+
 
                         statusTV.append("Pending User" + String.valueOf(signUpList.size()));
 //                        statusTV.append(signUpList.get(0).getStatus());

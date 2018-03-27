@@ -62,7 +62,7 @@ public class UserListAdapter extends ArrayAdapter {
         final SignUpPojo signUpPojo = signUpPojoList.get(position);
 
         userNameET.append(signUpPojo.getFull_name());
-        userTypeET.append(signUpPojo.getType());
+        userTypeET.append(signUpPojo.getType()+", ");
         departmentTypeET.append(signUpPojo.getDepartment_name());
 
         right_button.setOnClickListener(new View.OnClickListener() {
