@@ -1,59 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-    android:layout_marginBottom="20dp">
-<TextView
-    android:id="@+id/userinformationTV"
-    android:layout_width="match_parent"
-    android:layout_height="80sp"
-    android:text="Enter Your Information"
-    android:textColor="#fff"
-    android:textSize="20sp"
-    android:gravity="center"
-    android:background="#044373"/>
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/userinformationTV"
+        android:layout_width="match_parent"
+        android:layout_height="80sp"
+        android:background="#044373"
+        android:gravity="center"
+        android:text="Enter Your Information"
+        android:textColor="#fff"
+        android:textSize="20sp"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circle_image_view"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/userinformationTV"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="2dp"
+        android:src="@drawable/boy"
+        app:civ_border_color="#0163AD"
+        app:civ_border_width="3dp"/>
+
+
+    <View
+        android:id="@+id/dividerk"
+        android:layout_width="390dp"
+        android:layout_height="2dp"
+        android:layout_below="@id/circle_image_view"
+        android:background="@android:color/black"/>
     <EditText
         android:id="@+id/fullName_ET"
         android:layout_width="match_parent"
         android:layout_height="71dp"
+        android:layout_below="@id/circle_image_view"
         android:ems="10"
-        android:layout_below="@id/userinformationTV"
-        android:textColor="#000"
-        android:inputType="textPersonName"
+        android:gravity="center"
         android:hint="Full Name"
-        android:textCursorDrawable="@drawable/coursor_color"
-        android:gravity="center"/>
+        android:inputType="textPersonName"
+        android:textColor="#000"
+        android:textCursorDrawable="@drawable/coursor_color"/>
 
     <EditText
         android:id="@+id/department_ET"
         android:layout_width="150dp"
         android:layout_height="63dp"
-        android:ems="10"
-        android:textColor="#000"
-        android:textCursorDrawable="@drawable/coursor_color"
         android:layout_below="@id/fullName_ET"
-        android:inputType="textPersonName"
+        android:ems="10"
+        android:gravity="center"
         android:hint="Department"
-        android:gravity="center"/>
+        android:inputType="textPersonName"
+        android:textColor="#000"
+        android:textCursorDrawable="@drawable/coursor_color"/>
+
     <View
         android:id="@+id/divider"
         android:layout_width="1dp"
+        android:layout_height="60dp"
         android:layout_below="@id/fullName_ET"
         android:layout_toRightOf="@id/department_ET"
-        android:layout_height="60dp"
-        android:background="@android:color/black" />
+        android:background="@android:color/black"/>
 
     <EditText
         android:id="@+id/batch_number_ET"
         android:layout_width="wrap_content"
         android:layout_height="63dp"
-        android:textColor="#000"
-        android:layout_toRightOf="@id/divider"
-        android:textCursorDrawable="@drawable/coursor_color"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/fullName_ET"
         android:layout_marginEnd="13dp"
-        android:hint="Batch Number"/>
+        android:layout_toRightOf="@id/divider"
+        android:hint="Batch Number"
+        android:textColor="#000"
+        android:textCursorDrawable="@drawable/coursor_color"/>
 
 </RelativeLayout>

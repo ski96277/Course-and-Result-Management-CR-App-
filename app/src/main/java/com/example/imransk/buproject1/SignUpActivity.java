@@ -4,6 +4,9 @@ package com.example.imransk.buproject1;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
@@ -13,6 +16,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -20,12 +24,21 @@ import android.widget.Toast;
 
 import com.example.imransk.buproject1.pojoClass.SignUpPojo;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.IOException;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SignUpActivity extends Activity {
     private EditText email_input, password_input;
@@ -43,16 +56,18 @@ public class SignUpActivity extends Activity {
     private EditText full_name_ET;
     private EditText depart_ET;
     private EditText batch_ET;
-    String fullName="";
-    String departmetnName="";
-    String batchNumber="";
-
-
+    String fullName = "";
+    String departmetnName = "";
+    String batchNumber = "";
+    CircleImageView circleImageView;
+    int profile_image_Code = 2;
+    Uri imageUri;
 
     String userID = "";
     private FirebaseAuth auth;
     private FirebaseUser firebaseUser;
     private FirebaseDatabase firebaseDatabase;
+    private StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +77,8 @@ public class SignUpActivity extends Activity {
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
-
+        //for storage
+        storageReference = FirebaseStorage.getInstance().getReference();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
 
@@ -130,35 +146,37 @@ public class SignUpActivity extends Activity {
             Toast.makeText(this, "Please checked the radio button", Toast.LENGTH_SHORT).show();
         }
     }
+
     private void showTheInformationField() {
 
-         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this,R.style.AlertDialog);
-        LayoutInflater inflater = this.getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.customdialogwithinput, null);
-        dialogBuilder.setView(dialogView);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this, R.style.AlertDialog);
+        final LayoutInflater inflater = this.getLayoutInflater();
 
+        String called_from = getIntent().getStringExtra("called");
+        final View dialogView;
+
+
+        dialogView = inflater.inflate(R.layout.customdialogwithinput, null);
+        dialogBuilder.setView(dialogView);
         full_name_ET = (EditText) dialogView.findViewById(R.id.fullName_ET);
         depart_ET = (EditText) dialogView.findViewById(R.id.department_ET);
         batch_ET = (EditText) dialogView.findViewById(R.id.batch_number_ET);
+        circleImageView = (CircleImageView) dialogView.findViewById(R.id.circle_image_view);
 
-        /*dialogBuilder.setTitle("Enter Your Information");
-        dialogBuilder.setMessage("Enter text below");*/
+//set Action on Image view
+        circleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("image/*")
+                        .setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "select image"), profile_image_Code);
+            }
+        });
         dialogBuilder.setCancelable(false);
         dialogBuilder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                //do something with edt.getText().toString();
-               /* if (TextUtils.isEmpty(fullName)){
-                    full_name_ET.setError("Your name");
-                    full_name_ET.requestFocus();
-                    return;
-                }if (TextUtils.isEmpty(departmetnName)){
-                    depart_ET.setError("Department Name");
-                    depart_ET.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(batchNumber)){
-                    batch_ET.setError("Batch Name");
-                }*/
+
                 signUP();
             }
         });
@@ -169,7 +187,8 @@ public class SignUpActivity extends Activity {
         }).create();
 
         dialogBuilder.show();
-      }
+    }
+
     public void signUP() {
 
 //get radio button status
@@ -177,11 +196,11 @@ public class SignUpActivity extends Activity {
         rdGroup = ((RadioButton) findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
 
 
- //Get Text from Information alert dialog
+        //Get Text from Information alert dialog
 
-        fullName=full_name_ET.getText().toString();
-        departmetnName=depart_ET.getText().toString();
-        batchNumber=batch_ET.getText().toString();
+        fullName = full_name_ET.getText().toString();
+        departmetnName = depart_ET.getText().toString();
+        batchNumber = batch_ET.getText().toString();
 
 //        Toast.makeText(this, "" + rdGroup, Toast.LENGTH_SHORT).show();
 
@@ -194,7 +213,7 @@ public class SignUpActivity extends Activity {
         //create user
         final String finalRdGroup = rdGroup;
 
-        if (TextUtils.isEmpty(fullName)){
+        if (TextUtils.isEmpty(fullName)) {
             full_name_ET.setError("your name");
             full_name_ET.requestFocus();
             return;
@@ -214,10 +233,10 @@ public class SignUpActivity extends Activity {
                             DatabaseReference databaseReference = firebaseDatabase.getReference(finalRdGroup);
 
                             final String status = "0";
-                            final SignUpPojo signUpPojo = new SignUpPojo(status, userID, finalRdGroup, email,fullName,departmetnName,batchNumber);
+                            final SignUpPojo signUpPojo = new SignUpPojo(status, userID, finalRdGroup, email, fullName, departmetnName, batchNumber);
 
                             databaseReference.child(userID).setValue(signUpPojo);
-
+                            upload_profile_image();
                             progressBar.setVisibility(View.GONE);
 
 
@@ -238,4 +257,39 @@ public class SignUpActivity extends Activity {
 
 
     }
+
+    //upload image to storage
+    private void upload_profile_image() {
+        storageReference = storageReference.child(userID).child("image").child("profile/profilepic.jpg");
+        storageReference.putFile(imageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Toast.makeText(SignUpActivity.this, "Profile image Uploaded", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        imageUri = data.getData();
+
+        if (requestCode == profile_image_Code && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                circleImageView.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 }

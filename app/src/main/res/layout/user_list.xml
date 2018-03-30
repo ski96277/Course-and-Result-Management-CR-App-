@@ -50,11 +50,17 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="#000000"/>
         <Button
             android:id="@+id/right_button"
             android:layout_width="20sp"
             android:layout_height="20sp"
+            android:layout_marginLeft="12sp"
             android:background="@drawable/righticon"
             />
     </LinearLayout>
