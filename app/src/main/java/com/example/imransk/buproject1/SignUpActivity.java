@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -35,6 +36,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -62,12 +64,14 @@ public class SignUpActivity extends Activity {
     CircleImageView circleImageView;
     int profile_image_Code = 2;
     Uri imageUri;
+    Uri imageUri_download_Link;
+
 
     String userID = "";
     private FirebaseAuth auth;
     private FirebaseUser firebaseUser;
     private FirebaseDatabase firebaseDatabase;
-    private StorageReference storageReference;
+    private StorageReference storageReference_root;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +82,7 @@ public class SignUpActivity extends Activity {
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
         //for storage
-        storageReference = FirebaseStorage.getInstance().getReference();
+        storageReference_root = FirebaseStorage.getInstance().getReference();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
 
@@ -230,19 +234,44 @@ public class SignUpActivity extends Activity {
                             //Add data to database
                             firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                             userID = firebaseUser.getUid();
-                            DatabaseReference databaseReference = firebaseDatabase.getReference(finalRdGroup);
+                            final DatabaseReference databaseReference = firebaseDatabase.getReference(finalRdGroup);
 
+//                            upload_profile_image();
+//                            Log.e("imageUri_download_Link", "onComplete: " + imageUri_download_Link);
                             final String status = "0";
-                            final SignUpPojo signUpPojo = new SignUpPojo(status, userID, finalRdGroup, email, fullName, departmetnName, batchNumber);
 
-                            databaseReference.child(userID).setValue(signUpPojo);
-                            upload_profile_image();
-                            progressBar.setVisibility(View.GONE);
+//image upload
+                            StorageReference file_path = storageReference_root.child(userID).child("image").child("profile/profilepic.jpg");
+
+                                file_path.putFile(imageUri)
+                                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                            @Override
+                                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                                Toast.makeText(SignUpActivity.this, "Profile image Uploaded", Toast.LENGTH_SHORT).show();
+
+                                                imageUri_download_Link = taskSnapshot.getDownloadUrl();
+                                                Log.e("image uri ------ ", "onSuccess: " + imageUri_download_Link);
+
+                                                final SignUpPojo signUpPojo = new SignUpPojo(status, userID, finalRdGroup, email, fullName, departmetnName, batchNumber,String.valueOf(imageUri_download_Link));
+
+                                                databaseReference.child(userID).setValue(signUpPojo);
+                                                progressBar.setVisibility(View.GONE);
 
 
-                            //go Login Activity and than go LoginSuccess Activity
-                            startActivity(new Intent(getApplicationContext(), LogInActivity.class));
-                            finish();
+                                                //go Login Activity and than go LoginSuccess Activity
+                                                startActivity(new Intent(getApplicationContext(), LogInActivity.class));
+                                                finish();
+
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+
+                                    }
+                                });
+//image upload end
+
+
                         } else {
                             // If sign in fails, display a message to the user.
 
@@ -259,13 +288,17 @@ public class SignUpActivity extends Activity {
     }
 
     //upload image to storage
-    private void upload_profile_image() {
-        storageReference = storageReference.child(userID).child("image").child("profile/profilepic.jpg");
-        storageReference.putFile(imageUri)
+   /* private void upload_profile_image() {
+      StorageReference  file_path = storageReference_root.child(userID).child("image").child("profile/profilepic.jpg");
+        file_path.putFile(imageUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Toast.makeText(SignUpActivity.this, "Profile image Uploaded", Toast.LENGTH_SHORT).show();
+
+                        imageUri_download_Link=taskSnapshot.getDownloadUrl();
+                        Log.e("image uri ------ ", "onSuccess: "+imageUri_download_Link );
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -273,7 +306,8 @@ public class SignUpActivity extends Activity {
 
             }
         });
-    }
+
+    }*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -285,6 +319,7 @@ public class SignUpActivity extends Activity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
                 circleImageView.setImageBitmap(bitmap);
+//                Picasso.get().load(imageUri).into(circleImageView);
             } catch (IOException e) {
                 e.printStackTrace();
             }

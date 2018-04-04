@@ -159,7 +159,7 @@ public class HomePageF extends Fragment {
 
     }
 
-    //Create alert dialog method
+    //Create User Alert  alert dialog method
     private void alert() {
 
         //show alert dialog

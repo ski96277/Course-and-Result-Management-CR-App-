@@ -1,12 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Efit Profile"
-    android:gravity="center"/>
-</LinearLayout>
+
+<ScrollView android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Efit Profile"
+            android:gravity="center"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circle_image_view"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            app:civ_border_color="#0163AD"
+            app:civ_border_width="5sp"
+            android:layout_below="@id/userinformationTV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/boy"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:textCursorDrawable="@drawable/coursor_color"
+            android:hint="Name"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:textCursorDrawable="@drawable/coursor_color"
+            android:hint="ID"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:textCursorDrawable="@drawable/coursor_color"
+            android:hint="Batch"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:textAllCaps="false"/>
+    </LinearLayout>
+
+</ScrollView>
