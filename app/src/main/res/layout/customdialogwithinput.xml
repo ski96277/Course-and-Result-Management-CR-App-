@@ -27,13 +27,20 @@
         android:src="@drawable/boy"
         app:civ_border_color="#0163AD"
         app:civ_border_width="3dp"/>
+    <TextView
+        android:id="@+id/select_image_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/circle_image_view"
+        android:text="select image"
+        android:layout_centerHorizontal="true"/>
 
 
     <View
         android:id="@+id/dividerk"
         android:layout_width="390dp"
         android:layout_height="2dp"
-        android:layout_below="@id/circle_image_view"
+        android:layout_below="@id/select_image_TV"
         android:background="@android:color/black"/>
     <EditText
         android:id="@+id/fullName_ET"
@@ -79,4 +86,46 @@
         android:textColor="#000"
         android:textCursorDrawable="@drawable/coursor_color"/>
 
+
+    <View
+        android:id="@+id/below_batch_View"
+        android:layout_width="390dp"
+        android:layout_height="2dp"
+        android:layout_below="@id/batch_number_ET"
+        android:background="@android:color/black"/>
+    <EditText
+        android:id="@+id/iD_ET"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:layout_below="@id/below_batch_View"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Id:-   201511041097"
+        android:inputType="textPersonName"
+        android:textColor="#000"
+        android:textCursorDrawable="@drawable/coursor_color"/>
+
+    <View
+        android:id="@+id/below_id_View"
+        android:layout_width="390dp"
+        android:layout_height="2dp"
+        android:layout_below="@id/iD_ET"
+        android:background="@android:color/black"/>
+    <EditText
+        android:id="@+id/phone_number_ET"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_below="@id/below_id_View"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="ph :- 01687870058"
+        android:inputType="textPersonName"
+        android:textColor="#000"
+        android:textCursorDrawable="@drawable/coursor_color"/>
+    <View
+        android:id="@+id/below_phone_View"
+        android:layout_width="390dp"
+        android:layout_height="2dp"
+        android:layout_below="@id/phone_number_ET"
+        android:background="@android:color/black"/>
 </RelativeLayout>

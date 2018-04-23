@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.imransk.buproject1.pojoClass.SignUpPojo;
@@ -56,11 +57,16 @@ public class SignUpActivity extends Activity {
 
     //EditText for custom dialog alert
     private EditText full_name_ET;
+    private TextView select_img_ET;
     private EditText depart_ET;
     private EditText batch_ET;
+    private EditText phone_num_ET;
+    private EditText id_ET;
     String fullName = "";
     String departmetnName = "";
     String batchNumber = "";
+    String phoneNumber = "";
+    String iD = "";
     CircleImageView circleImageView;
     int profile_image_Code = 2;
     Uri imageUri;
@@ -163,8 +169,13 @@ public class SignUpActivity extends Activity {
         dialogView = inflater.inflate(R.layout.customdialogwithinput, null);
         dialogBuilder.setView(dialogView);
         full_name_ET = (EditText) dialogView.findViewById(R.id.fullName_ET);
+        select_img_ET=(TextView)dialogView.findViewById(R.id.select_image_TV);
         depart_ET = (EditText) dialogView.findViewById(R.id.department_ET);
         batch_ET = (EditText) dialogView.findViewById(R.id.batch_number_ET);
+        phone_num_ET = (EditText) dialogView.findViewById(R.id.phone_number_ET);
+        id_ET = (EditText) dialogView.findViewById(R.id.iD_ET);
+
+
         circleImageView = (CircleImageView) dialogView.findViewById(R.id.circle_image_view);
 
 //set Action on Image view
@@ -175,6 +186,7 @@ public class SignUpActivity extends Activity {
                 intent.setType("image/*")
                         .setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "select image"), profile_image_Code);
+                select_img_ET.setVisibility(View.GONE);
             }
         });
         dialogBuilder.setCancelable(false);
@@ -205,6 +217,8 @@ public class SignUpActivity extends Activity {
         fullName = full_name_ET.getText().toString();
         departmetnName = depart_ET.getText().toString();
         batchNumber = batch_ET.getText().toString();
+        phoneNumber = phone_num_ET.getText().toString();
+        iD = id_ET.getText().toString();
 
 //        Toast.makeText(this, "" + rdGroup, Toast.LENGTH_SHORT).show();
 
@@ -252,7 +266,7 @@ public class SignUpActivity extends Activity {
                                                 imageUri_download_Link = taskSnapshot.getDownloadUrl();
                                                 Log.e("image uri ------ ", "onSuccess: " + imageUri_download_Link);
 
-                                                final SignUpPojo signUpPojo = new SignUpPojo(status, userID, finalRdGroup, email, fullName, departmetnName, batchNumber,String.valueOf(imageUri_download_Link));
+                                                final SignUpPojo signUpPojo = new SignUpPojo(status, userID, finalRdGroup, email, fullName, departmetnName, batchNumber,phoneNumber,iD,String.valueOf(imageUri_download_Link));
 
                                                 databaseReference.child(userID).setValue(signUpPojo);
                                                 progressBar.setVisibility(View.GONE);
@@ -287,27 +301,6 @@ public class SignUpActivity extends Activity {
 
     }
 
-    //upload image to storage
-   /* private void upload_profile_image() {
-      StorageReference  file_path = storageReference_root.child(userID).child("image").child("profile/profilepic.jpg");
-        file_path.putFile(imageUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(SignUpActivity.this, "Profile image Uploaded", Toast.LENGTH_SHORT).show();
-
-                        imageUri_download_Link=taskSnapshot.getDownloadUrl();
-                        Log.e("image uri ------ ", "onSuccess: "+imageUri_download_Link );
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-            }
-        });
-
-    }*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

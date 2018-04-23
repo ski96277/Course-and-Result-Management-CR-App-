@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +30,6 @@ import com.squareup.picasso.Picasso;
  */
 
 public class ShowProfileF extends Fragment {
-    Button editYourProfile_Btn;
     ImageView imageView;
     TextView name_TV_show;
     TextView depart_TV_show;
@@ -57,6 +58,7 @@ public class ShowProfileF extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         imageView = view.findViewById(R.id.user_image_view_show);
         name_TV_show = view.findViewById(R.id.user_name_show);
         depart_TV_show=view.findViewById(R.id.user_Dept_name_show);
@@ -144,15 +146,7 @@ public class ShowProfileF extends Fragment {
         });
 
 
-        //set Button Action
-        editYourProfile_Btn = view.findViewById(R.id.edit_your_profile);
-        editYourProfile_Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent( getContext(), EditProfileF.class));
-            }
-        });
-//end Button Action
+
 
     }
 }

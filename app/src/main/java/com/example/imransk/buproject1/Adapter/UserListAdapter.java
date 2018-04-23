@@ -80,7 +80,7 @@ public class UserListAdapter extends ArrayAdapter {
             public void onClick(View view) {
 
 //set status 1 by default inside DataBase useing pojo class
-                SignUpPojo signUpPojoForset = new SignUpPojo("1", signUpPojo.getUser_id(), signUpPojo.getType(), signUpPojo.getEmail(),signUpPojo.getFull_name(),signUpPojo.getDepartment_name(),signUpPojo.getBatch_number(),signUpPojo.getImageUri_download_Link());
+                SignUpPojo signUpPojoForset = new SignUpPojo("1", signUpPojo.getUser_id(), signUpPojo.getType(), signUpPojo.getEmail(),signUpPojo.getFull_name(),signUpPojo.getDepartment_name(),signUpPojo.getBatch_number(),signUpPojo.getPhoneNumber(),signUpPojo.getiD(),signUpPojo.getImageUri_download_Link());
                 firebaseDatabase = FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference = firebaseDatabase.getReference();
                 databaseReference.child(signUpPojoForset.getType()).child(signUpPojoForset.getUser_id()).setValue(signUpPojoForset);

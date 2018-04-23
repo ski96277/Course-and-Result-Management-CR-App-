@@ -3,6 +3,7 @@
             android:layout_width="match_parent"
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -10,7 +11,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Efit Profile"
+            android:text="Show Profile"
             android:gravity="center"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -60,12 +61,7 @@
             android:textCursorDrawable="@drawable/coursor_color"
             android:textColor="#000"
             android:text="Email : "/>
-        <Button
-            android:id="@+id/edit_your_profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Edit your Profile"
-            android:textAllCaps="false"/>
+
     </LinearLayout>
 
 </ScrollView>

@@ -11,11 +11,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Efit Profile"
+            android:text="Edit Profile"
             android:gravity="center"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circle_image_view"
+            android:id="@+id/user_image_view_ET"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
@@ -28,25 +28,50 @@
             android:src="@drawable/boy"/>
 
         <EditText
+            android:id="@+id/user_name_ET"
             android:layout_width="match_parent"
             android:layout_height="50sp"
+            android:gravity="center"
+            android:textColor="#000"
             android:textCursorDrawable="@drawable/coursor_color"
-            android:hint="Name"/>
+            android:hint="Name : "/>
+
         <EditText
+            android:id="@+id/user_Dept_name_ET"
             android:layout_width="match_parent"
             android:layout_height="50sp"
+            android:gravity="center"
             android:textCursorDrawable="@drawable/coursor_color"
-            android:hint="ID"/>
+            android:textColor="#000"
+            android:hint="department : "/>
+
         <EditText
+            android:id="@+id/user_batch_ET"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="50sp"
             android:textCursorDrawable="@drawable/coursor_color"
-            android:hint="Batch"/>
+            android:textColor="#000"
+            android:hint="Batch : "/>
+        <TextView
+            android:id="@+id/user_email_ET"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:textCursorDrawable="@drawable/coursor_color"
+            android:textColor="#000"
+            android:text="Email : "/>
         <Button
-            android:layout_width="match_parent"
+            android:id="@+id/submit_profile"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="Submit"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:background="#0163AD"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"/>
+
     </LinearLayout>
 
 </ScrollView>

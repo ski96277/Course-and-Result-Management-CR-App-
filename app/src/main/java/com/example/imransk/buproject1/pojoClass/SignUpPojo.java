@@ -14,6 +14,8 @@ public class SignUpPojo {
     String full_name;
     String department_name;
     String batch_number;
+    String phoneNumber;
+    String iD;
     String imageUri_download_Link;
 
     //use empty Constructor for prograund Tool
@@ -21,7 +23,7 @@ public class SignUpPojo {
     }
 
     public SignUpPojo(String status, String user_id, String type, String email, String full_name,
-                      String department_name, String batch_number, String imageUri_download_Link) {
+                      String department_name, String batch_number,String phoneNumber,String iD, String imageUri_download_Link) {
         this.status = status;
         this.user_id = user_id;
         this.type = type;
@@ -29,6 +31,8 @@ public class SignUpPojo {
         this.full_name = full_name;
         this.department_name = department_name;
         this.batch_number = batch_number;
+        this.phoneNumber=phoneNumber;
+        this.iD=iD;
         this.imageUri_download_Link = imageUri_download_Link;
     }
 
@@ -58,6 +62,14 @@ public class SignUpPojo {
 
     public String getType() {
         return type;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getiD() {
+        return iD;
     }
 
     public String getImageUri_download_Link() {
