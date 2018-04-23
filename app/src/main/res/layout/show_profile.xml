@@ -61,6 +61,22 @@
             android:textCursorDrawable="@drawable/coursor_color"
             android:textColor="#000"
             android:text="Email : "/>
+        <TextView
+        android:id="@+id/user_phone_number_show"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:textCursorDrawable="@drawable/coursor_color"
+        android:textColor="#000"
+        android:text="Phone : "/>
+        <TextView
+            android:id="@+id/user_id_show"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:textCursorDrawable="@drawable/coursor_color"
+            android:textColor="#000"
+            android:text="Id : "/>
 
     </LinearLayout>
 
