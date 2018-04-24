@@ -34,6 +34,8 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
     EditText depart_TV_show;
     EditText batch_TV_show;
     TextView email_TV_show;
+    EditText phone_number_TV_show;
+    EditText id_number_TV_show;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -47,12 +49,14 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
     String department;
     String batch;
     String email_id;
+    String phone_number;
+    String id_number;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.editpprofilef,null);
+        return inflater.inflate(R.layout.editpprofilef, null);
     }
 
     @Override
@@ -60,11 +64,13 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         imageView = view.findViewById(R.id.user_image_view_ET);
         name_TV_show = view.findViewById(R.id.user_name_ET);
-        depart_TV_show=view.findViewById(R.id.user_Dept_name_ET);
-        batch_TV_show=view.findViewById(R.id.user_batch_ET);
-        email_TV_show=view.findViewById(R.id.user_email_ET);
+        depart_TV_show = view.findViewById(R.id.user_Dept_name_ET);
+        batch_TV_show = view.findViewById(R.id.user_batch_ET);
+        email_TV_show = view.findViewById(R.id.user_email_ET);
+        phone_number_TV_show = view.findViewById(R.id.user_phone_number_ET);
+        id_number_TV_show = view.findViewById(R.id.user_id_number_ET);
 
-        profile_Update=view.findViewById(R.id.submit_profile);
+        profile_Update = view.findViewById(R.id.submit_profile);
         profile_Update.setOnClickListener(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -88,12 +94,15 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
                     batch = dataSnapshot.child("Student").child(user_ID).child("batch_number").getValue(String.class).trim();
                     email_id = dataSnapshot.child("Student").child(user_ID).child("email").getValue(String.class).trim();
                     image_uri = dataSnapshot.child("Student").child(user_ID).child("imageUri_download_Link").getValue(String.class).trim();
-
+                    phone_number = dataSnapshot.child("Student").child(user_ID).child("phoneNumber").getValue(String.class).trim();
+                    id_number = dataSnapshot.child("Student").child(user_ID).child("iD").getValue(String.class).trim();
 
                     name_TV_show.setText(name);
                     depart_TV_show.setText(department);
                     batch_TV_show.setText(batch);
                     email_TV_show.setText(email_id);
+                    phone_number_TV_show.setText(phone_number);
+                    id_number_TV_show.setText(id_number);
                     Picasso.with(getContext()).load(image_uri).into(imageView);
 
 
@@ -108,12 +117,16 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
                     batch = dataSnapshot.child("faculty").child(user_ID).child("batch_number").getValue(String.class).trim();
                     email_id = dataSnapshot.child("faculty").child(user_ID).child("email").getValue(String.class).trim();
                     image_uri = dataSnapshot.child("faculty").child(user_ID).child("imageUri_download_Link").getValue(String.class).trim();
+                    phone_number = dataSnapshot.child("Student").child(user_ID).child("phoneNumber").getValue(String.class).trim();
+                    id_number = dataSnapshot.child("Student").child(user_ID).child("iD").getValue(String.class).trim();
 
 
                     name_TV_show.setText(name);
                     depart_TV_show.setText(department);
                     batch_TV_show.setText(batch);
                     email_TV_show.setText(email_id);
+                    phone_number_TV_show.setText(phone_number);
+                    id_number_TV_show.setText(id_number);
                     Picasso.with(getContext()).load(image_uri).into(imageView);
 
 
@@ -145,8 +158,6 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
 
             }
         });
-
-
 
 
     }

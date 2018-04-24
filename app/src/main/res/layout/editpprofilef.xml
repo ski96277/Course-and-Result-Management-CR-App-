@@ -33,6 +33,7 @@
             android:layout_height="50sp"
             android:gravity="center"
             android:textColor="#000"
+            android:enabled="false"
             android:textCursorDrawable="@drawable/coursor_color"
             android:hint="Name : "/>
 
@@ -41,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="50sp"
             android:gravity="center"
+            android:enabled="false"
             android:textCursorDrawable="@drawable/coursor_color"
             android:textColor="#000"
             android:hint="department : "/>
@@ -52,7 +54,25 @@
             android:layout_height="50sp"
             android:textCursorDrawable="@drawable/coursor_color"
             android:textColor="#000"
+            android:enabled="false"
             android:hint="Batch : "/>
+        <EditText
+            android:id="@+id/user_phone_number_ET"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:textCursorDrawable="@drawable/coursor_color"
+            android:textColor="#000"
+            android:hint="Phone Number : "/>
+        <EditText
+            android:id="@+id/user_id_number_ET"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:enabled="false"
+            android:textCursorDrawable="@drawable/coursor_color"
+            android:textColor="#000"
+            android:hint="Id : "/>
         <TextView
             android:id="@+id/user_email_ET"
             android:gravity="center"
@@ -63,10 +83,10 @@
             android:text="Email : "/>
         <Button
             android:id="@+id/submit_profile"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Submit"
+            android:text="Update"
             android:textAllCaps="false"
             android:background="#0163AD"
             android:textColor="#FFFFFF"
