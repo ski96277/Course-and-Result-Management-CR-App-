@@ -1,5 +1,6 @@
 package com.example.imransk.buproject1.FragmentClass;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,7 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.imransk.buproject1.LogInActivity;
 import com.example.imransk.buproject1.R;
+import com.example.imransk.buproject1.pojoClass.SignUpPojo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -51,6 +54,7 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
     String email_id;
     String phone_number;
     String id_number;
+    String type;
 
 
     @Nullable
@@ -62,6 +66,7 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         imageView = view.findViewById(R.id.user_image_view_ET);
         name_TV_show = view.findViewById(R.id.user_name_ET);
         depart_TV_show = view.findViewById(R.id.user_Dept_name_ET);
@@ -96,6 +101,7 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
                     image_uri = dataSnapshot.child("Student").child(user_ID).child("imageUri_download_Link").getValue(String.class).trim();
                     phone_number = dataSnapshot.child("Student").child(user_ID).child("phoneNumber").getValue(String.class).trim();
                     id_number = dataSnapshot.child("Student").child(user_ID).child("iD").getValue(String.class).trim();
+                    type = dataSnapshot.child("Student").child(user_ID).child("type").getValue(String.class).trim();
 
                     name_TV_show.setText(name);
                     depart_TV_show.setText(department);
@@ -117,9 +123,9 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
                     batch = dataSnapshot.child("faculty").child(user_ID).child("batch_number").getValue(String.class).trim();
                     email_id = dataSnapshot.child("faculty").child(user_ID).child("email").getValue(String.class).trim();
                     image_uri = dataSnapshot.child("faculty").child(user_ID).child("imageUri_download_Link").getValue(String.class).trim();
-                    phone_number = dataSnapshot.child("Student").child(user_ID).child("phoneNumber").getValue(String.class).trim();
-                    id_number = dataSnapshot.child("Student").child(user_ID).child("iD").getValue(String.class).trim();
-
+                    phone_number = dataSnapshot.child("faculty").child(user_ID).child("phoneNumber").getValue(String.class).trim();
+                    id_number = dataSnapshot.child("faculty").child(user_ID).child("iD").getValue(String.class).trim();
+                    type = dataSnapshot.child("faculty").child(user_ID).child("type").getValue(String.class).trim();
 
                     name_TV_show.setText(name);
                     depart_TV_show.setText(department);
@@ -128,6 +134,7 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
                     phone_number_TV_show.setText(phone_number);
                     id_number_TV_show.setText(id_number);
                     Picasso.with(getContext()).load(image_uri).into(imageView);
+
 
 
                 } else if (aTrue) {
@@ -162,8 +169,22 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
 
     }
 
+
+    //Update Database
     @Override
     public void onClick(View view) {
-        Toast.makeText(getContext(), "hi pdate", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), type, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), user_ID+","+id_number, Toast.LENGTH_SHORT).show();
+
+        FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
+        final DatabaseReference databaseReference = firebaseDatabase.getReference(type);
+
+            databaseReference.child(user_ID).child("phoneNumber").setValue(phone_number_TV_show.getText().toString().trim());
+        Toast.makeText(getContext(), "phone Number Updated..", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getContext(), LogInActivity.class));
+
+
+
+
     }
 }

@@ -104,7 +104,7 @@ public class HomePageF extends Fragment {
                         alert();
 
                     } else if (status_faculty.equals("1")) {
-                        statusTV.setText("Your student Status is 1");
+                        statusTV.setText("Your Faculty Status is 1");
                         Toast.makeText(view.getContext(), "" + status_faculty, Toast.LENGTH_SHORT).show();
 
                     }
