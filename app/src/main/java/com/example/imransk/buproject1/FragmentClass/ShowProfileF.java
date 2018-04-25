@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.imransk.buproject1.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,6 +53,8 @@ public class ShowProfileF extends Fragment {
     String email_id;
     String phone_number;
     String id_number;
+    String runningstatus;
+    String type;
 
     @Nullable
     @Override
@@ -134,24 +137,26 @@ public class ShowProfileF extends Fragment {
 
 
                 } else if (aTrue) {
-                    //name = dataSnapshot.child("admin").child(user_ID).child("full_name").getValue(String.class).trim();
-//                    department = dataSnapshot.child("admin").child(user_ID).child("department_name").getValue(String.class).trim();
-//                    batch = dataSnapshot.child("admin").child(user_ID).child("batch_number").getValue(String.class).trim();
-//                    email_id = dataSnapshot.child("admin").child(user_ID).child("email").getValue(String.class).trim();
+
+                    name = dataSnapshot.child("admin").child(user_ID).child("full_name").getValue(String.class).trim();
+                    department = dataSnapshot.child("admin").child(user_ID).child("department_name").getValue(String.class).trim();
+                    runningstatus = dataSnapshot.child("admin").child(user_ID).child("runningstatus").getValue(String.class).trim();
+                    type = dataSnapshot.child("admin").child(user_ID).child("type").getValue(String.class).trim();
+                    email_id = dataSnapshot.child("admin").child(user_ID).child("email").getValue(String.class).trim();
+                    id_number = dataSnapshot.child("admin").child(user_ID).child("iD").getValue(String.class).trim();
 //                    image_uri = dataSnapshot.child("admin").child(user_ID).child("imageUri_download_Link").getValue(String.class).trim();
+                    Toast.makeText(getContext(), ""+id_number, Toast.LENGTH_SHORT).show();
+                    name_TV_show.append(name);
+                    depart_TV_show.append(department);
+                    email_TV_show.append(email_id);
+                    phone_number_show.setVisibility(View.GONE);
+                    id_number_show.append(id_number);
 
 
-//                    name_TV_show.append(firebaseUser.getDisplayName());
-//                    depart_TV_show.append(department);
-//                    batch_TV_show.append(batch);
+                    batch_TV_show.setText("Type : "+type);
 
-                    name_TV_show.setVisibility(View.GONE);
-                    depart_TV_show.setVisibility(View.GONE);
-                    batch_TV_show.setVisibility(View.GONE);
-
-                    email_TV_show.append(firebaseUser.getEmail());
 //                    Picasso.with(getContext()).load(firebaseUser.getPhotoUrl()).into(imageView);
-                    imageView.setImageURI(firebaseUser.getPhotoUrl());
+//                    imageView.setImageURI(firebaseUser.getPhotoUrl());
 
                 }
 

@@ -55,6 +55,7 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
     String phone_number;
     String id_number;
     String type;
+    String runningstatus;
 
 
     @Nullable
@@ -138,23 +139,27 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
 
 
                 } else if (aTrue) {
-                    //name = dataSnapshot.child("admin").child(user_ID).child("full_name").getValue(String.class).trim();
-//                    department = dataSnapshot.child("admin").child(user_ID).child("department_name").getValue(String.class).trim();
-//                    batch = dataSnapshot.child("admin").child(user_ID).child("batch_number").getValue(String.class).trim();
-//                    email_id = dataSnapshot.child("admin").child(user_ID).child("email").getValue(String.class).trim();
-//                    image_uri = dataSnapshot.child("admin").child(user_ID).child("imageUri_download_Link").getValue(String.class).trim();
+                    name = dataSnapshot.child("admin").child(user_ID).child("full_name").getValue(String.class).trim();
+                    department = dataSnapshot.child("admin").child(user_ID).child("department_name").getValue(String.class).trim();
+                    runningstatus = dataSnapshot.child("admin").child(user_ID).child("runningstatus").getValue(String.class).trim();
+                    type = dataSnapshot.child("admin").child(user_ID).child("type").getValue(String.class).trim();
+                    email_id = dataSnapshot.child("admin").child(user_ID).child("email").getValue(String.class).trim();
+                    id_number = dataSnapshot.child("admin").child(user_ID).child("iD").getValue(String.class).trim();
 
 
-//                    name_TV_show.append(firebaseUser.getDisplayName());
 //                    depart_TV_show.append(department);
 //                    batch_TV_show.append(batch);
 
                     name_TV_show.setText(name);
                     depart_TV_show.setText(department);
-                    batch_TV_show.setText(batch);
                     email_TV_show.setText(email_id);
+                    id_number_TV_show.setText(id_number);
+
+                    phone_number_TV_show.setText(runningstatus);
+                    batch_TV_show.setText(type);
+
 //                    Picasso.with(getContext()).load(firebaseUser.getPhotoUrl()).into(imageView);
-                    imageView.setImageURI(firebaseUser.getPhotoUrl());
+//                    imageView.setImageURI(firebaseUser.getPhotoUrl());
 
                 }
 
@@ -180,8 +185,12 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
         final DatabaseReference databaseReference = firebaseDatabase.getReference(type);
 
             databaseReference.child(user_ID).child("phoneNumber").setValue(phone_number_TV_show.getText().toString().trim());
-        Toast.makeText(getContext(), "phone Number Updated..", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(getContext(), LogInActivity.class));
+
+            Toast.makeText(getContext(), "Updated..", Toast.LENGTH_SHORT).show();
+
+
+
+            startActivity(new Intent(getContext(), LogInActivity.class));
 
 
 
