@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,6 @@ import java.util.ArrayList;
  */
 
 public class HomePageF extends Fragment {
-
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
@@ -47,7 +47,7 @@ public class HomePageF extends Fragment {
     TextView statusTV;
 
     ListView listViewUser;
-    private ArrayList<SignUpPojo> signUpList=null;
+    private ArrayList<SignUpPojo> signUpList = null;
 
     Context context;
     AlertDialog.Builder builder;
@@ -71,8 +71,9 @@ public class HomePageF extends Fragment {
         firebaseUser = firebaseAuth.getCurrentUser();
         userId = firebaseUser.getUid();
         statusTV = view.findViewById(R.id.homepageTV);
-        listViewUser = view.findViewById(R.id.userList);
 
+        listViewUser = view.findViewById(R.id.userList);
+//geting data base referance
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -114,20 +115,22 @@ public class HomePageF extends Fragment {
                     status_admin = dataSnapshot.child("admin").child(userId).child("status").getValue(String.class).trim();
                     if (status_admin.equals("1")) {
                         statusTV.setText("WelCome Dear Admin \n");
-                        Toast.makeText(view.getContext(), "" + status_admin, Toast.LENGTH_SHORT).show();
 
-     // add student user to my array
+//                        Toast.makeText(view.getContext(), "" + status_admin, Toast.LENGTH_SHORT).show();
+
+                        // add student user to my array
                         signUpList.clear();
                         SignUpPojo signUpPojo = null;
                         for (DataSnapshot snapshot : dataSnapshot.child("Student").getChildren()) {
                             signUpPojo = snapshot.getValue(SignUpPojo.class);
                             if (signUpPojo.getStatus().equals("0")) {
                                 signUpList.add(signUpPojo);
+
                             }
 
                         }
 
-   // add Faculty user to my array
+                        // add Faculty user to my array
                         for (DataSnapshot snapshot : dataSnapshot.child("faculty").getChildren()) {
                             signUpPojo = snapshot.getValue(SignUpPojo.class);
                             if (signUpPojo.getStatus().equals("0")) {
@@ -136,10 +139,13 @@ public class HomePageF extends Fragment {
 
                         }
                         UserListAdapter adapter;
+
+
 //use if Condition for skip nullpointer exception
-                        if (getActivity()!=null){
-                            adapter = new UserListAdapter(getActivity(),signUpList);
+                        if (getActivity() != null) {
+                            adapter = new UserListAdapter(getActivity(), signUpList);
                             listViewUser.setAdapter(adapter);
+
                         }
 
 
@@ -148,6 +154,12 @@ public class HomePageF extends Fragment {
                         Log.e("Come from data Base", "onDataChange: " + signUpList);
 
                     }
+                }else {
+                    status_student = dataSnapshot.child("WorngAccount").child("DeleteStatus").getValue(String.class).trim();
+
+                        statusTV.setText(status_student);
+
+                        deleteUserAlert();
                 }
             }
 
@@ -156,9 +168,40 @@ public class HomePageF extends Fragment {
 
             }
         });
+    }
+    //If user is deleted  alert dialog method
+    private void deleteUserAlert() {
+
+        //show alert dialog
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(getContext());
+        }
+        builder.setTitle("Deleted Account")
+                .setMessage(status_student)
+                .setCancelable(false)//Can't Cancel when User Click on outside of my alertDailog or Backpressed
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // continue with delete
+
+                        startActivity(new Intent(getContext(), AboutActivity.class));
+                        getActivity().finish();
+                    }
+                })
+                /*.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })*/
+                .setIcon(android.R.drawable.ic_dialog_alert);
+//use this code for need to crush off
+        if (!((Activity) context).isFinishing()) {
+            builder.show();
+        }
+
 
     }
-
     //Create User Alert  alert dialog method
     private void alert() {
 
@@ -192,4 +235,5 @@ public class HomePageF extends Fragment {
 
 
     }
+
 }

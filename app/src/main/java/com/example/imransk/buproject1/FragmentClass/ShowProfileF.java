@@ -1,17 +1,12 @@
 package com.example.imransk.buproject1.FragmentClass;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +28,7 @@ import com.squareup.picasso.Picasso;
 public class ShowProfileF extends Fragment {
     ImageView imageView;
     TextView name_TV_show;
+    TextView user_type_TV_show;
     TextView depart_TV_show;
     TextView batch_TV_show;
     TextView email_TV_show;
@@ -59,7 +55,7 @@ public class ShowProfileF extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.show_profile, null);
+        return inflater.inflate(R.layout.show_profile_f, null);
     }
 
     @Override
@@ -68,6 +64,7 @@ public class ShowProfileF extends Fragment {
 
         imageView = view.findViewById(R.id.user_image_view_show);
         name_TV_show = view.findViewById(R.id.user_name_show);
+        user_type_TV_show = view.findViewById(R.id.user_type_show);
         depart_TV_show=view.findViewById(R.id.user_Dept_name_show);
         batch_TV_show=view.findViewById(R.id.user_batch_show);
         email_TV_show=view.findViewById(R.id.user_email_show);
@@ -93,6 +90,7 @@ public class ShowProfileF extends Fragment {
                     name = dataSnapshot.child("Student").child(user_ID).child("full_name").getValue(String.class).trim();
                     department = dataSnapshot.child("Student").child(user_ID).child("department_name").getValue(String.class).trim();
                     batch = dataSnapshot.child("Student").child(user_ID).child("batch_number").getValue(String.class).trim();
+                    type = dataSnapshot.child("admin").child(user_ID).child("type").getValue(String.class).trim();
                     email_id = dataSnapshot.child("Student").child(user_ID).child("email").getValue(String.class).trim();
                     phone_number = dataSnapshot.child("Student").child(user_ID).child("phoneNumber").getValue(String.class).trim();
                     id_number = dataSnapshot.child("Student").child(user_ID).child("iD").getValue(String.class).trim();
@@ -101,6 +99,7 @@ public class ShowProfileF extends Fragment {
 
 
                     name_TV_show.append(name);
+                    user_type_TV_show.append(type);
                     depart_TV_show.append(department);
                     batch_TV_show.append(batch);
                     email_TV_show.append(email_id);
@@ -119,6 +118,7 @@ public class ShowProfileF extends Fragment {
                     name = dataSnapshot.child("faculty").child(user_ID).child("full_name").getValue(String.class).trim();
                     department = dataSnapshot.child("faculty").child(user_ID).child("department_name").getValue(String.class).trim();
                     batch = dataSnapshot.child("faculty").child(user_ID).child("batch_number").getValue(String.class).trim();
+                    type = dataSnapshot.child("admin").child(user_ID).child("type").getValue(String.class).trim();
                     email_id = dataSnapshot.child("faculty").child(user_ID).child("email").getValue(String.class).trim();
                     phone_number = dataSnapshot.child("faculty").child(user_ID).child("phoneNumber").getValue(String.class).trim();
                     id_number = dataSnapshot.child("faculty").child(user_ID).child("iD").getValue(String.class).trim();
@@ -128,6 +128,7 @@ public class ShowProfileF extends Fragment {
 
 
                     name_TV_show.append(name);
+                    user_type_TV_show.append(type);
                     depart_TV_show.append(department);
                     batch_TV_show.append(batch);
                     email_TV_show.append(email_id);
@@ -147,6 +148,7 @@ public class ShowProfileF extends Fragment {
 //                    image_uri = dataSnapshot.child("admin").child(user_ID).child("imageUri_download_Link").getValue(String.class).trim();
                     Toast.makeText(getContext(), ""+id_number, Toast.LENGTH_SHORT).show();
                     name_TV_show.append(name);
+                    user_type_TV_show.append(type);
                     depart_TV_show.append(department);
                     email_TV_show.append(email_id);
                     phone_number_show.setVisibility(View.GONE);

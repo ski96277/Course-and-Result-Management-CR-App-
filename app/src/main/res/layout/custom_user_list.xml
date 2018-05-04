@@ -12,7 +12,7 @@
         android:orientation="horizontal">
 <LinearLayout
     android:layout_width="0dp"
-    android:layout_weight="2"
+    android:layout_weight="1.5"
     android:layout_marginRight="2dp"
     android:layout_height="wrap_content">
 
@@ -65,7 +65,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -74,13 +74,16 @@
                 android:layout_height="wrap_content"
                 android:background="#000000"/>
 
-            <Button
-                android:id="@+id/right_button"
-                android:layout_width="20sp"
-                android:layout_height="20sp"
-                android:layout_marginLeft="12sp"
-                android:background="@drawable/righticon"
-                />
+
+    <Button
+        android:id="@+id/right_button"
+        android:layout_width="40sp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/righticon"
+        />
+
         </LinearLayout>
 
 
