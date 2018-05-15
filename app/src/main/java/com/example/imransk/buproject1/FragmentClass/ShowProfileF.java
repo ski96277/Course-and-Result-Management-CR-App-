@@ -42,15 +42,15 @@ public class ShowProfileF extends Fragment {
     String user_ID;
 
     //string database
-    String image_uri;
-    String name;
-    String department;
-    String batch;
-    String email_id;
-    String phone_number;
-    String id_number;
-    String runningstatus;
-    String type;
+    String image_uri="";
+    String name="";
+    String department="";
+    String batch="";
+    String email_id="";
+    String phone_number="";
+    String id_number="";
+    String runningstatus="";
+    String type="";
 
     @Nullable
     @Override
@@ -71,6 +71,16 @@ public class ShowProfileF extends Fragment {
         phone_number_show=view.findViewById(R.id.user_phone_number_show);
         id_number_show=view.findViewById(R.id.user_id_show);
 
+
+        name_TV_show.append("");
+        user_type_TV_show.append("");
+        depart_TV_show.append("");
+        email_TV_show.append("");
+        phone_number_show.append("");
+        id_number_show.append("");
+        batch_TV_show.append("");
+
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
@@ -90,7 +100,7 @@ public class ShowProfileF extends Fragment {
                     name = dataSnapshot.child("Student").child(user_ID).child("full_name").getValue(String.class).trim();
                     department = dataSnapshot.child("Student").child(user_ID).child("department_name").getValue(String.class).trim();
                     batch = dataSnapshot.child("Student").child(user_ID).child("batch_number").getValue(String.class).trim();
-                    type = dataSnapshot.child("admin").child(user_ID).child("type").getValue(String.class).trim();
+                    type = dataSnapshot.child("Student").child(user_ID).child("type").getValue(String.class).trim();
                     email_id = dataSnapshot.child("Student").child(user_ID).child("email").getValue(String.class).trim();
                     phone_number = dataSnapshot.child("Student").child(user_ID).child("phoneNumber").getValue(String.class).trim();
                     id_number = dataSnapshot.child("Student").child(user_ID).child("iD").getValue(String.class).trim();
@@ -107,7 +117,7 @@ public class ShowProfileF extends Fragment {
                     id_number_show.append(id_number);
 
                     Picasso.with(getContext()).load(image_uri).into(imageView);
-
+//
 
                     Log.e("on Data Change", "name: " + name);
                     Log.e("on Data Change", "name: " + department);
@@ -118,7 +128,7 @@ public class ShowProfileF extends Fragment {
                     name = dataSnapshot.child("faculty").child(user_ID).child("full_name").getValue(String.class).trim();
                     department = dataSnapshot.child("faculty").child(user_ID).child("department_name").getValue(String.class).trim();
                     batch = dataSnapshot.child("faculty").child(user_ID).child("batch_number").getValue(String.class).trim();
-                    type = dataSnapshot.child("admin").child(user_ID).child("type").getValue(String.class).trim();
+                    type = dataSnapshot.child("faculty").child(user_ID).child("type").getValue(String.class).trim();
                     email_id = dataSnapshot.child("faculty").child(user_ID).child("email").getValue(String.class).trim();
                     phone_number = dataSnapshot.child("faculty").child(user_ID).child("phoneNumber").getValue(String.class).trim();
                     id_number = dataSnapshot.child("faculty").child(user_ID).child("iD").getValue(String.class).trim();
@@ -160,6 +170,16 @@ public class ShowProfileF extends Fragment {
 //                    Picasso.with(getContext()).load(firebaseUser.getPhotoUrl()).into(imageView);
 //                    imageView.setImageURI(firebaseUser.getPhotoUrl());
 
+                }else {
+                    name_TV_show.setText("");
+                    user_type_TV_show.setText("");
+                    depart_TV_show.setText("");
+                    email_TV_show.setText("");
+                    phone_number_show.setText("");
+                    id_number_show.setText("");
+
+
+                    batch_TV_show.setText("");
                 }
 
             }

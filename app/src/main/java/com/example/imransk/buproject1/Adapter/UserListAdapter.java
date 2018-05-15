@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.imransk.buproject1.FragmentClass.ShowUserProfileF;
+import com.example.imransk.buproject1.FragmentClass.ShowUserProfile_By_AdminF;
 import com.example.imransk.buproject1.R;
 import com.example.imransk.buproject1.pojoClass.SignUpPojo;
 import com.google.firebase.database.DatabaseReference;
@@ -134,7 +134,7 @@ public class UserListAdapter extends BaseAdapter {
 //                signUpPojo.getUser_id();
 
                 Fragment fragment=null;
-                fragment=new ShowUserProfileF();
+                fragment=new ShowUserProfile_By_AdminF();
 
                 if (fragment!=null){
 
@@ -150,7 +150,7 @@ public class UserListAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Fragment fragment=null;
-                fragment=new ShowUserProfileF();
+                fragment=new ShowUserProfile_By_AdminF();
 
                 if (fragment!=null){
 
@@ -167,7 +167,7 @@ public class UserListAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Fragment fragment=null;
-                fragment=new ShowUserProfileF();
+                fragment=new ShowUserProfile_By_AdminF();
 
                 if (fragment!=null){
 
@@ -182,7 +182,7 @@ public class UserListAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Fragment fragment=null;
-                fragment=new ShowUserProfileF();
+                fragment=new ShowUserProfile_By_AdminF();
 
                 if (fragment!=null){
 

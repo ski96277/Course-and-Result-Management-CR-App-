@@ -23,7 +23,7 @@ import com.squareup.picasso.Picasso;
  * Created by imran sk on 4/30/2018.
  */
 
-public class ShowUserProfileF extends Fragment{
+public class ShowUserProfile_By_AdminF extends Fragment{
 
     ImageView imageView;
     TextView name_TV_show;

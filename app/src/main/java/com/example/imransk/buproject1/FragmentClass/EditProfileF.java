@@ -57,6 +57,10 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
     String type;
     String runningstatus;
 
+    Boolean aTrue;
+    Boolean fTrue;
+    Boolean sTrue;
+
 
     @Nullable
     @Override
@@ -91,9 +95,10 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Boolean sTrue = dataSnapshot.child("Student").hasChild(user_ID);
-                Boolean fTrue = dataSnapshot.child("faculty").hasChild(user_ID);
-                Boolean aTrue = dataSnapshot.child("admin").hasChild(user_ID);
+                 sTrue = dataSnapshot.child("Student").hasChild(user_ID);
+                 fTrue = dataSnapshot.child("faculty").hasChild(user_ID);
+                 aTrue = dataSnapshot.child("admin").hasChild(user_ID);
+
                 if (sTrue) {
                     name = dataSnapshot.child("Student").child(user_ID).child("full_name").getValue(String.class).trim();
                     department = dataSnapshot.child("Student").child(user_ID).child("department_name").getValue(String.class).trim();
@@ -141,7 +146,7 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
                 } else if (aTrue) {
                     name = dataSnapshot.child("admin").child(user_ID).child("full_name").getValue(String.class).trim();
                     department = dataSnapshot.child("admin").child(user_ID).child("department_name").getValue(String.class).trim();
-                    runningstatus = dataSnapshot.child("admin").child(user_ID).child("runningstatus").getValue(String.class).trim();
+                    runningstatus = dataSnapshot.child("admin").child(user_ID).child("phoneNumber").getValue(String.class).trim();
                     type = dataSnapshot.child("admin").child(user_ID).child("type").getValue(String.class).trim();
                     email_id = dataSnapshot.child("admin").child(user_ID).child("email").getValue(String.class).trim();
                     id_number = dataSnapshot.child("admin").child(user_ID).child("iD").getValue(String.class).trim();
@@ -184,9 +189,18 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         final DatabaseReference databaseReference = firebaseDatabase.getReference(type);
 
+//        if (aTrue){
+//            databaseReference.child(user_ID).child("phoneNumber").setValue(phone_number_TV_show.getText().toString().trim());
+//            Toast.makeText(getContext(), "Updated.."+type, Toast.LENGTH_SHORT).show();
+//
+//
+//        }else {
             databaseReference.child(user_ID).child("phoneNumber").setValue(phone_number_TV_show.getText().toString().trim());
 
-            Toast.makeText(getContext(), "Updated..", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Updated.. too"+type, Toast.LENGTH_SHORT).show();
+
+//        }
+
 
 
 
