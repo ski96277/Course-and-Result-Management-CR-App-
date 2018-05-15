@@ -123,6 +123,7 @@ public class HomePageF extends Fragment {
                         SignUpPojo signUpPojo = null;
                         for (DataSnapshot snapshot : dataSnapshot.child("Student").getChildren()) {
                             signUpPojo = snapshot.getValue(SignUpPojo.class);
+                            //if status is 0 add it to signUpList
                             if (signUpPojo.getStatus().equals("0")) {
                                 signUpList.add(signUpPojo);
 
@@ -133,6 +134,7 @@ public class HomePageF extends Fragment {
                         // add Faculty user to my array
                         for (DataSnapshot snapshot : dataSnapshot.child("faculty").getChildren()) {
                             signUpPojo = snapshot.getValue(SignUpPojo.class);
+                            //if status is 0 add it to signUpList
                             if (signUpPojo.getStatus().equals("0")) {
                                 signUpList.add(signUpPojo);
                             }
@@ -155,6 +157,8 @@ public class HomePageF extends Fragment {
 
                     }
                 }else {
+
+                    //if account is deleted show this message to user
                     status_student = dataSnapshot.child("WorngAccount").child("DeleteStatus").getValue(String.class).trim();
 
                         statusTV.setText(status_student);

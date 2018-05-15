@@ -2,10 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
+              android:descendantFocusability="blocksDescendants"
               android:layout_height="match_parent">
 
     <ListView
-        android:id="@+id/faculty_list"
+        android:focusable="true"
+        android:id="@+id/faculty_list_item"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
 </LinearLayout>

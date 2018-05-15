@@ -41,21 +41,21 @@ public class UserListAdapter extends BaseAdapter {
     ImageView imageView_p;
     Button right_button;
     Context context;
-    List<SignUpPojo> signUpPojoList;
+    List<SignUpPojo> signUpPojoList_faculty;
     private static LayoutInflater layoutInflater=null;
     FirebaseDatabase firebaseDatabase;
 
-    public UserListAdapter(Context context, List<SignUpPojo> signUpPojoList) {
+    public UserListAdapter(Context context, List<SignUpPojo> signUpPojoList_faculty) {
 
         this.context = context;
-        this.signUpPojoList = signUpPojoList;
+        this.signUpPojoList_faculty = signUpPojoList_faculty;
         layoutInflater= (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 
     }
 
     @Override
     public int getCount() {
-        return signUpPojoList.size();
+        return signUpPojoList_faculty.size();
     }
 
     @Override
@@ -77,7 +77,7 @@ public class UserListAdapter extends BaseAdapter {
 //        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 
-        final View listViewItem = layoutInflater.inflate(R.layout.custom_user_list, null);
+        final View listViewItem = layoutInflater.inflate(R.layout.custom_all_user_listview, null);
 
 
         userNameET = listViewItem.findViewById(R.id.user_Id);
@@ -88,7 +88,7 @@ public class UserListAdapter extends BaseAdapter {
         right_button = listViewItem.findViewById(R.id.right_button);
 
 
-        final SignUpPojo signUpPojo = signUpPojoList.get(position);
+        final SignUpPojo signUpPojo = signUpPojoList_faculty.get(position);
 
         userNameET.append(signUpPojo.getFull_name());
         userTypeET.append(signUpPojo.getType() + ", ");
@@ -104,7 +104,7 @@ public class UserListAdapter extends BaseAdapter {
 
 //set status 1 by default inside DataBase useing pojo class
                 SignUpPojo signUpPojoForset = new SignUpPojo("1", signUpPojo.getUser_id(), signUpPojo.getType(), signUpPojo.getEmail(), signUpPojo.getFull_name(), signUpPojo.getDepartment_name(), signUpPojo.getBatch_number(), signUpPojo.getPhoneNumber(), signUpPojo.getiD(), signUpPojo.getImageUri_download_Link());
-               //get Referance
+                //get Referance
                 firebaseDatabase = FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference = firebaseDatabase.getReference();
                 databaseReference.child(signUpPojoForset.getType()).child(signUpPojoForset.getUser_id()).setValue(signUpPojoForset);
@@ -123,6 +123,7 @@ public class UserListAdapter extends BaseAdapter {
         bundle.putString("phone",signUpPojo.getPhoneNumber().toString());
         bundle.putString("imageUrl",signUpPojo.getImageUri_download_Link());
         bundle.putString("userType",signUpPojo.getType());
+
 
         imageView_p.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,117 +197,9 @@ public class UserListAdapter extends BaseAdapter {
         });
 
 
-
         return listViewItem;
     }
 
 
 
 }
-
-
-
-
-/*
-
-public class UserListAdapter extends ArrayAdapter {
-
-    TextView userNameET;
-    TextView userTypeET;
-    TextView departmentTypeET;
-    ImageView imageView_p;
-    Button right_button;
-    Button dot_Button;
-    Context context;
-    List<SignUpPojo> signUpPojoList;
-
-    FirebaseDatabase firebaseDatabase;
-
-    public UserListAdapter(Context context, List<SignUpPojo> signUpPojoList) {
-        super(context, R.layout.custom_user_list, signUpPojoList);
-        this.context = context;
-        this.signUpPojoList = signUpPojoList;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @NonNull
-    @Override
-    public View getView(final int position, @Nullable final View convertView, @NonNull ViewGroup parent) {
-
-
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-
-        final View listViewItem = inflater.inflate(R.layout.custom_user_list, null);
-
-
-        userNameET = listViewItem.findViewById(R.id.user_Id);
-        userTypeET = listViewItem.findViewById(R.id.user_Type);
-        departmentTypeET = listViewItem.findViewById(R.id.department_Type);
-        imageView_p = listViewItem.findViewById(R.id.image_profile_list);
-
-        right_button = listViewItem.findViewById(R.id.right_button);
-        dot_Button = listViewItem.findViewById(R.id.dotButton);
-
-        final SignUpPojo signUpPojo = signUpPojoList.get(position);
-
-        userNameET.append(signUpPojo.getFull_name());
-        userTypeET.append(signUpPojo.getType() + ", ");
-        departmentTypeET.append(signUpPojo.getDepartment_name());
-
-//set image on list imageView
-        Picasso.with(getContext()).load(signUpPojo.getImageUri_download_Link()).into(imageView_p);
-        dot_Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Toast.makeText(context, "click", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        right_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-//set status 1 by default inside DataBase useing pojo class
-                SignUpPojo signUpPojoForset = new SignUpPojo("1", signUpPojo.getUser_id(), signUpPojo.getType(), signUpPojo.getEmail(), signUpPojo.getFull_name(), signUpPojo.getDepartment_name(), signUpPojo.getBatch_number(), signUpPojo.getPhoneNumber(), signUpPojo.getiD(), signUpPojo.getImageUri_download_Link());
-                firebaseDatabase = FirebaseDatabase.getInstance();
-                DatabaseReference databaseReference = firebaseDatabase.getReference();
-                databaseReference.child(signUpPojoForset.getType()).child(signUpPojoForset.getUser_id()).setValue(signUpPojoForset);
-                Toast.makeText(context, "" + signUpPojoForset.getStatus(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-
-
-        return listViewItem;
-    }
-
-
-}
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
