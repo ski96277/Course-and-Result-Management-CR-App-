@@ -136,11 +136,11 @@ public class ShowUserProfile_By_AdminF extends Fragment{
             }
         });
     }
-
+/*
 //After Distroy app Run again
     @Override
     public void onDetach() {
         super.onDetach();
         startActivity(new Intent(getContext(), LoginSuccessActivity.class));
-    }
+    }*/
 }

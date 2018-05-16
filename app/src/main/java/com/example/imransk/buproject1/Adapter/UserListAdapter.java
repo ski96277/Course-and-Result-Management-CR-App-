@@ -141,6 +141,7 @@ public class UserListAdapter extends BaseAdapter {
                     FragmentTransaction fragmentTransaction = ((FragmentActivity)context).
                             getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.screenArea, fragment);
+                    fragmentTransaction.addToBackStack("");
                     fragment.setArguments(bundle);
                     fragmentTransaction.commit();
                 }
@@ -156,6 +157,7 @@ public class UserListAdapter extends BaseAdapter {
 
                     FragmentTransaction fragmentTransaction = ((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.screenArea, fragment);
+                    fragmentTransaction.addToBackStack("");
                     fragment.setArguments(bundle);
                     fragmentTransaction.commit();
                 }
@@ -173,6 +175,7 @@ public class UserListAdapter extends BaseAdapter {
 
                     FragmentTransaction fragmentTransaction = ((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.screenArea, fragment);
+                    fragmentTransaction.addToBackStack("");
                     fragment.setArguments(bundle);
                     fragmentTransaction.commit();
                 }
@@ -188,6 +191,7 @@ public class UserListAdapter extends BaseAdapter {
 
                     FragmentTransaction fragmentTransaction = ((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.screenArea, fragment);
+                    fragmentTransaction.addToBackStack("");
                     fragment.setArguments(bundle);
                     fragmentTransaction.commit();
                 }

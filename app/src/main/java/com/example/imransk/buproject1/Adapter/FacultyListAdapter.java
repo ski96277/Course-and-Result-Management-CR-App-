@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.imransk.buproject1.FragmentClass.Course_Assaign;
 import com.example.imransk.buproject1.R;
 import com.example.imransk.buproject1.pojoClass.SignUpPojo;
 import com.squareup.picasso.Picasso;
@@ -30,6 +34,7 @@ public class FacultyListAdapter extends BaseAdapter {
 
     Context context;
     List<SignUpPojo> signUpPojoList_faculty;
+
 
     private static LayoutInflater layoutInflater=null;
 
@@ -81,11 +86,62 @@ public class FacultyListAdapter extends BaseAdapter {
 
         final SignUpPojo signUpPojo_for_faculty = signUpPojoList_faculty.get(position);
 
+
+
         myHolderObj.faculty_NameET.append(signUpPojo_for_faculty.getFull_name());
 
 
 //set image on list imageView
         Picasso.with(listViewItem_faculty.getContext()).load(signUpPojo_for_faculty.getImageUri_download_Link()).into(myHolderObj.imageView_p_faculty);
+
+
+
+        final Bundle bundle=new Bundle();
+        bundle.putString("user_id",signUpPojo_for_faculty.getUser_id().toString());
+
+        bundle.putString("name",signUpPojo_for_faculty.getFull_name().toString());
+        bundle.putString("department",signUpPojo_for_faculty.getDepartment_name().toString());
+        bundle.putString("batch",signUpPojo_for_faculty.getBatch_number().toString());
+        bundle.putString("id_roll",signUpPojo_for_faculty.getiD().toString());
+        bundle.putString("email_id",signUpPojo_for_faculty.getEmail().toString());
+        bundle.putString("phone",signUpPojo_for_faculty.getPhoneNumber().toString());
+        bundle.putString("imageUrl",signUpPojo_for_faculty.getImageUri_download_Link());
+        bundle.putString("userType",signUpPojo_for_faculty.getType());
+
+        myHolderObj.faculty_NameET.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment=null;
+
+                fragment=new Course_Assaign();
+
+                if (fragment!=null){
+                    FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.screenArea, fragment);
+                    fragmentTransaction.addToBackStack("");
+                    fragment.setArguments(bundle);
+                    fragmentTransaction.commit();
+                }
+            }
+        });
+
+        myHolderObj.imageView_p_faculty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment=null;
+
+                fragment=new Course_Assaign();
+
+                if (fragment!=null){
+                    FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.screenArea, fragment);
+                    fragmentTransaction.addToBackStack("");
+                    fragment.setArguments(bundle);
+                    fragmentTransaction.commit();
+                }
+
+            }
+        });
 
 //On Click is not Working , so sad for me :'(
 
@@ -98,7 +154,6 @@ public class FacultyListAdapter extends BaseAdapter {
         return listViewItem_faculty;
 
     }
-
 
 
 
