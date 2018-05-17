@@ -183,24 +183,13 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
     //Update Database
     @Override
     public void onClick(View view) {
-//        Toast.makeText(getContext(), type, Toast.LENGTH_SHORT).show();
-//        Toast.makeText(getContext(), user_ID+","+id_number, Toast.LENGTH_SHORT).show();
-
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         final DatabaseReference databaseReference = firebaseDatabase.getReference(type);
 
-//        if (aTrue){
-//            databaseReference.child(user_ID).child("phoneNumber").setValue(phone_number_TV_show.getText().toString().trim());
-//            Toast.makeText(getContext(), "Updated.."+type, Toast.LENGTH_SHORT).show();
-//
-//
-//        }else {
+//the phone number are actually admin job posision
             databaseReference.child(user_ID).child("phoneNumber").setValue(phone_number_TV_show.getText().toString().trim());
 
             Toast.makeText(getContext(), "Updated.. too"+type, Toast.LENGTH_SHORT).show();
-
-//        }
-
 
 
 

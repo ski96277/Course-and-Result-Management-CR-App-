@@ -151,12 +151,12 @@ public class ShowProfileF extends Fragment {
 
                     name = dataSnapshot.child("admin").child(user_ID).child("full_name").getValue(String.class).trim();
                     department = dataSnapshot.child("admin").child(user_ID).child("department_name").getValue(String.class).trim();
-                    runningstatus = dataSnapshot.child("admin").child(user_ID).child("runningstatus").getValue(String.class).trim();
+                    runningstatus = dataSnapshot.child("admin").child(user_ID).child("phoneNumber").getValue(String.class).trim();
                     type = dataSnapshot.child("admin").child(user_ID).child("type").getValue(String.class).trim();
                     email_id = dataSnapshot.child("admin").child(user_ID).child("email").getValue(String.class).trim();
                     id_number = dataSnapshot.child("admin").child(user_ID).child("iD").getValue(String.class).trim();
 //                    image_uri = dataSnapshot.child("admin").child(user_ID).child("imageUri_download_Link").getValue(String.class).trim();
-                    Toast.makeText(getContext(), ""+id_number, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), ""+id_number, Toast.LENGTH_SHORT).show();
                     name_TV_show.append(name);
                     user_type_TV_show.append(type);
                     depart_TV_show.append(department);

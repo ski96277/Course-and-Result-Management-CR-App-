@@ -4,6 +4,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.imransk.buproject1.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -24,7 +27,7 @@ import java.util.List;
  * Created by imran sk on 5/16/2018.
  */
 
-public class Course_Assaign extends Fragment {
+public class Course_Assaign extends Fragment implements View.OnClickListener {
 
     String user_id;
     String user_type;
@@ -45,6 +48,11 @@ public class Course_Assaign extends Fragment {
     Spinner spinner4;
     Button submit_course_list;
 
+
+    String course_one="";
+    String course_two="";
+    String course_three="";
+    String course_four="";
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -73,99 +81,71 @@ public class Course_Assaign extends Fragment {
 
         fac_Image=view.findViewById(R.id.image_view_show_for_course);
         fac_name_TV=view.findViewById(R.id.user_name_show_for_course);
+
         spinner1=view.findViewById(R.id.spinner_course_1);
         spinner2=view.findViewById(R.id.spinner_course_2);
         spinner3=view.findViewById(R.id.spinner_course_3);
         spinner4=view.findViewById(R.id.spinner_course_4);
+
         submit_course_list=view.findViewById(R.id.submit_course);
 
         //set image and name to fragment
         Picasso.with(getContext()).load(image_url).into(fac_Image);
         fac_name_TV.append(name);
 
-//        set course to your spinner
-        // Spinner Drop down elements
-        List<String> categories = new ArrayList<String>();
-        categories.add("Select The Course");
-        categories.add("Introduction of computer Science");
-        categories.add("Analog Electronics & Lab");
-        categories.add("Math-I (Differential Calculus & Co-ordinateGeom.)");
-        categories.add("English I");
-        categories.add("Business Organization");
-
-        categories.add("Structural Programming Language & Lab");
-        categories.add("Integral Calculus & Differential Equation");
-        categories.add("Digital Logic & Lab");
-        categories.add("English II");
-
-        categories.add("Physics & Lab");
-        categories.add("Electronic Device & Circuit & Lab");
-        categories.add("Object Oriented Programming & Lab");
-        categories.add("Government");
-
-        categories.add("Programming Language (Java) & Lab");
-        categories.add("Data Structure & Lab");
-        categories.add("Discrete Mathematics");
-        categories.add("Lainnde aVre Actlgoerbra, Complex Variable, Laplace Transformation");
-
-        categories.add("Algorithm & Lab");
-        categories.add("Microprocessor & Assembly Language & Lab");
-        categories.add("Statistics & Probability");
-
-        categories.add("Theory of Computation");
-        categories.add("Data Communication");
-        categories.add("Electrical Drives and Instrumentation & Lab");
-        categories.add("Web Programming");
-
-        categories.add("Database System & Lab");
-        categories.add("Operating System & Lab");
-        categories.add("Accounting");
-        categories.add("VLSI Design");
-
-        categories.add("Compiler Design & Lab");
-        categories.add("Digital System Design & Lab");
-        categories.add("Digital Electronics & Pulse Technique");
-        categories.add("Software Engineering");
-        categories.add("Pattern Recognition & Lab");
-        categories.add("Computer Network & lab");
-        categories.add("E-Commerce");
-        categories.add("Numerical Method");
-
-        categories.add("Project & Thesis I");
-        categories.add("Artificial Intelligence & Lab");
-        categories.add("Accounting & Introduction to Finance & International Trade");
-        categories.add("Elective Major 1(MIS)");
-
-        categories.add("Project & Thesis II");
-        categories.add("Computer Graphics & Lab");
-        categories.add("System Analysis & Design & Lab");
-        categories.add("Project and Thesis III");
-        categories.add("Elective Major II (System Programming)");
-        categories.add("Peripheral and Interfacing");
-        categories.add("Computer Organization & Architecture");
 
 
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), R.layout.custom_spinner_item, categories);
-
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
-        spinner1.setAdapter(dataAdapter);
-        spinner2.setAdapter(dataAdapter);
-        spinner3.setAdapter(dataAdapter);
-        spinner4.setAdapter(dataAdapter);
 
 
-        submit_course_list.setOnClickListener(new View.OnClickListener() {
+        submit_course_list.setOnClickListener(this);
+    /*    submit_course_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Ok", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), ""+ course_one, Toast.LENGTH_SHORT).show();
+
+                FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
+                DatabaseReference databaseReference=firebaseDatabase.getReference();
+
+                databaseReference.child(user_type).child(user_id).child("CourseList")
+                        .child("Course_one").setValue(course_one);
+
+                databaseReference.child(user_type).child(user_id).child("CourseList")
+                        .child("Course_two").setValue(course_two);
+
+                databaseReference.child(user_type).child(user_id).child("CourseList")
+                        .child("Course_three").setValue(course_three);
+
+                databaseReference.child(user_type).child(user_id).child("CourseList")
+                        .child("Course_four").setValue(course_four);
+
             }
-        });
+        });*/
 
 
     }
 
+    @Override
+    public void onClick(View view) {
+
+        course_one= spinner1.getSelectedItem().toString();
+          course_two=spinner2.getSelectedItem().toString();
+          course_three=spinner3.getSelectedItem().toString();
+          course_four=spinner4.getSelectedItem().toString();
+        FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference=firebaseDatabase.getReference();
+
+        databaseReference.child(user_type).child(user_id).child("CourseList")
+                .child("Course_one").setValue(course_one);
+
+        databaseReference.child(user_type).child(user_id).child("CourseList")
+                .child("Course_two").setValue(course_two);
+
+        databaseReference.child(user_type).child(user_id).child("CourseList")
+                .child("Course_three").setValue(course_three);
+
+        databaseReference.child(user_type).child(user_id).child("CourseList")
+                .child("Course_four").setValue(course_four);
+
+        Toast.makeText(getContext(), ""+course_one, Toast.LENGTH_SHORT).show();
+    }
 }

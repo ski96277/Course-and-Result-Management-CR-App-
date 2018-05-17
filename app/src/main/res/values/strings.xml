@@ -7,4 +7,103 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string-array name="course_list">
+        <item>Select Course</item>
+        <item>Introduction of computer Science</item>
+        <item>Analog Electronics and Lab</item>
+
+        <item>Math-I (Differential Calculus and Co-ordinateGeom.)</item>
+
+        <item>English I</item>
+
+        <item>Business Organization</item>
+
+        <item>Structural Programming Language and Lab</item>
+
+        <item>Integral Calculus and Differential Equation</item>
+
+        <item>Digital Logic and Lab</item>
+
+        <item>English II</item>
+
+        <item>Physics and Lab</item>
+
+        <item>Electronic Device and Circuit and Lab</item>
+
+        <item>Object Oriented Programming and Lab</item>
+
+        <item>Government</item>
+
+        <item>Programming Language (Java) and Lab</item>
+
+        <item> Data Structure and Lab</item>
+
+        <item> Discrete Mathematics</item>
+
+        <item> Lainnde aVre Actlgoerbra, Complex Variable, Laplace Transformation</item>
+
+        <item> Algorithm and Lab</item>
+
+        <item> Microprocessor and Assembly Language and Lab</item>
+
+        <item> Statistics and Probability</item>
+
+        <item> Theory of Computation</item>
+
+        <item> Data Communication</item>
+
+        <item> Electrical Drives and Instrumentation and Lab</item>
+
+        <item> Web Programming</item>
+
+        <item> Database System and Lab</item>
+
+        <item> Operating System and Lab</item>
+
+        <item> Accounting</item>
+
+        <item> VLSI Design</item>
+
+        <item> Compiler Design and Lab</item>
+
+
+        <item>Digital System Design and Lab </item>
+
+        <item>Digital Electronics and Pulse Technique </item>
+
+        <item> Software Engineering</item>
+
+
+        <item>Pattern Recognition  Lab </item>
+
+        <item> Computer Network and lab</item>
+
+        <item>E-Commerce </item>
+
+
+        <item>Numerical Method </item>
+
+        <item> Project and Thesis I</item>
+
+        <item>Artificial Intelligence and Lab </item>
+
+        <item> Accounting and Introduction to Finance and International Trade</item>
+
+        <item> Elective Major 1(MIS)</item>
+
+        <item> Project and Thesis II</item>
+
+        <item> Computer Graphics and Lab</item>
+
+        <item>System Analysis and Design and Lab </item>
+
+        <item> Project and Thesis III</item>
+        <item> Elective Major II (System Programming)</item>
+
+        <item> Peripheral and Interfacing</item>
+
+        <item> Computer Organization and Architecture</item>
+
+    </string-array>
 </resources>
