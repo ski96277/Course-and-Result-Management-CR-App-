@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:id="@+id/homepageF"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/homepageF"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -13,6 +13,130 @@
         android:gravity="center"
         android:text="Home Page"/>
 
+    <LinearLayout
+        android:id="@+id/course_one_root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:orientation="horizontal"
+        android:padding="10sp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1 . "
+            android:textColor="#000"
+            android:textSize="25sp"/>
+
+        <TextView
+            android:id="@+id/course_one_TV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="course one"
+            android:textColor="#000"
+            android:textSize="25sp"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/view_Line_1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:visibility="gone"
+        android:background="#0163AD"/>
+
+
+
+    <LinearLayout
+        android:id="@+id/course_two_root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10sp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 . "
+            android:textColor="#000"
+            android:textSize="25sp"/>
+
+        <TextView
+            android:id="@+id/course_two_TV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="course two"
+            android:textColor="#000"
+            android:textSize="25sp"/>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/view_Line_2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:visibility="gone"
+        android:background="#0163AD"/>
+    <LinearLayout
+        android:id="@+id/course_three_root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10sp"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3 . "
+            android:textColor="#000"
+            android:textSize="25sp"/>
+
+        <TextView
+            android:id="@+id/course_three_TV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="course three"
+            android:textColor="#000"
+            android:textSize="25sp"/>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/view_Line_3"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:visibility="gone"
+        android:background="#0163AD"/>
+    <LinearLayout
+        android:id="@+id/course_four_root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10sp"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4 . "
+            android:textColor="#000"
+            android:textSize="25sp"/>
+
+        <TextView
+            android:id="@+id/course_four_TV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="course four"
+            android:textColor="#000"
+            android:textSize="25sp"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/view_Line_4"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:visibility="gone"
+        android:background="#0163AD"/>
     <ListView
         android:id="@+id/userList"
         android:layout_width="match_parent"
@@ -21,5 +145,6 @@
         android:layout_marginTop="5sp"
         android:clickable="false"
         android:focusable="false"
-        android:padding="5sp"/>
+        android:padding="5sp"
+        android:visibility="gone"/>
 </LinearLayout>

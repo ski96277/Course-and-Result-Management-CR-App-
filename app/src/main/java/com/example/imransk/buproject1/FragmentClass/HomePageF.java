@@ -8,17 +8,20 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.imransk.buproject1.AboutActivity;
+import com.example.imransk.buproject1.Adapter.SubjetResultAdapter;
 import com.example.imransk.buproject1.Adapter.UserListAdapter;
 import com.example.imransk.buproject1.R;
 import com.example.imransk.buproject1.pojoClass.SignUpPojo;
@@ -49,6 +52,9 @@ public class HomePageF extends Fragment {
     ListView listViewUser;
     private ArrayList<SignUpPojo> signUpList = null;
 
+    private ArrayList<String> result_list = null;
+
+
     Context context;
     AlertDialog.Builder builder;
 
@@ -60,12 +66,15 @@ public class HomePageF extends Fragment {
     }
 
     @Override
-    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         this.context = view.getContext();
 
         signUpList = new ArrayList<>();
+
+        result_list = new ArrayList<>();
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -92,8 +101,37 @@ public class HomePageF extends Fragment {
                         //Call alert dialog method
                         alert();
                     } else if (status_student.equals("1")) {
-                        statusTV.setText("Your student Status is 1");
-                        Toast.makeText(view.getContext(), "" + status_student, Toast.LENGTH_SHORT).show();
+//Show the Student Result
+                        String batch_number = dataSnapshot.child("Student").child(userId).child("batch_number").getValue(String.class);
+                        String iD_number = dataSnapshot.child("Student").child(userId).child("iD").getValue(String.class);
+
+                        Log.e(" batch number", " Student: batch homepage" + batch_number.trim());
+                        Log.e(" batch number", " Student: id number homepage" + iD_number.trim());
+
+                        boolean have_result = dataSnapshot.child("Result Sheet").child(batch_number)
+                                .child(iD_number).hasChildren();
+
+                        if (have_result) {
+                            for (DataSnapshot snapshot : dataSnapshot.child("Result Sheet").child(batch_number)
+                                    .child(iD_number).getChildren()) {
+
+                                String subject = snapshot.getKey();
+                                Log.e(" sub ...-- ", "subject name: " + subject.toString().trim());
+
+                                result_list.add(subject);
+
+                            }
+                            listViewUser.setVisibility(View.VISIBLE);
+                            SubjetResultAdapter subjetResultAdapter = new SubjetResultAdapter(getActivity(), result_list, batch_number, iD_number);
+                            listViewUser.setAdapter(subjetResultAdapter);
+                        }else {
+                            statusTV.setText("You have No Result yet .... ");
+                            Toast.makeText(view.getContext(), "" + status_student, Toast.LENGTH_SHORT).show();
+                        }
+
+
+
+
 
                     }
                 } else if (fTrue) {
@@ -105,8 +143,167 @@ public class HomePageF extends Fragment {
                         alert();
 
                     } else if (status_faculty.equals("1")) {
-                        statusTV.setText("Your Faculty Status is 1");
-                        Toast.makeText(view.getContext(), "" + status_faculty, Toast.LENGTH_SHORT).show();
+
+                        boolean courselist_true = dataSnapshot.child("faculty").child(userId).hasChild("CourseList");
+                        Log.e("course List", "having course list " + courselist_true);
+
+                        if (courselist_true) {
+
+                            statusTV.setVisibility(View.GONE);
+
+                            LinearLayout linearLayout1 = view.findViewById(R.id.course_one_root_layout);
+                            LinearLayout linearLayout2 = view.findViewById(R.id.course_two_root_layout);
+                            LinearLayout linearLayout3 = view.findViewById(R.id.course_three_root_layout);
+                            LinearLayout linearLayout4 = view.findViewById(R.id.course_four_root_layout);
+
+                            View view1 = view.findViewById(R.id.view_Line_1);
+                            View view2 = view.findViewById(R.id.view_Line_2);
+                            View view3 = view.findViewById(R.id.view_Line_3);
+                            View view4 = view.findViewById(R.id.view_Line_4);
+
+                            view1.setVisibility(View.VISIBLE);
+                            view2.setVisibility(View.VISIBLE);
+                            view3.setVisibility(View.VISIBLE);
+                            view4.setVisibility(View.VISIBLE);
+
+                            linearLayout1.setVisibility(View.VISIBLE);
+                            linearLayout2.setVisibility(View.VISIBLE);
+                            linearLayout3.setVisibility(View.VISIBLE);
+                            linearLayout4.setVisibility(View.VISIBLE);
+
+                            final TextView course_1_Tv = view.findViewById(R.id.course_one_TV);
+                            final TextView course_2_Tv = view.findViewById(R.id.course_two_TV);
+                            final TextView course_3_Tv = view.findViewById(R.id.course_three_TV);
+                            final TextView course_4_Tv = view.findViewById(R.id.course_four_TV);
+
+                            String couser_one = dataSnapshot.child("faculty").child(userId).child("CourseList").child("course_one").getValue(String.class);
+                            String couser_two = dataSnapshot.child("faculty").child(userId).child("CourseList").child("course_two").getValue(String.class);
+                            String couser_three = dataSnapshot.child("faculty").child(userId).child("CourseList").child("course_three").getValue(String.class);
+                            String couser_four = dataSnapshot.child("faculty").child(userId).child("CourseList").child("course_four").getValue(String.class);
+                            course_1_Tv.setText(couser_one);
+                            course_2_Tv.setText(couser_two);
+                            course_3_Tv.setText(couser_three);
+                            course_4_Tv.setText(couser_four);
+
+//Go Result Submit fragment with data
+                            if (course_1_Tv.getText().equals("No course yet")) {
+                                course_1_Tv.setTextColor(0xFFF06D2F);
+
+                            } else {
+                                course_1_Tv.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                        Fragment fragment = null;
+                                        fragment = new Result_Submit_F();
+                                        if (fragment != null) {
+
+                                            Bundle bundle = new Bundle();
+                                            bundle.putString("course_name", course_1_Tv.getText().toString());
+
+                                            FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager()
+                                                    .beginTransaction();
+                                            fragmentTransaction.addToBackStack("");
+                                            fragmentTransaction.replace(R.id.screenArea, fragment);
+                                            fragment.setArguments(bundle);
+                                            fragmentTransaction.commit();
+
+
+                                        }
+
+                                    }
+                                });
+                            }
+
+                            if (course_2_Tv.getText().equals("No course yet")) {
+                                course_2_Tv.setTextColor(0xFFF06D2F);
+                            } else {
+                                course_2_Tv.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                        Fragment fragment = null;
+                                        fragment = new Result_Submit_F();
+                                        if (fragment != null) {
+
+                                            Bundle bundle = new Bundle();
+                                            bundle.putString("course_name", course_2_Tv.getText().toString());
+
+                                            FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager()
+                                                    .beginTransaction();
+                                            fragmentTransaction.addToBackStack("");
+                                            fragmentTransaction.replace(R.id.screenArea, fragment);
+                                            fragment.setArguments(bundle);
+                                            fragmentTransaction.commit();
+
+
+                                        }
+
+                                    }
+                                });
+                            }
+
+                            if (course_3_Tv.getText().equals("No course yet")) {
+                                course_3_Tv.setTextColor(0xFFF06D2F);
+                            } else {
+                                course_3_Tv.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                        Fragment fragment = null;
+                                        fragment = new Result_Submit_F();
+                                        if (fragment != null) {
+
+                                            Bundle bundle = new Bundle();
+                                            bundle.putString("course_name", course_3_Tv.getText().toString());
+
+                                            FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager()
+                                                    .beginTransaction();
+                                            fragmentTransaction.addToBackStack("");
+                                            fragmentTransaction.replace(R.id.screenArea, fragment);
+                                            fragment.setArguments(bundle);
+                                            fragmentTransaction.commit();
+
+
+                                        }
+
+
+                                    }
+                                });
+                            }
+                            if (course_4_Tv.getText().equals("No course yet")) {
+                                course_4_Tv.setTextColor(0xFFF06D2F);
+                            } else {
+                                course_4_Tv.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                        Fragment fragment = null;
+                                        fragment = new Result_Submit_F();
+                                        if (fragment != null) {
+
+                                            Bundle bundle = new Bundle();
+                                            bundle.putString("course_name", course_4_Tv.getText().toString());
+
+                                            FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager()
+                                                    .beginTransaction();
+                                            fragmentTransaction.addToBackStack("");
+                                            fragmentTransaction.replace(R.id.screenArea, fragment);
+                                            fragment.setArguments(bundle);
+                                            fragmentTransaction.commit();
+
+
+                                        }
+
+                                    }
+                                });
+                            }
+// END Result Submit fragment with data
+
+                        } else {
+
+                            statusTV.setText("Wait for course Assign");
+                        }
 
                     }
                 } else if (aTrue) {
@@ -156,14 +353,14 @@ public class HomePageF extends Fragment {
                         Log.e("Come from data Base", "onDataChange: " + signUpList);
 
                     }
-                }else {
+                } else {
 
                     //if account is deleted show this message to user
                     status_student = dataSnapshot.child("WorngAccount").child("DeleteStatus").getValue(String.class).trim();
 
-                        statusTV.setText(status_student);
+                    statusTV.setText(status_student);
 
-                        deleteUserAlert();
+                    deleteUserAlert();
                 }
             }
 
@@ -173,6 +370,7 @@ public class HomePageF extends Fragment {
             }
         });
     }
+
     //If user is deleted  alert dialog method
     private void deleteUserAlert() {
 
@@ -206,6 +404,7 @@ public class HomePageF extends Fragment {
 
 
     }
+
     //Create User Alert  alert dialog method
     private void alert() {
 

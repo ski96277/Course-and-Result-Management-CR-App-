@@ -219,6 +219,7 @@ public class LoginSuccessActivity extends AppCompatActivity
         if (fragment != null) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.screenArea, fragment);
+            fragmentTransaction.addToBackStack("");
             fragmentTransaction.commit();
         }
 

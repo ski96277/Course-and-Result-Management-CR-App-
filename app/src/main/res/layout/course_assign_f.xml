@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView
-    android:padding="15sp"
+    android:paddingRight="15sp"
+    android:paddingBottom="15sp"
+    android:paddingLeft="15sp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -16,7 +18,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_view_show_for_course"
         android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginBottom="4dp"
@@ -34,48 +36,90 @@
         android:textColor="#000"
         android:textCursorDrawable="@drawable/coursor_color"
         android:textSize="20sp"/>
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_marginBottom="10sp"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 . "
+        android:textSize="25sp"
+        android:textColor="#000"/>
     <Spinner
         android:id="@+id/spinner_course_1"
         android:layout_width="match_parent"
         android:entries="@array/course_list"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="10sp"/>
+        android:layout_height="match_parent"/>
+</LinearLayout>
+
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@android:color/black"/>
 
-    <Spinner
-        android:id="@+id/spinner_course_2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10sp"
-        android:entries="@array/course_list"
-        android:layout_marginBottom="10sp"/>
+        android:orientation="horizontal"
+        android:layout_marginBottom="10sp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 . "
+            android:textSize="25sp"
+            android:textColor="#000"/>
+        <Spinner
+            android:id="@+id/spinner_course_2"
+            android:layout_width="match_parent"
+            android:entries="@array/course_list"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@android:color/black"/>
-    <Spinner
-        android:id="@+id/spinner_course_3"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="10sp"
-        android:entries="@array/course_list"
+        android:orientation="horizontal"
         android:layout_marginBottom="10sp"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3 . "
+            android:textSize="25sp"
+            android:textColor="#000"/>
+        <Spinner
+            android:id="@+id/spinner_course_3"
+            android:layout_width="match_parent"
+            android:entries="@array/course_list"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@android:color/black"/>
-    <Spinner
-        android:id="@+id/spinner_course_4"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="horizontal"
         android:layout_marginBottom="10sp"
-        android:layout_marginTop="10sp"
-        android:entries="@array/course_list"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4 . "
+            android:textSize="25sp"
+            android:textColor="#000"/>
+        <Spinner
+            android:id="@+id/spinner_course_4"
+            android:layout_width="match_parent"
+            android:entries="@array/course_list"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"

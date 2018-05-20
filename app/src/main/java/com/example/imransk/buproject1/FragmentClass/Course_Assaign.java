@@ -16,13 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.imransk.buproject1.R;
+import com.example.imransk.buproject1.pojoClass.CourseAssignPojo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by imran sk on 5/16/2018.
  */
@@ -93,59 +93,39 @@ public class Course_Assaign extends Fragment implements View.OnClickListener {
         Picasso.with(getContext()).load(image_url).into(fac_Image);
         fac_name_TV.append(name);
 
-
-
-
-
         submit_course_list.setOnClickListener(this);
-    /*    submit_course_list.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), ""+ course_one, Toast.LENGTH_SHORT).show();
-
-                FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-                DatabaseReference databaseReference=firebaseDatabase.getReference();
-
-                databaseReference.child(user_type).child(user_id).child("CourseList")
-                        .child("Course_one").setValue(course_one);
-
-                databaseReference.child(user_type).child(user_id).child("CourseList")
-                        .child("Course_two").setValue(course_two);
-
-                databaseReference.child(user_type).child(user_id).child("CourseList")
-                        .child("Course_three").setValue(course_three);
-
-                databaseReference.child(user_type).child(user_id).child("CourseList")
-                        .child("Course_four").setValue(course_four);
-
-            }
-        });*/
-
-
     }
 
     @Override
     public void onClick(View view) {
 
         course_one= spinner1.getSelectedItem().toString();
-          course_two=spinner2.getSelectedItem().toString();
-          course_three=spinner3.getSelectedItem().toString();
-          course_four=spinner4.getSelectedItem().toString();
+        course_two=spinner2.getSelectedItem().toString();
+        course_three=spinner3.getSelectedItem().toString();
+        course_four=spinner4.getSelectedItem().toString();
+
+        if (course_one.equals("Select Course")){
+            course_one="No course yet";
+        }
+        if (course_two.equals("Select Course")){
+            course_two="No course yet";
+        }
+        if (course_three.equals("Select Course")){
+            course_three="No course yet";
+        }
+        if (course_four.equals("Select Course")){
+            course_four="No course yet";
+        }
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference databaseReference=firebaseDatabase.getReference();
 
-        databaseReference.child(user_type).child(user_id).child("CourseList")
-                .child("Course_one").setValue(course_one);
 
-        databaseReference.child(user_type).child(user_id).child("CourseList")
-                .child("Course_two").setValue(course_two);
+        CourseAssignPojo course_assaign_pojo=new CourseAssignPojo(course_one,course_two,course_three,course_four);
+        databaseReference.child(user_type).child(user_id).child("CourseList").setValue(course_assaign_pojo);
+        Toast.makeText(getContext(), "Succesfully Assign courses", Toast.LENGTH_SHORT).show();
 
-        databaseReference.child(user_type).child(user_id).child("CourseList")
-                .child("Course_three").setValue(course_three);
-
-        databaseReference.child(user_type).child(user_id).child("CourseList")
-                .child("Course_four").setValue(course_four);
-
-        Toast.makeText(getContext(), ""+course_one, Toast.LENGTH_SHORT).show();
     }
+
+
+
 }
