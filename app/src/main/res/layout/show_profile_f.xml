@@ -1,81 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_height="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto">
+            android:layout_height="match_parent"
+            android:background="#8CD3EC">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10sp">
+        android:layout_margin="5sp"
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Show Profile"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="Show Profile"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user_image_view_show"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_gravity="center"
-            app:civ_border_color="#0163AD"
-            app:civ_border_width="5sp"
             android:layout_below="@id/userinformationTV"
             android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="2dp"
-            android:src="@drawable/boy"/>
+            android:src="@drawable/boy"
+            app:civ_border_color="#f9eaea"
+            app:civ_border_width="5sp"/>
 
-        <TextView
-            android:id="@+id/user_name_show"
-            android:layout_width="match_parent"
-            android:layout_height="50sp"
-            android:textColor="#000"
-            android:text="Name : "/>
+
+            <TextView
+                android:id="@+id/user_name_show"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:text="Name : "
+                android:background="#fff"
+                android:paddingTop="12sp"
+                android:paddingLeft="10sp"
+                android:layout_marginBottom="10sp"
+                android:textColor="#000"/>
+
+
+
         <TextView
             android:id="@+id/user_type_show"
             android:layout_width="match_parent"
             android:layout_height="50sp"
-            android:textColor="#000"
-            android:text="User Type : "/>
+            android:text="User Type : "
+            android:background="#fff"
+            android:paddingTop="12sp"
+            android:paddingLeft="10sp"
+            android:layout_marginBottom="10sp"
+            android:textColor="#000"/>
+
+
+
+
 
         <TextView
             android:id="@+id/user_Dept_name_show"
             android:layout_width="match_parent"
             android:layout_height="50sp"
-            android:textColor="#000"
-            android:text="department : "/>
+            android:text="department : "
+            android:background="#fff"
+            android:paddingLeft="10sp"
+            android:paddingTop="12sp"
+            android:layout_marginBottom="10sp"
+            android:textColor="#000"/>
+
+
+
 
         <TextView
             android:id="@+id/user_batch_show"
             android:layout_width="match_parent"
             android:layout_height="50sp"
-            android:textCursorDrawable="@drawable/coursor_color"
+            android:text="Batch : "
             android:textColor="#000"
-            android:text="Batch : "/>
+            android:paddingLeft="10sp"
+            android:background="#fff"
+            android:paddingTop="12sp"
+            android:layout_marginBottom="10sp"/>
+
+
         <TextView
             android:id="@+id/user_email_show"
             android:layout_width="match_parent"
             android:layout_height="50sp"
-            android:textCursorDrawable="@drawable/coursor_color"
+            android:text="Email : "
             android:textColor="#000"
-            android:text="Email : "/>
+            android:background="#fff"
+            android:paddingLeft="10sp"
+            android:paddingTop="12sp"
+            android:layout_marginBottom="10sp"/>
+
+
         <TextView
-        android:id="@+id/user_phone_number_show"
-        android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:textCursorDrawable="@drawable/coursor_color"
-        android:textColor="#000"
-        android:text="Phone : "/>
+            android:id="@+id/user_phone_number_show"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:text="Phone : "
+            android:textColor="#000"
+            android:background="#fff"
+            android:paddingTop="12sp"
+            android:paddingLeft="10sp"
+            android:layout_marginBottom="10sp"/>
+
         <TextView
             android:id="@+id/user_id_show"
             android:layout_width="match_parent"
             android:layout_height="50sp"
-            android:textCursorDrawable="@drawable/coursor_color"
+            android:text="ID : "
+            android:paddingLeft="10sp"
             android:textColor="#000"
-            android:text="ID : "/>
+            android:background="#fff"
+            android:paddingTop="12sp"
+            android:layout_marginBottom="10sp"/>
 
     </LinearLayout>
 

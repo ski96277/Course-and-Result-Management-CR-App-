@@ -4,6 +4,7 @@
     android:id="@+id/homepageF"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#8CD3EC"
     android:orientation="vertical">
 
     <TextView
@@ -37,13 +38,13 @@
             android:textColor="#000"
             android:textSize="25sp"/>
     </LinearLayout>
+
     <View
         android:id="@+id/view_Line_1"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:visibility="gone"
-        android:background="#0163AD"/>
-
+        android:background="#0163AD"
+        android:visibility="gone"/>
 
 
     <LinearLayout
@@ -70,12 +71,14 @@
             android:textSize="25sp"/>
 
     </LinearLayout>
+
     <View
         android:id="@+id/view_Line_2"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:visibility="gone"
-        android:background="#0163AD"/>
+        android:background="#0163AD"
+        android:visibility="gone"/>
+
     <LinearLayout
         android:id="@+id/course_three_root_layout"
         android:layout_width="match_parent"
@@ -101,12 +104,14 @@
             android:textSize="25sp"/>
 
     </LinearLayout>
+
     <View
         android:id="@+id/view_Line_3"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:visibility="gone"
-        android:background="#0163AD"/>
+        android:background="#0163AD"
+        android:visibility="gone"/>
+
     <LinearLayout
         android:id="@+id/course_four_root_layout"
         android:layout_width="match_parent"
@@ -131,20 +136,20 @@
             android:textColor="#000"
             android:textSize="25sp"/>
     </LinearLayout>
+
     <View
         android:id="@+id/view_Line_4"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:visibility="gone"
-        android:background="#0163AD"/>
+        android:background="#0163AD"
+        android:visibility="gone"/>
+
     <ListView
         android:id="@+id/userList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5sp"
-        android:layout_marginTop="5sp"
-        android:clickable="false"
-        android:focusable="false"
-        android:padding="5sp"
-        android:visibility="gone"/>
+        android:layout_margin="7sp"
+        android:dividerHeight="7sp"
+        android:visibility="gone"
+        />
 </LinearLayout>

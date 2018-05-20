@@ -88,7 +88,7 @@ public class SubjetResultAdapter extends BaseAdapter {
                 String mark = dataSnapshot.child("Result Sheet").child(batch_number)
                         .child(iD_number).child(subject).child("mark").getValue().toString();
 
-                serial_num.setText(String.valueOf(i+1));
+                serial_num.setText(String.valueOf(i+1)+".");
                 subject_name.setText(subject);
                 grade_and_mark_TV.setText(grade+" / "+mark);
 

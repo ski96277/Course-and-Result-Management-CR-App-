@@ -3,12 +3,15 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:descendantFocusability="blocksDescendants"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+    android:background="#8CD3EC">
 
     <ListView
         android:focusable="true"
         android:id="@+id/faculty_list_item"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="20sp"
+        android:dividerHeight="10sp"/>
 
 </LinearLayout>
