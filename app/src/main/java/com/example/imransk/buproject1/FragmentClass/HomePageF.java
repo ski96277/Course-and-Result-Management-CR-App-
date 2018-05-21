@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -111,6 +112,9 @@ public class HomePageF extends Fragment {
                         boolean have_result = dataSnapshot.child("Result Sheet").child(batch_number)
                                 .child(iD_number).hasChildren();
 
+                        int total_credit = 0;
+                        double total_point = 0;
+                        result_list.clear();
                         if (have_result) {
                             for (DataSnapshot snapshot : dataSnapshot.child("Result Sheet").child(batch_number)
                                     .child(iD_number).getChildren()) {
@@ -118,19 +122,31 @@ public class HomePageF extends Fragment {
                                 String subject = snapshot.getKey();
                                 Log.e(" sub ...-- ", "subject name: " + subject.toString().trim());
 
+                                String course_credit_st = dataSnapshot.child("Result Sheet").child(batch_number)
+                                        .child(iD_number).child(subject).child("course_credit").getValue().toString();
+
+                                String course_point_st = dataSnapshot.child("Result Sheet").child(batch_number)
+                                        .child(iD_number).child(subject).child("total_point").getValue().toString();
+
+                                total_point=total_point+Integer.parseInt(course_point_st);
+
+                                total_credit = total_credit + Integer.parseInt(course_credit_st);
+
                                 result_list.add(subject);
 
                             }
+//set total credit and CGPA
+                            Log.e("Total point -- - -- ", " Home page "+total_point );
+                            statusTV.setText("Total Credit - " + String.valueOf(total_credit)+"Total CGPA - "+String.valueOf(total_point/total_credit));
+
+
                             listViewUser.setVisibility(View.VISIBLE);
                             SubjetResultAdapter subjetResultAdapter = new SubjetResultAdapter(getActivity(), result_list, batch_number, iD_number);
                             listViewUser.setAdapter(subjetResultAdapter);
-                        }else {
+                        } else {
                             statusTV.setText("You have No Result yet .... ");
                             Toast.makeText(view.getContext(), "" + status_student, Toast.LENGTH_SHORT).show();
                         }
-
-
-
 
 
                     }
@@ -161,6 +177,7 @@ public class HomePageF extends Fragment {
                             View view3 = view.findViewById(R.id.view_Line_3);
                             View view4 = view.findViewById(R.id.view_Line_4);
 
+
                             view1.setVisibility(View.VISIBLE);
                             view2.setVisibility(View.VISIBLE);
                             view3.setVisibility(View.VISIBLE);
@@ -175,6 +192,7 @@ public class HomePageF extends Fragment {
                             final TextView course_2_Tv = view.findViewById(R.id.course_two_TV);
                             final TextView course_3_Tv = view.findViewById(R.id.course_three_TV);
                             final TextView course_4_Tv = view.findViewById(R.id.course_four_TV);
+
 
                             String couser_one = dataSnapshot.child("faculty").child(userId).child("CourseList").child("course_one").getValue(String.class);
                             String couser_two = dataSnapshot.child("faculty").child(userId).child("CourseList").child("course_two").getValue(String.class);

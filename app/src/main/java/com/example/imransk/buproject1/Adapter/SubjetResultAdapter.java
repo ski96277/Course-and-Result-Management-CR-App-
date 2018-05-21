@@ -39,8 +39,8 @@ public class SubjetResultAdapter extends BaseAdapter {
 
         this.context = activity;
         this.subject_list = subject_list;
-        this.batch_number=batch_number;
-        this.iD_number=iD_number;
+        this.batch_number = batch_number;
+        this.iD_number = iD_number;
 
         Log.e(" Adapter ", "SubjetResultAdapter: length" + subject_list.size());
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -62,7 +62,7 @@ public class SubjetResultAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, final View view, ViewGroup viewGroup) {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
@@ -70,30 +70,31 @@ public class SubjetResultAdapter extends BaseAdapter {
 
         final View listViewItem_Subject = layoutInflater.inflate(R.layout.custom_result_sheet, null);
 
-       final TextView serial_num = listViewItem_Subject.findViewById(R.id.serial_number);
-       final TextView subject_name = listViewItem_Subject.findViewById(R.id.sub_name);
-       final TextView grade_and_mark_TV = listViewItem_Subject.findViewById(R.id.grade_and_mark);
+        final TextView serial_num = listViewItem_Subject.findViewById(R.id.serial_number);
+        final TextView subject_name = listViewItem_Subject.findViewById(R.id.sub_name);
+        final TextView grade_and_mark_TV = listViewItem_Subject.findViewById(R.id.grade_and_mark);
 
         final String subject = subject_list.get(i);
+
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Log.e("id ---===--", "Student Result Adapter: "+iD_number );
-                Log.e("batch =- - -", "Student Result Adapter: "+batch_number);
+                Log.e("id ---===--", "Student Result Adapter: " + iD_number);
+                Log.e("batch =- - -", "Student Result Adapter: " + batch_number);
 
                 String grade = dataSnapshot.child("Result Sheet").child(batch_number)
                         .child(iD_number).child(subject).child("grade").getValue().toString();
                 String mark = dataSnapshot.child("Result Sheet").child(batch_number)
                         .child(iD_number).child(subject).child("mark").getValue().toString();
 
-                serial_num.setText(String.valueOf(i+1)+".");
+                serial_num.setText(String.valueOf(i + 1) + ".");
                 subject_name.setText(subject);
-                grade_and_mark_TV.setText(grade+" / "+mark);
+                grade_and_mark_TV.setText(grade + " / " + mark);
 
 
-                Log.e("grade --  --  ", "custom adapter : " + grade+" "+mark);
+                Log.e("grade --  --  ", "custom adapter : " + grade + " " + mark);
 
             }
 
@@ -102,6 +103,7 @@ public class SubjetResultAdapter extends BaseAdapter {
 
             }
         });
+
         return listViewItem_Subject;
     }
 }
