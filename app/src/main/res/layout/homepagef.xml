@@ -4,7 +4,7 @@
     android:id="@+id/homepageF"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8CD3EC"
+    android:background="#00899B"
     android:orientation="vertical">
 
     <TextView

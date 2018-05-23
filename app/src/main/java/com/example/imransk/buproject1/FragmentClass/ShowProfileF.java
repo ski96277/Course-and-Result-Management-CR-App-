@@ -55,6 +55,7 @@ public class ShowProfileF extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+       getActivity().setTitle("Profile");
         return inflater.inflate(R.layout.show_profile_f, null);
     }
 

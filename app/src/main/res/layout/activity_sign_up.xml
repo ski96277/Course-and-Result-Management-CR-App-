@@ -2,183 +2,129 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="bottom"
-    android:background="@drawable/background_color"
+
+    android:background="#00899B"
     android:orientation="vertical"
     tools:context=".SignUpActivity">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="40dp">
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20sp"
+                    android:text="Create an Account"
+                    android:textColor="#fff"
+                    android:textSize="30sp"/>
     <LinearLayout
+        android:gravity="bottom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="10sp"
-            android:layout_weight="5"
-            android:gravity="bottom"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20sp"
+            android:drawableLeft="@drawable/user"
+            android:hint="    E-mail"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
+            android:textScaleX="1"
+            />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="40dp"
-                android:text="Create an Account"
-                android:textColor="#fff"
-                android:textSize="30sp"/>
-
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20sp"
-                android:drawableLeft="@drawable/user"
-                android:hint="    E-mail"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:textColor="#fff"
-                android:textColorHint="#fff"
-                android:textScaleX="1"
-                />
-
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/lock"
-                android:focusableInTouchMode="true"
-                android:hint="    Password"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:textColor="#fff"
-                android:textColorHint="#fff"
-                android:textScaleX="1"/>
-
-
-            <RadioGroup
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/radiogroup"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="30sp"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/radio_student"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:padding="2dp"
-                    android:text="Student"
-                    android:textColor="#ffffff"
-                    android:textSize="25sp"/>
-
-                <RadioButton
-                    android:id="@+id/radio_faculty"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:padding="2dp"
-                    android:text="faculty"
-                    android:textColor="#ffffff"
-                    android:textSize="25sp"/>
-            </RadioGroup>
-
-
-        </LinearLayout>
-
-        <LinearLayout
+        <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp"
-            android:layout_marginTop="20sp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/lock"
+            android:focusableInTouchMode="true"
+            android:hint="    Password"
+            android:imeOptions="actionUnspecified"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
+            android:textScaleX="1"/>
+
+        <RadioGroup
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/radiogroup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30sp"
             android:gravity="center"
             android:orientation="horizontal">
 
-            <Button
-                android:layout_width="0dp"
+            <RadioButton
+                android:id="@+id/radio_student"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:layout_weight="1"
-                android:background="@drawable/stock"
-                android:drawableLeft="@drawable/facebook"
-                android:text="Facebook"
-                android:textColor="#fff"
-                />
+                android:layout_marginRight="20dp"
+                android:padding="2dp"
+                android:text="Student"
+                android:textColor="#ffffff"
+                android:textSize="25sp"/>
 
-            <Button
-                android:layout_width="0dp"
+            <RadioButton
+                android:id="@+id/radio_faculty"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_weight="1"
-                android:background="@drawable/stock"
-                android:drawableLeft="@drawable/twitter"
-                android:paddingLeft="4dp"
-                android:text="Twitter"
-                android:textColor="#fff"/>
-        </LinearLayout>
+                android:layout_marginLeft="20dp"
+                android:padding="2dp"
+                android:text="faculty"
+                android:textColor="#ffffff"
+                android:textSize="25sp"/>
+        </RadioGroup>
 
-        <LinearLayout
+
+
+
+
+        <Button
+            android:id="@+id/sign_up_button"
+            style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="bottom"
-            android:layout_weight="2"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="#66ACB6"
+            android:text="Sign Up"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
 
-            <Button
-                android:id="@+id/sign_up_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10sp"
-                android:layout_marginTop="16dp"
-                android:background="#003AB7"
-                android:text="Sign Up"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="25sp"
-                android:textStyle="bold"/>
+        <Button
+            android:id="@+id/sign_in_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#66ACB6"
+            android:text="Have An Account?   Click Here"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="15dp"/>
 
-            <!-- Link to Login Screen -->
-
-            <Button
-                android:id="@+id/sign_in_button"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="#043173"
-                android:text="Have An Account?   Click Here"
-                android:textAllCaps="false"
-                android:textColor="#fff"
-                android:textSize="15dp"/>
-        </LinearLayout>
 
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="40dp"
             android:layout_gravity="center|bottom"
-            android:layout_marginBottom="20dp"
-            android:layout_weight=".5"
             android:visibility="gone"
             />
     </LinearLayout>
-</ScrollView>
+
+
+
 
 </LinearLayout>

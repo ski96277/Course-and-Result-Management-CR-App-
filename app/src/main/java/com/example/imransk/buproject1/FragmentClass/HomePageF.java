@@ -62,6 +62,9 @@ public class HomePageF extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        getActivity().setTitle("Home Page");
+
         return inflater.inflate(R.layout.homepagef, null);
 
     }

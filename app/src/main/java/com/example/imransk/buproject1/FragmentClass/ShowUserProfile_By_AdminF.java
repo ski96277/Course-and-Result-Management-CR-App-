@@ -23,7 +23,7 @@ import com.squareup.picasso.Picasso;
  * Created by imran sk on 4/30/2018.
  */
 
-public class ShowUserProfile_By_AdminF extends Fragment{
+public class ShowUserProfile_By_AdminF extends Fragment {
 
     ImageView imageView;
     TextView name_TV_show;
@@ -49,11 +49,10 @@ public class ShowUserProfile_By_AdminF extends Fragment{
     FirebaseDatabase firebaseDatabase;
 
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        getActivity().setTitle("User Profile");
 
         return inflater.inflate(R.layout.show_user_profile_f, null);
     }
@@ -64,15 +63,15 @@ public class ShowUserProfile_By_AdminF extends Fragment{
 
         imageView = view.findViewById(R.id.admin_can_see_user_image_view_show);
         name_TV_show = view.findViewById(R.id.admin_can_see_user_name_show);
-        depart_TV_show=view.findViewById(R.id.admin_can_see_user_Dept_name_show);
-        batch_TV_show=view.findViewById(R.id.admin_can_see_user_batch_show);
-        email_TV_show=view.findViewById(R.id.admin_can_see_user_email_show);
-        phone_number_show=view.findViewById(R.id.admin_can_see_user_phone_number_show);
-        id_number_show=view.findViewById(R.id.admin_can_see_user_id_show);
-        user_type_show=view.findViewById(R.id.admin_can_see_user_type_show);
+        depart_TV_show = view.findViewById(R.id.admin_can_see_user_Dept_name_show);
+        batch_TV_show = view.findViewById(R.id.admin_can_see_user_batch_show);
+        email_TV_show = view.findViewById(R.id.admin_can_see_user_email_show);
+        phone_number_show = view.findViewById(R.id.admin_can_see_user_phone_number_show);
+        id_number_show = view.findViewById(R.id.admin_can_see_user_id_show);
+        user_type_show = view.findViewById(R.id.admin_can_see_user_type_show);
 
-        deleteButton=view.findViewById(R.id.deleteAccountBtn);
-        approveButton=view.findViewById(R.id.approveAccountBtn);
+        deleteButton = view.findViewById(R.id.deleteAccountBtn);
+        approveButton = view.findViewById(R.id.approveAccountBtn);
 
 
 //retrieve Value from bundle that store from previous fragment
@@ -80,14 +79,14 @@ public class ShowUserProfile_By_AdminF extends Fragment{
 
         user_id = bundle.getString("user_id");
 
-        name=bundle.getString("name");
-        user_type=bundle.getString("userType");
-        department=bundle.getString("department");
-        batch=bundle.getString("batch");
-        id_roll=bundle.getString("id_roll");
-        email_id=bundle.getString("email_id");
-        phone_number=bundle.getString("phone");
-        image_url=bundle.getString("imageUrl");
+        name = bundle.getString("name");
+        user_type = bundle.getString("userType");
+        department = bundle.getString("department");
+        batch = bundle.getString("batch");
+        id_roll = bundle.getString("id_roll");
+        email_id = bundle.getString("email_id");
+        phone_number = bundle.getString("phone");
+        image_url = bundle.getString("imageUrl");
 
         Picasso.with(getContext()).load(image_url).into(imageView);
         name_TV_show.append(name);
@@ -112,7 +111,7 @@ public class ShowUserProfile_By_AdminF extends Fragment{
 
                 databaseReference.setValue(signUpPojoForset);
 
-                startActivity(new Intent(getContext(),LoginSuccessActivity.class));
+                startActivity(new Intent(getContext(), LoginSuccessActivity.class));
                 getActivity().finish();
 
 
@@ -127,9 +126,9 @@ public class ShowUserProfile_By_AdminF extends Fragment{
 
                 firebaseDatabase = FirebaseDatabase.getInstance();
 
-                 firebaseDatabase.getReference().child(user_type).child(user_id).removeValue();
+                firebaseDatabase.getReference().child(user_type).child(user_id).removeValue();
 
-                 startActivity(new Intent(getContext(),LoginSuccessActivity.class));
+                startActivity(new Intent(getContext(), LoginSuccessActivity.class));
                 getActivity().finish();
 
 

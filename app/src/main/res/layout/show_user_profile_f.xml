@@ -4,7 +4,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#8CD3EC">
+            android:background="#00899B">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -267,12 +267,12 @@ android:layout_marginRight="5sp"
             android:layout_gravity="center"
             android:layout_marginBottom="20sp"
             android:layout_marginTop="20sp"
-            android:background="#0163AD"
+            android:background="#66ACB6"
             android:gravity="center"
             android:padding="10sp"
             android:text="Approve Account"
             android:textAllCaps="false"
-            android:textColor="#ffffff"
+            android:textColor="#000"
             android:textSize="20sp"/>
 
         <Button
@@ -281,12 +281,12 @@ android:layout_marginRight="5sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="20sp"
-            android:background="#0163AD"
+            android:background="#66ACB6"
             android:gravity="center"
             android:padding="10sp"
             android:text="Delete Account"
             android:textAllCaps="false"
-            android:textColor="#ffffff"
+            android:textColor="#000"
             android:textSize="20sp"/>
 
     </LinearLayout>

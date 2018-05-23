@@ -56,7 +56,11 @@ public class Course_Assaign extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        getActivity().setTitle("Course Assign");
+
         return inflater.inflate(R.layout.course_assign_f,null);
+
 
 
     }

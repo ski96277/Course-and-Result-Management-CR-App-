@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        android:background="#8CD3EC"
+        android:background="#00899B"
         app:headerLayout="@layout/nav_header_login_success"
         app:menu="@menu/activity_login_success_drawer"/>
 

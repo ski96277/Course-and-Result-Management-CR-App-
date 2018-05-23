@@ -4,27 +4,27 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:padding="5sp"
-    android:background="@drawable/background_color"
+    android:background="#00899B"
     tools:context=".LogInActivity">
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Bangladesh University"
+        android:textColor="#fff"
+        android:textSize="25sp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
-        android:layout_gravity="bottom"
+        android:gravity="center"
         android:layout_marginTop="40sp"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Bangladesh University"
-            android:textColor="#fff"
-            android:textSize="25sp"/>
+
 
         <EditText
             android:id="@+id/email_login"
@@ -34,7 +34,7 @@
             android:layout_marginBottom="20sp"
             android:drawableLeft="@drawable/user"
             android:hint="    E-mail"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:textColorHint="#fff"
             android:inputType="textEmailAddress"
             android:maxLines="1"
@@ -48,7 +48,7 @@
             android:drawableLeft="@drawable/lock"
             android:focusableInTouchMode="true"
             android:hint="    Password"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:textColorHint="#fff"
             android:imeOptions="actionUnspecified"
             android:inputType="textPassword"
@@ -63,40 +63,12 @@
             android:layout_gravity="right"
             android:background="@android:color/transparent"
             android:text="Forgot Password?"
-            android:textColor="#fff"
+            android:textColor="#000"
+            android:textSize="15sp"
             android:textAllCaps="false"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"
-        android:layout_marginLeft="10sp"
-        android:layout_marginRight="10sp"
-        android:orientation="horizontal">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:background="@drawable/stock"
-            android:textColor="#fff"
-            android:drawableLeft="@drawable/facebook"
-            android:layout_marginRight="2dp"
-            android:text="Facebook"
-            />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:background="@drawable/stock"
-            android:layout_marginLeft="2dp"
-            android:textColor="#fff"
-            android:paddingLeft="4dp"
-            android:drawableLeft="@drawable/twitter"
-            android:text="Twitter"/>
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -109,10 +81,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="#003AB7"
+            android:background="#66ACB6"
             android:text="Sign In"
             android:textAllCaps="false"
-            android:textColor="@android:color/white"
+            android:textColor="#000"
             android:textSize="25sp"
             android:textStyle="bold"/>
 
@@ -123,8 +95,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
-            android:background="#043173"
-            android:textColor="#fff"
+            android:background="#66ACB6"
+            android:textColor="#000"
             android:text="Don't Have An Account?   Click Here"
             android:textAllCaps="false"
             android:textSize="15dp"/>

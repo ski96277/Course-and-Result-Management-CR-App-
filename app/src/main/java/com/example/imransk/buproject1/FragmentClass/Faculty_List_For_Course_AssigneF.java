@@ -48,6 +48,8 @@ public class Faculty_List_For_Course_AssigneF extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        getActivity().setTitle("Faculty List");
+
         return inflater.inflate(R.layout.faculty_list_for_course_assigne_f, null);
     }
 

@@ -51,6 +51,9 @@ public class Result_Submit_F extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        getActivity().setTitle("Result Submit");
+
         return inflater.inflate(R.layout.result_submit_f, null);
     }
 

@@ -10,10 +10,10 @@
         android:id="@+id/userinformationTV"
         android:layout_width="match_parent"
         android:layout_height="80sp"
-        android:background="#044373"
+        android:background="#00899B"
         android:gravity="center"
-        android:text="Enter Your Information"
-        android:textColor="#fff"
+        android:text="Enter Your Information...."
+        android:textColor="#000"
         android:textSize="20sp"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -25,7 +25,7 @@
         android:layout_marginBottom="4dp"
         android:layout_marginTop="2dp"
         android:src="@drawable/boy"
-        app:civ_border_color="#0163AD"
+        app:civ_border_color="#00899B"
         app:civ_border_width="3dp"/>
     <TextView
         android:id="@+id/select_image_TV"

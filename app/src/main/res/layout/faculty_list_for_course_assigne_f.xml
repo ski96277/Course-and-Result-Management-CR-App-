@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:descendantFocusability="blocksDescendants"
               android:layout_height="match_parent"
-    android:background="#8CD3EC">
+    android:background="#00899B">
 
     <ListView
         android:focusable="true"

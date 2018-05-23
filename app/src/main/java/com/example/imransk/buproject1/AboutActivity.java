@@ -15,6 +15,7 @@ FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("About Page");
         setContentView(R.layout.activity_about);
 
     }
