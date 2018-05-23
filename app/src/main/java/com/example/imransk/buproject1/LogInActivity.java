@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LogInActivity extends Activity {
     private EditText email_log, password_log;
     private Button logInBtn, sign_UpBtn;
+    private  Button forget_pass_btn;
     private ProgressBar progressBar;
 
     FirebaseAuth auth = null;
@@ -39,8 +40,16 @@ public class LogInActivity extends Activity {
         logInBtn = findViewById(R.id.log_in_button);
         sign_UpBtn = findViewById(R.id.sign_Up_button);
         progressBar = findViewById(R.id.progressBar_login);
+        forget_pass_btn=findViewById(R.id.forgot_password);
 
         auth = FirebaseAuth.getInstance();
+
+        forget_pass_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Forgot_Pass_Activity.class));
+            }
+        });
         if (auth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), LoginSuccessActivity.class));
             finish();
