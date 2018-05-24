@@ -14,9 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.imransk.buproject1.LogInActivity;
+import com.example.imransk.buproject1.Activity.LogInActivity;
 import com.example.imransk.buproject1.R;
-import com.example.imransk.buproject1.pojoClass.SignUpPojo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -71,7 +70,7 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         imageView = view.findViewById(R.id.user_image_view_ET);
@@ -157,6 +156,11 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
 //                    depart_TV_show.append(department);
 //                    batch_TV_show.append(batch);
 
+                    TextView batch_tv=view.findViewById(R.id.batch_Tv);
+                    TextView phone_tv=view.findViewById(R.id.phone_Tv);
+
+                    batch_tv.setText("Type :");
+                    phone_tv.setText("Designation :");
                     name_TV_show.setText(name);
                     depart_TV_show.setText(department);
                     email_TV_show.setText(email_id);

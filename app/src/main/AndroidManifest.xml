@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LogInActivity"
+            android:name=".Activity.LogInActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -27,22 +27,22 @@
         </activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".SignUpActivity"
+            android:name=".Activity.SignUpActivity"
             android:label="Registration"
-            android:parentActivityName=".LogInActivity">
+            android:parentActivityName=".Activity.LogInActivity">
         </activity>
         <!--
         <activity android:name=".SuccessActivity">
         </activity>
         -->
         <activity
-            android:name=".LoginSuccessActivity"
+            android:name=".Activity.LoginSuccessActivity"
             android:label="@string/title_activity_login_success"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".AboutActivity">
+        <activity android:name=".Activity.AboutActivity">
         </activity>
-        <activity android:name=".Forgot_Pass_Activity">
+        <activity android:name=".Activity.Forgot_Pass_Activity">
         </activity>
     </application>
 

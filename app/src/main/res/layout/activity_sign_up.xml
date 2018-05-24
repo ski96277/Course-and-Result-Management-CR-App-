@@ -5,10 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="#00899B"
     android:orientation="vertical"
-    tools:context=".SignUpActivity">
+    tools:context=".Activity.SignUpActivity">
 
 
 
@@ -24,6 +23,7 @@
         android:gravity="bottom"
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:layout_margin="5sp"
         android:layout_height="match_parent">
         <EditText
             android:id="@+id/email"
@@ -95,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="#66ACB6"
+            android:background="@drawable/buttonshape"
             android:text="Sign Up"
             android:textAllCaps="false"
             android:textColor="#000"
@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="#66ACB6"
+            android:background="@drawable/buttonshape"
             android:text="Have An Account?   Click Here"
             android:textAllCaps="false"
             android:textColor="#000"

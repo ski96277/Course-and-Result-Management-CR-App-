@@ -1,4 +1,4 @@
-package com.example.imransk.buproject1;
+package com.example.imransk.buproject1.Activity;
 
 
 import android.app.Activity;
@@ -17,13 +17,13 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.imransk.buproject1.R;
 import com.example.imransk.buproject1.pojoClass.SignUpPojo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -37,7 +37,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.regex.Matcher;

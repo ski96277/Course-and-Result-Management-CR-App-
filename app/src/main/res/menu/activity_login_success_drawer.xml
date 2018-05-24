@@ -1,29 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:showIn="navigation_view">
+      tools:showIn="navigation_view"
+    >
 
-    <group android:checkableBehavior="single">
+    <group  android:id="@+id/nav_open_home_group"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home_page"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/home"
             android:title="Home Page"/>
-        <item
+    </group>
+    <group android:checkableBehavior="single"
+           android:id="@+id/nav_open_profile_group">
+    <item
             android:id="@+id/nav_show_profile"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/profile"
             android:title="Show Profile"/>
+    </group>
+
+    <group android:checkableBehavior="single"
+           android:id="@+id/nav_open_couser_group">
         <item
             android:id="@+id/nav_course_assaign_on_faculty_list"
-            android:icon="@drawable/dot"
+            android:icon="@drawable/courseassign"
             android:title="Course Assign"
             android:visible="false"/>
+    </group>
+
+    <group android:checkableBehavior="single"
+           android:id="@+id/nav_edit_account_group">
         <item
             android:id="@+id/nav_edit_profile"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/edit_profile"
             android:title="Edit Profile"/>
+    </group>
+
+    <group android:checkableBehavior="single"
+           android:id="@+id/nav_log_out_account_group">
         <item
         android:id="@+id/nav_log_out"
-        android:icon="@drawable/ic_menu_slideshow"
+        android:icon="@drawable/log_out"
         android:title="Log Out"/>
     </group>
 

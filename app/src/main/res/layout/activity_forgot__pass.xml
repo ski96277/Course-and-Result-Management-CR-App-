@@ -10,7 +10,7 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:padding="10sp"
-    tools:context="com.example.imransk.buproject1.Forgot_Pass_Activity">
+    tools:context="com.example.imransk.buproject1.Activity.Forgot_Pass_Activity">
 <EditText
     android:id="@+id/email_ET_Reset"
     android:layout_width="match_parent"
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Reset Password"
-        android:background="#66ACB6"
+        android:background="@drawable/buttonshape"
         android:padding="10sp"
         android:textSize="25sp"
         android:textColor="#000"

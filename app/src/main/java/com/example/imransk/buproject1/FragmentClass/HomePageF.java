@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,7 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.imransk.buproject1.AboutActivity;
+import com.example.imransk.buproject1.Activity.AboutActivity;
 import com.example.imransk.buproject1.Adapter.SubjetResultAdapter;
 import com.example.imransk.buproject1.Adapter.UserListAdapter;
 import com.example.imransk.buproject1.R;

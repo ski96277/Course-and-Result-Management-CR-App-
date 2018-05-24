@@ -60,7 +60,7 @@ public class ShowProfileF extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         imageView = view.findViewById(R.id.user_image_view_show);
@@ -158,6 +158,11 @@ public class ShowProfileF extends Fragment {
                     id_number = dataSnapshot.child("admin").child(user_ID).child("iD").getValue(String.class).trim();
 //                    image_uri = dataSnapshot.child("admin").child(user_ID).child("imageUri_download_Link").getValue(String.class).trim();
 //                    Toast.makeText(getContext(), ""+id_number, Toast.LENGTH_SHORT).show();
+
+                    TextView phone_tv=view.findViewById(R.id.phone_TV);
+                    TextView batch_tv=view.findViewById(R.id.batch_TV);
+                    phone_tv.setVisibility(View.GONE);
+                    batch_tv.setVisibility(View.GONE);
                     name_TV_show.append(name);
                     user_type_TV_show.append(type);
                     depart_TV_show.append(department);
@@ -166,7 +171,7 @@ public class ShowProfileF extends Fragment {
                     id_number_show.append(id_number);
 
 
-                    batch_TV_show.setText("Type : "+type);
+                    batch_TV_show.setVisibility(View.GONE);
 
 //                    Picasso.with(getContext()).load(firebaseUser.getPhotoUrl()).into(imageView);
 //                    imageView.setImageURI(firebaseUser.getPhotoUrl());

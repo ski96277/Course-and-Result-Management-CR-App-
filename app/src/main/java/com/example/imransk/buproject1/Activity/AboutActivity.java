@@ -1,4 +1,4 @@
-package com.example.imransk.buproject1;
+package com.example.imransk.buproject1.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,8 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.imransk.buproject1.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class AboutActivity extends AppCompatActivity {
 FirebaseAuth firebaseAuth;

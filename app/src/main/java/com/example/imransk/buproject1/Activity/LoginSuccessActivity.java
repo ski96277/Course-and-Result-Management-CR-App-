@@ -1,4 +1,4 @@
-package com.example.imransk.buproject1;
+package com.example.imransk.buproject1.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +21,7 @@ import com.example.imransk.buproject1.FragmentClass.EditProfileF;
 import com.example.imransk.buproject1.FragmentClass.Faculty_List_For_Course_AssigneF;
 import com.example.imransk.buproject1.FragmentClass.HomePageF;
 import com.example.imransk.buproject1.FragmentClass.ShowProfileF;
+import com.example.imransk.buproject1.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +29,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 public class LoginSuccessActivity extends AppCompatActivity
@@ -173,7 +173,8 @@ public class LoginSuccessActivity extends AppCompatActivity
 
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+            startActivity(new Intent(LoginSuccessActivity.this,AboutActivity.class));
             return true;
         }
 

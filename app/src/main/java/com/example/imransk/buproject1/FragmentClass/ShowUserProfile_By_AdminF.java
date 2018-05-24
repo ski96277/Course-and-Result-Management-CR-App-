@@ -10,9 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.imransk.buproject1.LoginSuccessActivity;
+import com.example.imransk.buproject1.Activity.LoginSuccessActivity;
 import com.example.imransk.buproject1.R;
 import com.example.imransk.buproject1.pojoClass.SignUpPojo;
 import com.google.firebase.database.DatabaseReference;

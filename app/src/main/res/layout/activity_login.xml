@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:padding="5sp"
     android:background="#00899B"
-    tools:context=".LogInActivity">
+    tools:context=".Activity.LogInActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="#66ACB6"
+            android:background="@drawable/buttonshape"
             android:text="Sign In"
             android:textAllCaps="false"
             android:textColor="#000"
@@ -95,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
-            android:background="#66ACB6"
+            android:background="@drawable/buttonshape"
             android:textColor="#000"
             android:text="Don't Have An Account?   Click Here"
             android:textAllCaps="false"
