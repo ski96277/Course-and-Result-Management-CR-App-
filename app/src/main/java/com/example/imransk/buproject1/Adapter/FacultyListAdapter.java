@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.imransk.buproject1.FragmentClass.Course_Assaign;
+import com.example.imransk.buproject1.FragmentClass.Faculty_Aprove_details_F;
 import com.example.imransk.buproject1.R;
 import com.example.imransk.buproject1.pojoClass.SignUpPojo;
 import com.squareup.picasso.Picasso;
@@ -113,7 +114,7 @@ public class FacultyListAdapter extends BaseAdapter {
             public void onClick(View view) {
                 Fragment fragment=null;
 
-                fragment=new Course_Assaign();
+                fragment=new Faculty_Aprove_details_F();
 
                 if (fragment!=null){
                     FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();

@@ -10,11 +10,15 @@
 
     <LinearLayout
 
+        android:focusable="false"
+        android:clickable="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5sp"
         android:orientation="horizontal">
         <LinearLayout
+            android:focusable="false"
+            android:clickable="false"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_marginRight="2dp"
@@ -24,6 +28,8 @@
                 android:id="@+id/faculty_image_profile_list"
                 android:layout_width="wrap_content"
                 android:layout_height="90sp"
+                android:focusable="false"
+                android:clickable="false"
                 android:src="@drawable/boy"/>
         </LinearLayout>
 
@@ -33,6 +39,8 @@
             android:layout_height="match_parent"
             android:layout_weight="6"
             android:gravity="center"
+            android:focusable="false"
+            android:clickable="false"
             android:orientation="vertical">
 
             <TextView
@@ -42,6 +50,8 @@
                 android:layout_below="@id/user_Type"
                 android:text="Name : "
                 android:textSize="30sp"
+                android:focusable="false"
+                android:clickable="false"
                 android:textColor="#000"/>
 
 

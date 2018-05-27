@@ -53,6 +53,9 @@ FirebaseAuth firebaseAuth;
             }
 
             return true;
+        }else if (id==R.id.home_page){
+            startActivity(new Intent(getApplicationContext(),LoginSuccessActivity.class));
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

@@ -13,7 +13,7 @@
         <item>Introduction of computer Science</item>
         <item>Analog Electronics and Lab</item>
 
-        <item>Math-I (Differential Calculus and Co-ordinateGeom.)</item>
+        <item>Math-I (Differential Calculus and Co-ordinateGeom)</item>
 
         <item>English I</item>
 
@@ -109,26 +109,6 @@
 
     <string-array name="batch_number">
 
-        <item>25 </item>
-
-        <item>26 </item>
-
-        <item> 27</item>
-
-        <item>28 </item>
-
-        <item>29 </item>
-
-        <item>30 </item>
-
-        <item>31 </item>
-
-        <item>32 </item>
-
-        <item>33 </item>
-
-        <item>34 </item>
-
         <item>35 </item>
 
         <item>36 </item>
@@ -182,20 +162,6 @@
         <item> 60</item>
 
         <item> 61</item>
-
-        <item> 62</item>
-
-        <item> 63</item>
-
-        <item> 64</item>
-
-        <item> 65</item>
-
-        <item> 65</item>
-
-        <item> 66</item>
-
-        <item> 67</item>
 
     </string-array>
     <string-array name="grade">

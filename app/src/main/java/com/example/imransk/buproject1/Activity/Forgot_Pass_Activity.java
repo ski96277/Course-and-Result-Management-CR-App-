@@ -52,6 +52,7 @@ public class Forgot_Pass_Activity extends AppCompatActivity {
 
                 Toast.makeText(Forgot_Pass_Activity.this, "Check Your mail", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Forgot_Pass_Activity.this, LogInActivity.class));
+                finish();
             }
         });
 

@@ -31,16 +31,14 @@
             android:label="Registration"
             android:parentActivityName=".Activity.LogInActivity">
         </activity>
-        <!--
-        <activity android:name=".SuccessActivity">
-        </activity>
-        -->
+
         <activity
             android:name=".Activity.LoginSuccessActivity"
             android:label="@string/title_activity_login_success"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".Activity.AboutActivity">
+        <activity android:name=".Activity.AboutActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".Activity.Forgot_Pass_Activity">
         </activity>

@@ -68,6 +68,8 @@ public class SignUpActivity extends Activity {
     String batchNumber = "";
     String phoneNumber = "";
     String iD = "";
+
+
     CircleImageView circleImageView;
     int profile_image_Code = 2;
     Uri imageUri;
@@ -178,7 +180,6 @@ public class SignUpActivity extends Activity {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this, R.style.AlertDialog);
         final LayoutInflater inflater = this.getLayoutInflater();
 
-        String called_from = getIntent().getStringExtra("called");
         final View dialogView;
 
 
@@ -247,72 +248,95 @@ public class SignUpActivity extends Activity {
         //create user
         final String finalRdGroup = rdGroup;
 
-        if (TextUtils.isEmpty(fullName)) {
-            full_name_ET.setError("your name");
-            full_name_ET.requestFocus();
-            return;
-        }
-        auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+ // Image and text field is not complete  it's can't sign in
+       if (imageUri!=null && !fullName.isEmpty() && !departmetnName.isEmpty() && !batchNumber.isEmpty() && !phoneNumber.isEmpty() && !iD.isEmpty()){
 
-                            Toast.makeText(SignUpActivity.this, " SignUp Success", Toast.LENGTH_SHORT).show();
+           auth.createUserWithEmailAndPassword(email, password)
+                   .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                       @Override
+                       public void onComplete(@NonNull Task<AuthResult> task) {
+                           if (task.isSuccessful()) {
+                               // Sign in success, update UI with the signed-in user's information
 
-                            //Add data to database
-                            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                            userID = firebaseUser.getUid();
-                            final DatabaseReference databaseReference = firebaseDatabase.getReference(finalRdGroup);
+
+                               //Add data to database
+                               firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                               userID = firebaseUser.getUid();
+                               final DatabaseReference databaseReference = firebaseDatabase.getReference(finalRdGroup);
 
 //                            upload_profile_image();
 //                            Log.e("imageUri_download_Link", "onComplete: " + imageUri_download_Link);
-                            final String status = "0";
+                               final String status = "0";
 
 //image upload
-                            StorageReference file_path = storageReference_root.child(userID).child("image").child("profile/profilepic.jpg");
-
-                                file_path.putFile(imageUri)
-                                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                            @Override
-                                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                                Toast.makeText(SignUpActivity.this, "Profile image Uploaded", Toast.LENGTH_SHORT).show();
-
-                                                imageUri_download_Link = taskSnapshot.getDownloadUrl();
-                                                Log.e("image uri ------ ", "onSuccess: " + imageUri_download_Link);
-
-                                                final SignUpPojo signUpPojo = new SignUpPojo(status, userID, finalRdGroup, email, fullName, departmetnName, batchNumber,phoneNumber,iD,String.valueOf(imageUri_download_Link));
-
-                                                databaseReference.child(userID).setValue(signUpPojo);
-                                                progressBar.setVisibility(View.GONE);
+                               StorageReference file_path = storageReference_root.child(userID).child("image").child("profile/profilepic.jpg");
 
 
-                                                //go Login Activity and than go LoginSuccess Activity
-                                                startActivity(new Intent(getApplicationContext(), LogInActivity.class));
-                                                finish();
+                               file_path.putFile(imageUri)
+                                       .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                           @Override
+                                           public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                               Toast.makeText(SignUpActivity.this, "Profile image Uploaded", Toast.LENGTH_SHORT).show();
 
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
+                                               imageUri_download_Link = taskSnapshot.getDownloadUrl();
+                                               Log.e("image uri ------ ", "onSuccess: " + imageUri_download_Link);
 
-                                    }
-                                });
+                                               final SignUpPojo signUpPojo = new SignUpPojo(status, userID, finalRdGroup, email, fullName, departmetnName, batchNumber,phoneNumber,iD,String.valueOf(imageUri_download_Link));
+
+                                               databaseReference.child(userID).setValue(signUpPojo);
+                                               progressBar.setVisibility(View.GONE);
+                                               Toast.makeText(SignUpActivity.this, " SignUp Success", Toast.LENGTH_SHORT).show();
+
+                                               //go Login Activity and than go LoginSuccess Activity
+                                               startActivity(new Intent(getApplicationContext(), LogInActivity.class));
+                                               finish();
+
+                                           }
+                                       }).addOnFailureListener(new OnFailureListener() {
+                                   @Override
+                                   public void onFailure(@NonNull Exception e) {
+
+                                   }
+                               });
 //image upload end
 
 
-                        } else {
-                            // If sign in fails, display a message to the user.
+                           } else {
+                               // If sign in fails, display a message to the user.
 
-                            Toast.makeText(SignUpActivity.this, "Sorry Having some problem \nSignUp Failed", Toast.LENGTH_SHORT).show();
+                               Toast.makeText(SignUpActivity.this, "Sorry Having some problem \nSignUp Failed", Toast.LENGTH_SHORT).show();
 
-                            progressBar.setVisibility(View.GONE);
-                        }
+                               progressBar.setVisibility(View.GONE);
+                           }
 
-                        // ...
-                    }
-                });
+                           // ...
+                       }
+                   });
+       }else {
+           progressBar.setVisibility(View.GONE);
+
+           if (imageUri==null){
+               Toast.makeText(this, "select Profile Image", Toast.LENGTH_SHORT).show();
+
+           }else if (fullName.isEmpty()){
+               Toast.makeText(this, "Enter Name", Toast.LENGTH_SHORT).show();
+
+           }else if (departmetnName.isEmpty()){
+               Toast.makeText(this, "Enter department Name", Toast.LENGTH_SHORT).show();
+
+           }else if (batchNumber.isEmpty()){
+               Toast.makeText(this, "Enter bantch number", Toast.LENGTH_SHORT).show();
+
+           }else if (iD.isEmpty()) {
+               Toast.makeText(this, "Enter ID", Toast.LENGTH_SHORT).show();
+
+           }else if (phoneNumber.isEmpty()){
+               Toast.makeText(this, "Enter phone number", Toast.LENGTH_SHORT).show();
+
+           }
+
+       }
+
 
 
     }
@@ -323,6 +347,9 @@ public class SignUpActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
 
         imageUri = data.getData();
+
+
+
 
         if (requestCode == profile_image_Code && resultCode == RESULT_OK && data != null && data.getData() != null) {
             try {

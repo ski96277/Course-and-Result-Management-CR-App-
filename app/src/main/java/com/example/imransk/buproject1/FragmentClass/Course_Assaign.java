@@ -70,6 +70,7 @@ public class Course_Assaign extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         //retrieve Value from bundle that store from previous fragment
+
         Bundle bundle = getArguments();
 
         user_id = bundle.getString("user_id");
@@ -94,6 +95,7 @@ public class Course_Assaign extends Fragment implements View.OnClickListener {
         submit_course_list=view.findViewById(R.id.submit_course);
 
         //set image and name to fragment
+
         Picasso.with(getContext()).load(image_url).into(fac_Image);
         fac_name_TV.append(name);
 

@@ -115,7 +115,7 @@ public class LoginSuccessActivity extends AppCompatActivity
                 } else if (aTrue) {
 
                     //set nav button visible true
-                    navigationView.getMenu().findItem(R.id.nav_course_assaign_on_faculty_list).setVisible(true);
+                    navigationView.getMenu().findItem(R.id.nav_faculty_list).setVisible(true);
 
                     //set information on nav header tv and image view
                     name = dataSnapshot.child("admin").child(userId).child("full_name").getValue().toString();
@@ -198,7 +198,7 @@ public class LoginSuccessActivity extends AppCompatActivity
         } else if (id == R.id.nav_show_profile) {
             fragment = new ShowProfileF();
 
-        } else if (id == R.id.nav_course_assaign_on_faculty_list) {
+        } else if (id == R.id.nav_faculty_list) {
             fragment=new Faculty_List_For_Course_AssigneF();
 
         } else if (id == R.id.nav_log_out) {

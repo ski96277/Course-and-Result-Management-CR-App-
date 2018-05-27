@@ -195,11 +195,12 @@ public class EditProfileF extends Fragment implements View.OnClickListener {
 //the phone number are actually admin job posision
             databaseReference.child(user_ID).child("phoneNumber").setValue(phone_number_TV_show.getText().toString().trim());
 
-            Toast.makeText(getContext(), "Updated.. too"+type, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Updated.."+type, Toast.LENGTH_SHORT).show();
 
 
 
             startActivity(new Intent(getContext(), LogInActivity.class));
+
 
 
 
