@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+
+        android:focusable="false"
+        android:clickable="false"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5sp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:focusable="false"
+            android:clickable="false"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_marginRight="2dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/student_image_profile_list"
+                android:layout_width="wrap_content"
+                android:layout_height="90sp"
+                android:focusable="false"
+                android:clickable="false"
+                android:src="@drawable/boy"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:gravity="center"
+            android:focusable="false"
+            android:clickable="false"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/user_name_student"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_Type"
+                android:text="Name : "
+                android:textSize="30sp"
+                android:focusable="false"
+                android:clickable="false"
+                android:textColor="#000"/>
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+</ScrollView>

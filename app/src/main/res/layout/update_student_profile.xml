@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00899B">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5sp"
+        android:orientation="vertical">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/student_image_view_show"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/boy"
+            app:civ_border_color="#f9eaea"
+            app:civ_border_width="5sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="50sp"
+                android:layout_marginBottom="10sp"
+                android:layout_marginRight="5sp"
+                android:layout_weight=".3"
+                android:background="#fff"
+                android:paddingLeft="10sp"
+                android:paddingTop="12sp"
+                android:text="Name : "
+                android:textColor="#000"/>
+
+            <EditText
+                android:id="@+id/student_name_ET"
+                android:layout_width="0dp"
+                android:layout_height="50sp"
+                android:layout_marginBottom="10sp"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:paddingLeft="10sp"
+                android:paddingTop="12sp"
+                android:textColor="#000"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="50sp"
+                android:layout_marginBottom="10sp"
+                android:layout_marginRight="5sp"
+                android:layout_weight=".3"
+                android:background="#fff"
+                android:paddingLeft="10sp"
+                android:paddingTop="12sp"
+                android:text="User Type :"
+                android:textColor="#000"/>
+
+            <EditText
+                android:id="@+id/student_type_ET"
+                android:layout_width="0dp"
+                android:layout_height="50sp"
+                android:layout_marginBottom="10sp"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:paddingLeft="10sp"
+                android:paddingTop="12sp"
+                android:textColor="#000"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="50sp"
+                android:layout_marginBottom="10sp"
+                android:layout_marginRight="5sp"
+                android:layout_weight=".3"
+                android:background="#fff"
+                android:paddingLeft="8sp"
+                android:paddingTop="12sp"
+                android:text="Depart :"
+                android:textColor="#000"/>
+
+            <EditText
+                android:id="@+id/student_Dept_name_ET"
+                android:layout_width="0dp"
+                android:layout_height="50sp"
+                android:layout_marginBottom="10sp"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:paddingLeft="10sp"
+                android:paddingTop="12sp"
+                android:textColor="#000"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/batch_TV"
+                android:layout_width="0dp"
+                android:layout_height="50sp"
+                android:layout_marginBottom="10sp"
+                android:layout_marginRight="5sp"
+                android:layout_weight=".3"
+                android:background="#fff"
+                android:paddingLeft="10sp"
+                android:paddingTop="12sp"
+                android:text="Batch :"
+                android:textColor="#000"/>
+
+            <EditText
+                android:id="@+id/student_batch_ET"
+                android:layout_width="0dp"
+                android:layout_height="50sp"
+                android:layout_marginBottom="10sp"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:paddingLeft="10sp"
+                android:paddingTop="12sp"
+                android:textColor="#000"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="50sp"
+                android:layout_marginBottom="10sp"
+                android:layout_marginRight="5sp"
+                android:layout_weight=".3"
+                android:background="#fff"
+                android:paddingLeft="10sp"
+                android:paddingTop="12sp"
+                android:text="E-mail :"
+                android:textColor="#000"/>
+
+            <EditText
+                android:id="@+id/student_email_ET"
+                android:layout_width="0dp"
+                android:layout_height="50sp"
+                android:layout_marginBottom="10sp"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:paddingLeft="10sp"
+                android:paddingTop="12sp"
+                android:textColor="#000"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/phone_TV"
+                android:layout_width="0dp"
+                android:layout_height="50sp"
+                android:layout_marginBottom="10sp"
+                android:layout_marginRight="5sp"
+                android:layout_weight=".3"
+                android:background="#fff"
+                android:paddingLeft="10sp"
+                android:paddingTop="12sp"
+                android:text="Phone :"
+                android:textColor="#000"/>
+
+            <EditText
+                android:id="@+id/student_phone_number_ET"
+                android:layout_width="0sp"
+                android:layout_height="50sp"
+                android:layout_marginBottom="10sp"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:paddingLeft="10sp"
+                android:paddingTop="12sp"
+                android:textColor="#000"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="50sp"
+                android:layout_marginBottom="10sp"
+                android:layout_marginRight="5sp"
+                android:layout_weight=".3"
+                android:background="#fff"
+                android:paddingLeft="10sp"
+                android:paddingTop="12sp"
+                android:text="ID : "
+                android:textColor="#000"/>
+
+            <EditText
+                android:id="@+id/student_id_ET"
+                android:layout_width="0dp"
+                android:layout_height="50sp"
+                android:layout_marginBottom="10sp"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:paddingLeft="10sp"
+                android:paddingTop="12sp"
+                android:textColor="#000"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/update_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20sp"
+            android:background="@drawable/buttonshape"
+            android:text="Update"
+            android:textAllCaps="false"
+            android:textSize="25sp"/>
+
+
+
+
+    </LinearLayout>
+
+
+</ScrollView>

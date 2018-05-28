@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.imransk.buproject1.FragmentClass.Course_Assaign;
 import com.example.imransk.buproject1.FragmentClass.Faculty_Aprove_details_F;
+import com.example.imransk.buproject1.FragmentClass.Student_Details;
 import com.example.imransk.buproject1.R;
 import com.example.imransk.buproject1.pojoClass.SignUpPojo;
 import com.squareup.picasso.Picasso;
@@ -29,27 +30,27 @@ import java.util.List;
  * Created by imran sk on 5/4/2018.
  */
 
-public class FacultyListAdapter extends BaseAdapter {
+public class StudentListAdapter extends BaseAdapter {
 
 
     Context context;
-    List<SignUpPojo> signUpPojoList_faculty;
+    List<SignUpPojo> signUpPojoList_student;
 
 
     private static LayoutInflater layoutInflater=null;
 
 
-    public FacultyListAdapter(Activity context, List<SignUpPojo> signUpPojoList_faculty) {
+    public StudentListAdapter(Activity context, List<SignUpPojo> signUpPojoList_student) {
 
         this.context = context;
-        this.signUpPojoList_faculty = signUpPojoList_faculty;
+        this.signUpPojoList_student = signUpPojoList_student;
         layoutInflater= (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 
     }
 
     @Override
     public int getCount() {
-        return signUpPojoList_faculty.size();
+        return signUpPojoList_student.size();
     }
 
     @Override
@@ -63,9 +64,9 @@ public class FacultyListAdapter extends BaseAdapter {
     }
 
     private class myHolder{
-        TextView faculty_NameET;
+        TextView student_NameET;
 
-        ImageView imageView_p_faculty;
+        ImageView imageView_p_student;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -79,20 +80,20 @@ public class FacultyListAdapter extends BaseAdapter {
         final View listViewItem_faculty = layoutInflater.inflate(R.layout.custom_faculty_listview_course_assaign, null);
 
 
-        myHolderObj.faculty_NameET = listViewItem_faculty.findViewById(R.id.user_name_faculty);
-        myHolderObj.imageView_p_faculty = listViewItem_faculty.findViewById(R.id.faculty_image_profile_list);
+        myHolderObj.student_NameET= listViewItem_faculty.findViewById(R.id.user_name_faculty);
+        myHolderObj.imageView_p_student= listViewItem_faculty.findViewById(R.id.faculty_image_profile_list);
 
 
 
-        final SignUpPojo signUpPojo_for_faculty = signUpPojoList_faculty.get(position);
+        final SignUpPojo signUpPojo_for_faculty = signUpPojoList_student.get(position);
 
 
 
-        myHolderObj.faculty_NameET.append(signUpPojo_for_faculty.getFull_name());
+        myHolderObj.student_NameET.append(signUpPojo_for_faculty.getFull_name());
 
 
 //set image on list imageView
-        Picasso.with(listViewItem_faculty.getContext()).load(signUpPojo_for_faculty.getImageUri_download_Link()).into(myHolderObj.imageView_p_faculty);
+        Picasso.with(listViewItem_faculty.getContext()).load(signUpPojo_for_faculty.getImageUri_download_Link()).into(myHolderObj.imageView_p_student);
 
 
 
@@ -108,12 +109,12 @@ public class FacultyListAdapter extends BaseAdapter {
         bundle.putString("imageUrl",signUpPojo_for_faculty.getImageUri_download_Link());
         bundle.putString("userType",signUpPojo_for_faculty.getType());
 
-        myHolderObj.faculty_NameET.setOnClickListener(new View.OnClickListener() {
+        myHolderObj.student_NameET.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment=null;
 
-                fragment=new Faculty_Aprove_details_F();
+                fragment=new Student_Details();
 
                 if (fragment!=null){
                     FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
@@ -125,12 +126,12 @@ public class FacultyListAdapter extends BaseAdapter {
             }
         });
 
-        myHolderObj.imageView_p_faculty.setOnClickListener(new View.OnClickListener() {
+        myHolderObj.imageView_p_student.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment=null;
 
-                fragment=new Course_Assaign();
+                fragment=new Student_Details();
 
                 if (fragment!=null){
                     FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();

@@ -21,6 +21,7 @@ import com.example.imransk.buproject1.FragmentClass.EditProfileF;
 import com.example.imransk.buproject1.FragmentClass.Faculty_List_For_Course_AssigneF;
 import com.example.imransk.buproject1.FragmentClass.HomePageF;
 import com.example.imransk.buproject1.FragmentClass.ShowProfileF;
+import com.example.imransk.buproject1.FragmentClass.Student_list;
 import com.example.imransk.buproject1.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -116,6 +117,7 @@ public class LoginSuccessActivity extends AppCompatActivity
 
                     //set nav button visible true
                     navigationView.getMenu().findItem(R.id.nav_faculty_list).setVisible(true);
+                    navigationView.getMenu().findItem(R.id.nav_student_list).setVisible(true);
 
                     //set information on nav header tv and image view
                     name = dataSnapshot.child("admin").child(userId).child("full_name").getValue().toString();
@@ -200,6 +202,9 @@ public class LoginSuccessActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_faculty_list) {
             fragment=new Faculty_List_For_Course_AssigneF();
+
+        } else if (id == R.id.nav_student_list) {
+            fragment=new Student_list();
 
         } else if (id == R.id.nav_log_out) {
             firebaseAuth.signOut();
