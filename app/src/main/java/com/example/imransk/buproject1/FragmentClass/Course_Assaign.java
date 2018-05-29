@@ -127,7 +127,7 @@ public class Course_Assaign extends Fragment implements View.OnClickListener {
 
 
         CourseAssignPojo course_assaign_pojo=new CourseAssignPojo(course_one,course_two,course_three,course_four);
-        databaseReference.child(user_type).child(user_id).child("CourseList").setValue(course_assaign_pojo);
+        databaseReference.child("CourseList").child(user_type).child(user_id).child("CourseList").setValue(course_assaign_pojo);
         Toast.makeText(getContext(), "Succesfully Assign courses", Toast.LENGTH_SHORT).show();
 
     }

@@ -162,7 +162,7 @@ public class HomePageF extends Fragment {
 
                     } else if (status_faculty.equals("1")) {
 
-                        boolean courselist_true = dataSnapshot.child("faculty").child(userId).hasChild("CourseList");
+                        boolean courselist_true = dataSnapshot.child("CourseList").child("faculty").child(userId).hasChild("CourseList");
                         Log.e("course List", "having course list " + courselist_true);
 
                         if (courselist_true) {
@@ -196,10 +196,10 @@ public class HomePageF extends Fragment {
                             final TextView course_4_Tv = view.findViewById(R.id.course_four_TV);
 
 
-                            String couser_one = dataSnapshot.child("faculty").child(userId).child("CourseList").child("course_one").getValue(String.class);
-                            String couser_two = dataSnapshot.child("faculty").child(userId).child("CourseList").child("course_two").getValue(String.class);
-                            String couser_three = dataSnapshot.child("faculty").child(userId).child("CourseList").child("course_three").getValue(String.class);
-                            String couser_four = dataSnapshot.child("faculty").child(userId).child("CourseList").child("course_four").getValue(String.class);
+                            String couser_one = dataSnapshot.child("CourseList").child("faculty").child(userId).child("CourseList").child("course_one").getValue(String.class);
+                            String couser_two = dataSnapshot.child("CourseList").child("faculty").child(userId).child("CourseList").child("course_two").getValue(String.class);
+                            String couser_three = dataSnapshot.child("CourseList").child("faculty").child(userId).child("CourseList").child("course_three").getValue(String.class);
+                            String couser_four = dataSnapshot.child("CourseList").child("faculty").child(userId).child("CourseList").child("course_four").getValue(String.class);
                             course_1_Tv.setText(couser_one);
                             course_2_Tv.setText(couser_two);
                             course_3_Tv.setText(couser_three);

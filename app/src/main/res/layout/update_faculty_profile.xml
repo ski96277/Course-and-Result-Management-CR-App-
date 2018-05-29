@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#00899B">
-
+            android:background="#00899B"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +13,7 @@
 
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/faculty_image_view_show"
+            android:id="@+id/faculty_image_view_show_ET"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_centerHorizontal="true"
@@ -26,6 +25,7 @@
             app:civ_border_width="5sp"/>
 
         <LinearLayout
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -42,8 +42,8 @@
                 android:text="Name : "
                 android:textColor="#000"/>
 
-            <TextView
-                android:id="@+id/faculty_name_show"
+            <EditText
+                android:id="@+id/faculty_name_show_ET"
                 android:layout_width="0dp"
                 android:layout_height="50sp"
                 android:layout_marginBottom="10sp"
@@ -56,6 +56,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -72,8 +73,8 @@
                 android:text="User Type :"
                 android:textColor="#000"/>
 
-            <TextView
-                android:id="@+id/faculty_type_show"
+            <EditText
+                android:id="@+id/faculty_type_show_ET"
                 android:layout_width="0dp"
                 android:layout_height="50sp"
                 android:layout_marginBottom="10sp"
@@ -86,6 +87,7 @@
 
 
         <LinearLayout
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -102,8 +104,8 @@
                 android:text="Depart :"
                 android:textColor="#000"/>
 
-            <TextView
-                android:id="@+id/faculty_Dept_name_show"
+            <EditText
+                android:id="@+id/faculty_Dept_name_show_ET"
                 android:layout_width="0dp"
                 android:layout_height="50sp"
                 android:layout_marginBottom="10sp"
@@ -145,6 +147,7 @@
         </LinearLayout>-->
 
         <LinearLayout
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -161,8 +164,8 @@
                 android:text="E-mail :"
                 android:textColor="#000"/>
 
-            <TextView
-                android:id="@+id/faculty_email_show"
+            <EditText
+                android:id="@+id/faculty_email_show_ET"
                 android:layout_width="0dp"
                 android:layout_height="50sp"
                 android:layout_marginBottom="10sp"
@@ -175,6 +178,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -192,8 +196,8 @@
                 android:text="Phone :"
                 android:textColor="#000"/>
 
-            <TextView
-                android:id="@+id/faculty_phone_number_show"
+            <EditText
+                android:id="@+id/faculty_phone_number_show_ET"
                 android:layout_width="0sp"
                 android:layout_height="50sp"
                 android:layout_marginBottom="10sp"
@@ -206,10 +210,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="center"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10sp"
             android:orientation="horizontal">
 
             <TextView
@@ -224,11 +227,11 @@
                 android:text="ID : "
                 android:textColor="#000"/>
 
-            <TextView
-                android:id="@+id/faculty_id_show"
+            <EditText
+                android:id="@+id/faculty_id_show_ET"
                 android:layout_width="0dp"
                 android:layout_height="50sp"
-                android:layout_marginBottom="0sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="#fff"
                 android:paddingLeft="10sp"
@@ -236,39 +239,18 @@
                 android:textColor="#000"/>
         </LinearLayout>
 
+
         <Button
-            android:id="@+id/course_assign_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/buttonshape"
-            android:text="Course Assign"
-            android:textAllCaps="false"
-            android:layout_marginBottom="20sp"
-            android:textSize="25sp"/>
-        <Button
-            android:id="@+id/update_faculty_btn"
+            android:id="@+id/update_faculty_btn_ET"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/buttonshape"
             android:text="Update Faculty"
             android:textAllCaps="false"
-            android:layout_marginBottom="20sp"
-            android:textSize="25sp"/>
-        <Button
-            android:id="@+id/delete_faculty_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/buttonshape"
-            android:text="Delete Faculty"
-            android:textAllCaps="false"
             android:layout_marginBottom="50sp"
             android:textSize="25sp"/>
 
 
     </LinearLayout>
-
-
 </ScrollView>

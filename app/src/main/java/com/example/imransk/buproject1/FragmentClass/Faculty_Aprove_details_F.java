@@ -2,7 +2,8 @@ package com.example.imransk.buproject1.FragmentClass;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;import android.support.v4.app.FragmentManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,12 +26,14 @@ public class Faculty_Aprove_details_F extends Fragment {
     TextView name_TV_show;
     TextView user_type_TV_show;
     TextView depart_TV_show;
-    TextView batch_TV_show;
+//    TextView batch_TV_show;
+//    TextView batch_TV;
     TextView email_TV_show;
     TextView phone_number_show;
     TextView id_number_show;
     Button course_assign;
     Button delete_faculty;
+    Button update_faculty;
 
     View context;
 
@@ -61,7 +64,8 @@ public class Faculty_Aprove_details_F extends Fragment {
         name_TV_show.setText(name);
         user_type_TV_show.setText(userType);
         depart_TV_show.setText(department);
-        batch_TV_show.setText(batch);
+
+//        batch_TV_show.setText(batch);
         email_TV_show.setText(email_id);
         phone_number_show.setText(phone);
         id_number_show.setText(id_roll);
@@ -94,6 +98,21 @@ public class Faculty_Aprove_details_F extends Fragment {
 
             }
         });
+        update_faculty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = null;
+                fragment = new Update_Faculty_Profile_F();
+                if (fragment!=null){
+                    FragmentManager fragmentManager=getFragmentManager();
+                    FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+                    fragment.setArguments(bundle_send);
+                    fragmentTransaction.replace(R.id.screenArea,fragment);
+                    fragmentTransaction.commit();
+                }
+
+            }
+        });
         delete_faculty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,9 +123,9 @@ public class Faculty_Aprove_details_F extends Fragment {
                 Fragment fragment = new Faculty_List_For_Course_AssigneF();
                 if (fragment != null) {
 
-                    FragmentManager fragmentManager=getFragmentManager();
-                    FragmentTransaction fragmentTransaction =fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.screenArea,fragment);
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.screenArea, fragment);
                     fragmentTransaction.commit();
                     Toast.makeText(getContext(), "Deleted ", Toast.LENGTH_SHORT).show();
 
@@ -125,13 +144,16 @@ public class Faculty_Aprove_details_F extends Fragment {
         name_TV_show = context.findViewById(R.id.faculty_name_show);
         user_type_TV_show = context.findViewById(R.id.faculty_type_show);
         depart_TV_show = context.findViewById(R.id.faculty_Dept_name_show);
-        batch_TV_show = context.findViewById(R.id.facultu_batch_show);
+//        batch_TV_show = context.findViewById(R.id.facultu_batch_show);
         email_TV_show = context.findViewById(R.id.faculty_email_show);
         phone_number_show = context.findViewById(R.id.faculty_phone_number_show);
         id_number_show = context.findViewById(R.id.faculty_id_show);
 
+//        batch_TV = context.findViewById(R.id.batch_Tv);
+
         course_assign = context.findViewById(R.id.course_assign_btn);
         delete_faculty = context.findViewById(R.id.delete_faculty_btn);
+        update_faculty = context.findViewById(R.id.update_faculty_btn);
     }
 
 }
