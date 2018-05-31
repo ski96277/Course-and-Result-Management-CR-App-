@@ -215,7 +215,7 @@ public class HomePageF extends Fragment {
                                     public void onClick(View view) {
 
                                         Fragment fragment = null;
-                                        fragment = new Result_Submit_F();
+                                        fragment = new Student_of_this_Subject_F();
                                         if (fragment != null) {
 
                                             Bundle bundle = new Bundle();
@@ -243,7 +243,7 @@ public class HomePageF extends Fragment {
                                     public void onClick(View view) {
 
                                         Fragment fragment = null;
-                                        fragment = new Result_Submit_F();
+                                        fragment = new Student_of_this_Subject_F();
                                         if (fragment != null) {
 
                                             Bundle bundle = new Bundle();
@@ -271,7 +271,7 @@ public class HomePageF extends Fragment {
                                     public void onClick(View view) {
 
                                         Fragment fragment = null;
-                                        fragment = new Result_Submit_F();
+                                        fragment = new Student_of_this_Subject_F();
                                         if (fragment != null) {
 
                                             Bundle bundle = new Bundle();
@@ -299,7 +299,7 @@ public class HomePageF extends Fragment {
                                     public void onClick(View view) {
 
                                         Fragment fragment = null;
-                                        fragment = new Result_Submit_F();
+                                        fragment = new Student_of_this_Subject_F();
                                         if (fragment != null) {
 
                                             Bundle bundle = new Bundle();

@@ -20,6 +20,32 @@
     </group>
 
     <group android:checkableBehavior="single"
+           android:id="@+id/nav_edit_account_group">
+        <item
+            android:id="@+id/nav_edit_profile"
+            android:icon="@drawable/edit_profile"
+            android:title="Edit Profile"/>
+    </group>
+
+
+    <group android:checkableBehavior="single"
+           android:id="@+id/nav_add_class_note_group">
+        <item
+            android:id="@+id/nav_add_class_note"
+            android:icon="@drawable/note"
+            android:title="Add class note"
+            android:visible="false"/>
+    </group>
+    <group android:checkableBehavior="single"
+           android:id="@+id/nav_add_class_notice_group">
+        <item
+            android:id="@+id/nav_add_class_notice"
+            android:icon="@drawable/notice"
+            android:title="Add Notice"
+            android:visible="false"/>
+    </group>
+
+    <group android:checkableBehavior="single"
            android:id="@+id/nav_open_couser_group">
         <item
             android:id="@+id/nav_faculty_list"
@@ -37,14 +63,15 @@
             android:visible="false"/>
     </group>
 
-
     <group android:checkableBehavior="single"
-           android:id="@+id/nav_edit_account_group">
+           android:id="@+id/nav_open_stuedent_couser_group">
         <item
-            android:id="@+id/nav_edit_profile"
-            android:icon="@drawable/edit_profile"
-            android:title="Edit Profile"/>
+            android:id="@+id/nav_student_course_assign_list"
+            android:icon="@drawable/courseassign"
+            android:title="Batch Course Assign"
+            android:visible="false"/>
     </group>
+
 
     <group android:checkableBehavior="single"
            android:id="@+id/nav_log_out_account_group">
@@ -54,7 +81,8 @@
         android:title="Log Out"/>
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Communicate"
+        android:visible="false">
         <menu>
             <item
                 android:id="@+id/nav_share"

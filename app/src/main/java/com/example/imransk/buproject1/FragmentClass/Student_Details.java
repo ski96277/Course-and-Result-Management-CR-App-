@@ -85,7 +85,7 @@ public class Student_Details extends Fragment {
         result_sheet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = new Result_Sheet();
+                Fragment fragment = new Result_Sheet_For_Admin_F();
                 if (fragment != null) {
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

@@ -151,7 +151,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="7sp"
-        android:dividerHeight="7sp"
+        android:dividerHeight="10sp"
         android:visibility="gone"
         />
 </LinearLayout>

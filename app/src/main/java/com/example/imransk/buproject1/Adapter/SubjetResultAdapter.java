@@ -28,7 +28,7 @@ public class SubjetResultAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<String> subject_list;
-    LayoutInflater layoutInflater;
+    LayoutInflater layoutInflater=null;
     String batch_number;
     String iD_number;
 
@@ -72,7 +72,8 @@ public class SubjetResultAdapter extends BaseAdapter {
 
         final TextView serial_num = listViewItem_Subject.findViewById(R.id.serial_number);
         final TextView subject_name = listViewItem_Subject.findViewById(R.id.sub_name);
-        final TextView grade_and_mark_TV = listViewItem_Subject.findViewById(R.id.grade_and_mark);
+        final TextView grade_TV = listViewItem_Subject.findViewById(R.id.grade);
+        final TextView _mark_TV = listViewItem_Subject.findViewById(R.id.mark);
 
         final String subject = subject_list.get(i);
 
@@ -91,7 +92,8 @@ public class SubjetResultAdapter extends BaseAdapter {
 
                 serial_num.setText(String.valueOf(i + 1) + ".");
                 subject_name.setText(subject);
-                grade_and_mark_TV.setText(grade + " / " + mark);
+                grade_TV.setText(grade);
+                _mark_TV.setText(mark);
 
 
                 Log.e("grade --  --  ", "custom adapter : " + grade + " " + mark);

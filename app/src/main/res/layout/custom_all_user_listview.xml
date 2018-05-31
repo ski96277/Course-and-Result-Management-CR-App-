@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
+    android:background="#409AA8"
     >
 
     <LinearLayout
-
+android:background="#66ACB6"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="3sp"

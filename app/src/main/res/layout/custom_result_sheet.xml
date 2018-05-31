@@ -2,14 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:layout_margin="10sp"
               android:orientation="vertical"
-              android:background="#FFF">
+              android:background="#2B8F9E">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50sp"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:layout_margin="10sp"
+        android:layout_margin="1sp"
+        android:padding="4sp"
+        android:background="#66ACB6"
         >
 
         <TextView
@@ -30,11 +32,20 @@
             android:textColor="#000"
             android:textSize="15sp"/>
         <TextView
-            android:id="@+id/grade_and_mark"
+            android:id="@+id/grade"
             android:layout_width="0dp"
             android:layout_weight=".20"
             android:layout_height="wrap_content"
-            android:text="gread/mark"
+            android:text="gread"
+            android:gravity="right"
+            android:textColor="#000"
+            android:textSize="15sp"/>
+        <TextView
+            android:id="@+id/mark"
+            android:layout_width="0dp"
+            android:layout_weight=".20"
+            android:layout_height="wrap_content"
+            android:text="mark"
             android:gravity="right"
             android:textColor="#000"
             android:textSize="15sp"/>

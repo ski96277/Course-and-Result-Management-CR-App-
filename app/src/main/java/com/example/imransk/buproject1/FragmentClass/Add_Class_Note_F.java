@@ -10,21 +10,19 @@ import android.view.ViewGroup;
 import com.example.imransk.buproject1.R;
 
 /**
- * Created by imran sk on 5/29/2018.
+ * Created by imran sk on 6/1/2018.
  */
 
-public class Result_Sheet extends Fragment {
+public class Add_Class_Note_F extends Fragment {
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle("Result Sheet");
-
-        return inflater.inflate(R.layout.result_sheet,null);
+        return inflater.inflate(R.layout.add_class_note_f,null);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 }

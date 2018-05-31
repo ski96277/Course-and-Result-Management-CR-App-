@@ -17,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.imransk.buproject1.FragmentClass.Add_Class_Note_F;
+import com.example.imransk.buproject1.FragmentClass.Add_Notice_F;
+import com.example.imransk.buproject1.FragmentClass.Course_Assign_To_Batch;
 import com.example.imransk.buproject1.FragmentClass.EditProfileF;
 import com.example.imransk.buproject1.FragmentClass.Faculty_List_For_Course_AssigneF;
 import com.example.imransk.buproject1.FragmentClass.HomePageF;
@@ -102,7 +105,8 @@ public class LoginSuccessActivity extends AppCompatActivity
 
                 } else if (fTrue) {
 //                     set nav button visible true
-//                    navigationView.getMenu().findItem(R.id.nav_show_profile).setVisible(true);
+                    navigationView.getMenu().findItem(R.id.nav_add_class_note).setVisible(true);
+                    navigationView.getMenu().findItem(R.id.nav_add_class_notice).setVisible(true);
 
                     //set information on nav header tv and image view
 
@@ -118,6 +122,7 @@ public class LoginSuccessActivity extends AppCompatActivity
                     //set nav button visible true
                     navigationView.getMenu().findItem(R.id.nav_faculty_list).setVisible(true);
                     navigationView.getMenu().findItem(R.id.nav_student_list).setVisible(true);
+                    navigationView.getMenu().findItem(R.id.nav_student_course_assign_list).setVisible(true);
 
                     //set information on nav header tv and image view
                     name = dataSnapshot.child("admin").child(userId).child("full_name").getValue().toString();
@@ -200,11 +205,19 @@ public class LoginSuccessActivity extends AppCompatActivity
         } else if (id == R.id.nav_show_profile) {
             fragment = new ShowProfileF();
 
+        }  else if (id == R.id.nav_add_class_note) {
+            fragment=new Add_Class_Note_F();
+
+        }  else if (id == R.id.nav_add_class_notice) {
+            fragment=new Add_Notice_F();
         } else if (id == R.id.nav_faculty_list) {
             fragment=new Faculty_List_For_Course_AssigneF();
 
         } else if (id == R.id.nav_student_list) {
             fragment=new Student_list();
+
+        } else if (id == R.id.nav_student_course_assign_list) {
+            fragment=new Course_Assign_To_Batch();
 
         } else if (id == R.id.nav_log_out) {
             firebaseAuth.signOut();

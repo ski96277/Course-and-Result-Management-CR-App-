@@ -3,7 +3,6 @@ package com.example.imransk.buproject1.FragmentClass;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,7 @@ public class Result_Submit_F extends Fragment{
     Button submit_Btn;
     Button lab_result_btn;
 
-    Spinner st_batch;
+    EditText st_batch;
     Spinner st_grade;
 
     String subject;
@@ -64,21 +63,24 @@ public class Result_Submit_F extends Fragment{
 //get the value from homepage fragment in faculty
         Bundle bundle = getArguments();
         subject = bundle.getString("course_name");
+        id_number = bundle.getString("id_roll");
+        st_batch_number=bundle.getString("batch");
 
         subject_name = view.findViewById(R.id.subject_name_TV);
         course_credit_number=view.findViewById(R.id.course_credit);
 
         st_id = view.findViewById(R.id.student_id_ET);
+        st_id.setText(id_number);
         st_mark = view.findViewById(R.id.student_mark_ET);
-        st_batch = view.findViewById(R.id.batch_number_spinner);
+        st_batch = view.findViewById(R.id.batch_number_ET);
+        st_batch.setText(st_batch_number);
+
         st_grade = view.findViewById(R.id.student_Grade_mark_spinner);
         submit_Btn = view.findViewById(R.id.submit_Result);
         lab_result_btn=view.findViewById(R.id.lab_result);
         lab_result_btn.setVisibility(View.GONE);
 
         subject_name.setText(subject);
-        Log.e("batch number", "Result Submit class : " + st_batch_number);
-
 
         if (subject.equals("Analog Electronics and Lab")){
 
@@ -429,7 +431,7 @@ public class Result_Submit_F extends Fragment{
             @Override
             public void onClick(View view) {
 
-                st_batch_number = st_batch.getSelectedItem().toString();
+                st_batch_number = st_batch.getText().toString();
                 id_number = st_id.getText().toString();
                 id_mark_number = st_mark.getText().toString();
                 id_grade_number = st_grade.getSelectedItem().toString();
