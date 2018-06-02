@@ -2,15 +2,18 @@ package com.example.imransk.buproject1.Activity;
 
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,13 +35,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -60,7 +68,6 @@ public class SignUpActivity extends Activity {
     private EditText full_name_ET;
     private TextView select_img_ET;
     private EditText depart_ET;
-    private EditText batch_ET;
     private EditText phone_num_ET;
     private EditText id_ET;
     String fullName = "";
@@ -68,6 +75,12 @@ public class SignUpActivity extends Activity {
     String batchNumber = "";
     String phoneNumber = "";
     String iD = "";
+
+    String semester_number;
+    String roll_number;
+
+    int year;
+    int month;
 
 
     CircleImageView circleImageView;
@@ -87,6 +100,25 @@ public class SignUpActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_sign_up);
+
+        Calendar now = Calendar.getInstance();
+
+        Log.e("      Year ", "onCreate: " + now.get(Calendar.YEAR));
+        year = now.get(Calendar.YEAR);
+        // month start from 0 to 11
+        Log.e("      month ", "onCreate: " + (now.get(Calendar.MONTH) + 1));
+        month = now.get(Calendar.MONTH) + 1;
+
+        Log.e("      day ", "onCreate: " + now.get(Calendar.DATE));
+
+
+
+/*    String dayOfTheWeek = (String) DateFormat.format("EEEE", date); // Thursday
+        String day          = (String) DateFormat.format("dd",   date); // 20
+        String monthString  = (String) DateFormat.format("MMM",  date); // Jun
+        String monthNumber  = (String) DateFormat.format("MM",   date); // 06
+        String year         = (String) DateFormat.format("yyyy", date); // 2013
+*/
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -124,7 +156,6 @@ public class SignUpActivity extends Activity {
             }
         });
     }
-
 
 
     private void signUpFormValidation() {
@@ -170,8 +201,8 @@ public class SignUpActivity extends Activity {
     //E-mail validation
     private boolean validEmail(String email) {
         String email_pattern = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
-        Pattern pattern=Pattern.compile(email_pattern);
-        Matcher matcher=pattern.matcher(email);
+        Pattern pattern = Pattern.compile(email_pattern);
+        Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
 
@@ -186,11 +217,11 @@ public class SignUpActivity extends Activity {
         dialogView = inflater.inflate(R.layout.customdialogwithinput, null);
         dialogBuilder.setView(dialogView);
         full_name_ET = (EditText) dialogView.findViewById(R.id.fullName_ET);
-        select_img_ET=(TextView)dialogView.findViewById(R.id.select_image_TV);
+        select_img_ET = (TextView) dialogView.findViewById(R.id.select_image_TV);
         depart_ET = (EditText) dialogView.findViewById(R.id.department_ET);
-        batch_ET = (EditText) dialogView.findViewById(R.id.batch_number_ET);
+
         phone_num_ET = (EditText) dialogView.findViewById(R.id.phone_number_ET);
-        id_ET = (EditText) dialogView.findViewById(R.id.iD_ET);
+//        id_ET = (EditText) dialogView.findViewById(R.id.iD_ET);
 
 
         circleImageView = (CircleImageView) dialogView.findViewById(R.id.circle_image_view);
@@ -224,6 +255,43 @@ public class SignUpActivity extends Activity {
 
     public void signUP() {
 
+        FirebaseDatabase firebaseDatabase2 = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase2.getReference();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                batchNumber = dataSnapshot.child("Batch for register").child("batch_number")
+                        .getValue().toString();
+                roll_number = dataSnapshot.child("Roll Number").child("roll")
+                        .getValue().toString();
+
+
+                iD = String.valueOf(year).toString() + semester_number + "10" + batchNumber + roll_number.toString();
+
+                Log.e("     batch database ", "onDataChange: " + batchNumber);
+                Log.e("     id database ", "onDataChange: " + iD);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+//      semester_number create
+
+        if (month == 1 || month == 2 || month == 3 || month == 4) {
+            semester_number = "1";
+        }
+        if (month == 5 || month == 6 || month == 7 || month == 8) {
+            semester_number = "2";
+        }
+        if (month == 9 || month == 10 || month == 11 || month == 12) {
+            semester_number = "3";
+        }
+        Log.e("        semester Numebr", "signUP:    " + semester_number);
+
+
 //get radio button status
 
         rdGroup = ((RadioButton) findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
@@ -233,9 +301,10 @@ public class SignUpActivity extends Activity {
 
         fullName = full_name_ET.getText().toString();
         departmetnName = depart_ET.getText().toString();
-        batchNumber = batch_ET.getText().toString();
+//        batchNumber = batch_ET.getText().toString();
         phoneNumber = phone_num_ET.getText().toString();
-        iD = id_ET.getText().toString();
+//        iD = id_ET.getText().toString();
+
 
 //        Toast.makeText(this, "" + rdGroup, Toast.LENGTH_SHORT).show();
 
@@ -248,95 +317,101 @@ public class SignUpActivity extends Activity {
         //create user
         final String finalRdGroup = rdGroup;
 
- // Image and text field is not complete  it's can't sign in
-       if (imageUri!=null && !fullName.isEmpty() && !departmetnName.isEmpty() && !batchNumber.isEmpty() && !phoneNumber.isEmpty() && !iD.isEmpty()){
+        // Image and text field is not complete  it's can't sign in
+        if (imageUri != null && !fullName.isEmpty() && !departmetnName.isEmpty() && !phoneNumber.isEmpty()) {
 
-           auth.createUserWithEmailAndPassword(email, password)
-                   .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                       @Override
-                       public void onComplete(@NonNull Task<AuthResult> task) {
-                           if (task.isSuccessful()) {
-                               // Sign in success, update UI with the signed-in user's information
+            auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
 
 
-                               //Add data to database
-                               firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                               userID = firebaseUser.getUid();
-                               final DatabaseReference databaseReference = firebaseDatabase.getReference(finalRdGroup);
+                                //Add data to database
+                                firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                                userID = firebaseUser.getUid();
+                                final DatabaseReference databaseReference = firebaseDatabase.getReference(finalRdGroup);
 
 //                            upload_profile_image();
 //                            Log.e("imageUri_download_Link", "onComplete: " + imageUri_download_Link);
-                               final String status = "0";
+                                final String status = "0";
 
 //image upload
-                               StorageReference file_path = storageReference_root.child(userID).child("image").child("profile/profilepic.jpg");
+                                StorageReference file_path = storageReference_root.child(userID).child("image").child("profile/profilepic.jpg");
 
 
-                               file_path.putFile(imageUri)
-                                       .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                           @Override
-                                           public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                               Toast.makeText(SignUpActivity.this, "Profile image Uploaded", Toast.LENGTH_SHORT).show();
+                                file_path.putFile(imageUri)
+                                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                            @Override
+                                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                                Toast.makeText(SignUpActivity.this, "Profile image Uploaded", Toast.LENGTH_SHORT).show();
 
-                                               imageUri_download_Link = taskSnapshot.getDownloadUrl();
-                                               Log.e("image uri ------ ", "onSuccess: " + imageUri_download_Link);
+                                                imageUri_download_Link = taskSnapshot.getDownloadUrl();
+                                                Log.e("image uri ------ ", "onSuccess: " + imageUri_download_Link);
 
-                                               final SignUpPojo signUpPojo = new SignUpPojo(status, userID, finalRdGroup, email, fullName, departmetnName, batchNumber,phoneNumber,iD,String.valueOf(imageUri_download_Link));
+                                                final SignUpPojo signUpPojo = new SignUpPojo(status, userID, finalRdGroup, email, fullName, departmetnName, batchNumber, phoneNumber, iD, String.valueOf(imageUri_download_Link));
 
-                                               databaseReference.child(userID).setValue(signUpPojo);
-                                               progressBar.setVisibility(View.GONE);
-                                               Toast.makeText(SignUpActivity.this, " SignUp Success", Toast.LENGTH_SHORT).show();
+                                                databaseReference.child(userID).setValue(signUpPojo);
+                                                progressBar.setVisibility(View.GONE);
+                                                Toast.makeText(SignUpActivity.this, " SignUp Success", Toast.LENGTH_SHORT).show();
 
-                                               //go Login Activity and than go LoginSuccess Activity
-                                               startActivity(new Intent(getApplicationContext(), LogInActivity.class));
-                                               finish();
+                                                //Roll Number Increment
+                                                int roll = Integer.parseInt(roll_number) + 1;
+                                                String roll_string = String.valueOf(roll);
 
-                                           }
-                                       }).addOnFailureListener(new OnFailureListener() {
-                                   @Override
-                                   public void onFailure(@NonNull Exception e) {
+                                                Log.e("Length ", "onSuccess: " + roll_string.length());
+//set 3 digit number
+                                                if (roll_string.length() == 1) {
+                                                    roll_string = "00" + roll_string;
+                                                }
+                                                if (roll_string.length() == 2) {
+                                                    roll_string = "0" + roll_string;
+                                                }
+                                                firebaseDatabase.getReference().child("Roll Number").child("roll").setValue(roll_string);
+                                                //go Login Activity and than go LoginSuccess Activity
+                                                startActivity(new Intent(getApplicationContext(), LogInActivity.class));
+                                                finish();
 
-                                   }
-                               });
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+
+                                    }
+                                });
 //image upload end
 
 
-                           } else {
-                               // If sign in fails, display a message to the user.
+                            } else {
+                                // If sign in fails, display a message to the user.
 
-                               Toast.makeText(SignUpActivity.this, "Sorry Having some problem \nSignUp Failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, "Sorry Having some problem \nSignUp Failed", Toast.LENGTH_SHORT).show();
 
-                               progressBar.setVisibility(View.GONE);
-                           }
+                                progressBar.setVisibility(View.GONE);
+                            }
 
-                           // ...
-                       }
-                   });
-       }else {
-           progressBar.setVisibility(View.GONE);
+                            // ...
+                        }
+                    });
+        } else {
+            progressBar.setVisibility(View.GONE);
 
-           if (imageUri==null){
-               Toast.makeText(this, "select Profile Image", Toast.LENGTH_SHORT).show();
+            if (imageUri == null) {
+                Toast.makeText(this, "select Profile Image", Toast.LENGTH_SHORT).show();
 
-           }else if (fullName.isEmpty()){
-               Toast.makeText(this, "Enter Name", Toast.LENGTH_SHORT).show();
+            } else if (fullName.isEmpty()) {
+                Toast.makeText(this, "Enter Name", Toast.LENGTH_SHORT).show();
 
-           }else if (departmetnName.isEmpty()){
-               Toast.makeText(this, "Enter department Name", Toast.LENGTH_SHORT).show();
+            } else if (departmetnName.isEmpty()) {
+                Toast.makeText(this, "Enter department Name", Toast.LENGTH_SHORT).show();
 
-           }else if (batchNumber.isEmpty()){
-               Toast.makeText(this, "Enter bantch number", Toast.LENGTH_SHORT).show();
+            } else if (phoneNumber.isEmpty()) {
+                Toast.makeText(this, "Enter phone number", Toast.LENGTH_SHORT).show();
 
-           }else if (iD.isEmpty()) {
-               Toast.makeText(this, "Enter ID", Toast.LENGTH_SHORT).show();
+            }
 
-           }else if (phoneNumber.isEmpty()){
-               Toast.makeText(this, "Enter phone number", Toast.LENGTH_SHORT).show();
-
-           }
-
-       }
-
+        }
 
 
     }
@@ -346,12 +421,22 @@ public class SignUpActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        imageUri = data.getData();
 
 
+      /*  if (imageUri==null){
+            imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
+                    "://" + getResources().getResourcePackageName(R.drawable.boy)
+                    + '/' + getResources().getResourceTypeName(R.drawable.boy)
+                    + '/' + getResources().getResourceEntryName(R.drawable.boy) );
+            Log.e("           ", "onActivityResult: "+imageUri );
 
+        }*/
 
         if (requestCode == profile_image_Code && resultCode == RESULT_OK && data != null && data.getData() != null) {
+
+
+            imageUri = data.getData();
+
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
                 circleImageView.setImageBitmap(bitmap);
@@ -361,6 +446,4 @@ public class SignUpActivity extends Activity {
             }
         }
     }
-
-
 }

@@ -23,6 +23,7 @@ import com.example.imransk.buproject1.FragmentClass.Course_Assign_To_Batch;
 import com.example.imransk.buproject1.FragmentClass.EditProfileF;
 import com.example.imransk.buproject1.FragmentClass.Faculty_List_For_Course_AssigneF;
 import com.example.imransk.buproject1.FragmentClass.HomePageF;
+import com.example.imransk.buproject1.FragmentClass.Message_List_F;
 import com.example.imransk.buproject1.FragmentClass.ShowProfileF;
 import com.example.imransk.buproject1.FragmentClass.Student_list;
 import com.example.imransk.buproject1.R;
@@ -95,6 +96,11 @@ public class LoginSuccessActivity extends AppCompatActivity
                 Boolean fTrue = dataSnapshot.child("faculty").hasChild(userId);
                 Boolean aTrue = dataSnapshot.child("admin").hasChild(userId);
                 if (sTrue) {
+
+
+//                     set nav button visible true
+                    navigationView.getMenu().findItem(R.id.nav_message).setVisible(true);
+
                     //set information on nav header tv and image view
                     name = dataSnapshot.child("Student").child(userId).child("full_name").getValue().toString();
                     email = dataSnapshot.child("Student").child(userId).child("email").getValue().toString();
@@ -205,7 +211,9 @@ public class LoginSuccessActivity extends AppCompatActivity
         } else if (id == R.id.nav_show_profile) {
             fragment = new ShowProfileF();
 
-        }  else if (id == R.id.nav_add_class_note) {
+        }  else if (id == R.id.nav_message) {
+            fragment=new Message_List_F();
+        } else if (id == R.id.nav_add_class_note) {
             fragment=new Add_Class_Note_F();
 
         }  else if (id == R.id.nav_add_class_notice) {

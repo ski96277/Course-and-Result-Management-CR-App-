@@ -4,7 +4,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+    android:background="#66ACB6">
 
     <TextView
         android:id="@+id/userinformationTV"
@@ -16,32 +17,35 @@
         android:textColor="#000"
         android:textSize="20sp"/>
 
+    <TextView
+        android:id="@+id/select_image_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userinformationTV"
+        android:text="select image"
+        android:textColor="#000"
+        android:layout_centerHorizontal="true"/>
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circle_image_view"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_below="@id/userinformationTV"
+        android:layout_below="@id/select_image_TV"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="4dp"
         android:layout_marginTop="2dp"
         android:src="@drawable/boy"
         app:civ_border_color="#00899B"
         app:civ_border_width="3dp"/>
-    <TextView
-        android:id="@+id/select_image_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/circle_image_view"
-        android:text="select image"
-        android:layout_centerHorizontal="true"/>
 
 
     <View
         android:id="@+id/dividerk"
-        android:layout_width="390dp"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_below="@id/select_image_TV"
+        android:layout_below="@id/circle_image_view"
         android:background="@android:color/black"/>
+
     <EditText
         android:id="@+id/fullName_ET"
         android:layout_width="match_parent"
@@ -56,7 +60,7 @@
 
     <EditText
         android:id="@+id/department_ET"
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="63dp"
         android:layout_below="@id/fullName_ET"
         android:ems="10"
@@ -67,49 +71,10 @@
         android:textCursorDrawable="@drawable/coursor_color"/>
 
     <View
-        android:id="@+id/divider"
-        android:layout_width="1dp"
-        android:layout_height="60dp"
-        android:layout_below="@id/fullName_ET"
-        android:layout_toRightOf="@id/department_ET"
-        android:background="@android:color/black"/>
-
-    <EditText
-        android:id="@+id/batch_number_ET"
-        android:layout_width="wrap_content"
-        android:layout_height="63dp"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/fullName_ET"
-        android:layout_marginEnd="13dp"
-        android:layout_toRightOf="@id/divider"
-        android:hint="Batch Number: 41(Day)"
-        android:textColor="#000"
-        android:textCursorDrawable="@drawable/coursor_color"/>
-
-
-    <View
-        android:id="@+id/below_batch_View"
-        android:layout_width="390dp"
-        android:layout_height="2dp"
-        android:layout_below="@id/batch_number_ET"
-        android:background="@android:color/black"/>
-    <EditText
-        android:id="@+id/iD_ET"
-        android:layout_width="match_parent"
-        android:layout_height="63dp"
-        android:layout_below="@id/below_batch_View"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Id:-   201511041097"
-        android:inputType="number"
-        android:textColor="#000"
-        android:textCursorDrawable="@drawable/coursor_color"/>
-
-    <View
         android:id="@+id/below_id_View"
         android:layout_width="390dp"
         android:layout_height="2dp"
-        android:layout_below="@id/iD_ET"
+        android:layout_below="@id/department_ET"
         android:background="@android:color/black"/>
     <EditText
         android:id="@+id/phone_number_ET"

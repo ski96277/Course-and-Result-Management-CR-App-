@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00899B"
+            android:fillViewport="true">
+
+    <ListView
+        android:layout_marginTop="10sp"
+        android:id="@+id/message_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="10sp"></ListView>
+</ScrollView>

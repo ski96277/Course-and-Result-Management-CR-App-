@@ -143,7 +143,7 @@ public class HomePageF extends Fragment {
 
 
                             listViewUser.setVisibility(View.VISIBLE);
-                            SubjetResultAdapter subjetResultAdapter = new SubjetResultAdapter(getActivity(), result_list, batch_number, iD_number);
+                            SubjetResultAdapter subjetResultAdapter = new SubjetResultAdapter(getContext(), result_list, batch_number, iD_number);
                             listViewUser.setAdapter(subjetResultAdapter);
                         } else {
                             statusTV.setText("You have No Result yet .... ");

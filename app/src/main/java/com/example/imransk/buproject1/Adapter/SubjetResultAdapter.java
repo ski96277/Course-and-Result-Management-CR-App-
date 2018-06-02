@@ -35,9 +35,9 @@ public class SubjetResultAdapter extends BaseAdapter {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
-    public SubjetResultAdapter(FragmentActivity activity, ArrayList<String> subject_list, String batch_number, String iD_number) {
+    public SubjetResultAdapter(Context context, ArrayList<String> subject_list, String batch_number, String iD_number) {
 
-        this.context = activity;
+        this.context = context;
         this.subject_list = subject_list;
         this.batch_number = batch_number;
         this.iD_number = iD_number;
