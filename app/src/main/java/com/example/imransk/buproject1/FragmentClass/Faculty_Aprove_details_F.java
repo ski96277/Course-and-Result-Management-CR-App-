@@ -58,6 +58,7 @@ public class Faculty_Aprove_details_F extends Fragment {
         String phone = bundle.getString("phone");
         String imageUrl = bundle.getString("imageUrl");
         String userType = bundle.getString("userType");
+        String address = bundle.getString("address");
         final String user_id = bundle.getString("user_id");
 
         Picasso.with(getContext()).load(imageUrl).into(imageView);
@@ -81,6 +82,7 @@ public class Faculty_Aprove_details_F extends Fragment {
         bundle_send.putString("phone", phone.toString());
         bundle_send.putString("imageUrl", imageUrl);
         bundle_send.putString("userType", userType);
+        bundle_send.putString("address", address);
 
 
         course_assign.setOnClickListener(new View.OnClickListener() {

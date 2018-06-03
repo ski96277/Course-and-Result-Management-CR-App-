@@ -58,6 +58,7 @@ public class Student_Details extends Fragment {
         String phone = bundle.getString("phone");
         String imageUrl = bundle.getString("imageUrl");
         String userType = bundle.getString("userType");
+        String address = bundle.getString("address");
         final String user_id = bundle.getString("user_id");
 
         Picasso.with(getContext()).load(imageUrl).into(imageView);
@@ -80,6 +81,7 @@ public class Student_Details extends Fragment {
         bundle_send.putString("phone", phone.toString());
         bundle_send.putString("imageUrl", imageUrl);
         bundle_send.putString("userType", userType);
+        bundle_send.putString("address",address);
 
 
         result_sheet.setOnClickListener(new View.OnClickListener() {

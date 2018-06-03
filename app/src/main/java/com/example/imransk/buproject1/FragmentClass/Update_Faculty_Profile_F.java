@@ -48,6 +48,7 @@ public class Update_Faculty_Profile_F extends Fragment {
     String email_id;
     String phone_number;
     String image_url;
+    String address;
 
 
     View context;
@@ -78,6 +79,7 @@ public class Update_Faculty_Profile_F extends Fragment {
         email_id=bundle.getString("email_id");
         phone_number=bundle.getString("phone");
         image_url=bundle.getString("imageUrl");
+        address=bundle.getString("address");
         Log.e("image url - - - ", "onViewCreated: "+image_url );
         Log.e("image url - - - ", "onViewCreated: "+user_type );
         Log.e("image url - - - ", "onViewCreated: "+department );
@@ -109,7 +111,7 @@ public class Update_Faculty_Profile_F extends Fragment {
                     SignUpPojo signUpPojo=new SignUpPojo("1",user_id,user_type_ET_show.getText().toString(),
                             email_ET_show.getText().toString(),name_ET_show.getText().toString(),
                             depart_ET_show.getText().toString(),batch,phone_number_ET_show.getText().toString(),
-                            id_number_ET_show.getText().toString(),image_url);
+                            id_number_ET_show.getText().toString(),image_url,address);
                     databaseReference.child(user_id).setValue(signUpPojo);
 
                     Fragment  fragment=new Faculty_List_For_Course_AssigneF();

@@ -1,96 +1,270 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:orientation="vertical"
-    android:background="#66ACB6">
 
-    <TextView
-        android:id="@+id/userinformationTV"
-        android:layout_width="match_parent"
-        android:layout_height="80sp"
-        android:background="#00899B"
-        android:gravity="center"
-        android:text="Enter Your Information...."
-        android:textColor="#000"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/select_image_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/userinformationTV"
-        android:text="select image"
-        android:textColor="#000"
-        android:layout_centerHorizontal="true"/>
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circle_image_view"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/select_image_TV"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="2dp"
-        android:src="@drawable/boy"
-        app:civ_border_color="#00899B"
-        app:civ_border_width="3dp"/>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
 
-    <View
-        android:id="@+id/dividerk"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@id/circle_image_view"
-        android:background="@android:color/black"/>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:background="#66ACB6"
+                    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/fullName_ET"
-        android:layout_width="match_parent"
-        android:layout_height="71dp"
-        android:layout_below="@id/circle_image_view"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Full Name"
-        android:inputType="textPersonName"
-        android:textColor="#000"
-        android:textCursorDrawable="@drawable/coursor_color"/>
+        <TextView
+            android:id="@+id/userinformationTV"
+            android:layout_width="match_parent"
+            android:layout_height="80sp"
+            android:background="#00899B"
+            android:gravity="center"
+            android:text="Enter Your Information...."
+            android:textColor="#000"
+            android:textSize="20sp"/>
 
-    <EditText
-        android:id="@+id/department_ET"
-        android:layout_width="match_parent"
-        android:layout_height="63dp"
-        android:layout_below="@id/fullName_ET"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Department"
-        android:inputType="textPersonName"
-        android:textColor="#000"
-        android:textCursorDrawable="@drawable/coursor_color"/>
+        <TextView
+            android:id="@+id/select_image_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userinformationTV"
+            android:layout_centerHorizontal="true"
+            android:text="select image"
+            android:textColor="#000"/>
 
-    <View
-        android:id="@+id/below_id_View"
-        android:layout_width="390dp"
-        android:layout_height="2dp"
-        android:layout_below="@id/department_ET"
-        android:background="@android:color/black"/>
-    <EditText
-        android:id="@+id/phone_number_ET"
-        android:layout_width="match_parent"
-        android:layout_height="53dp"
-        android:layout_below="@id/below_id_View"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="ph :- 01687870058"
-        android:inputType="number"
-        android:textColor="#000"
-        android:textCursorDrawable="@drawable/coursor_color"/>
-    <View
-        android:id="@+id/below_phone_View"
-        android:layout_width="390dp"
-        android:layout_height="2dp"
-        android:layout_below="@id/phone_number_ET"
-        android:background="@android:color/black"/>
-</RelativeLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circle_image_view"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/select_image_TV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/boy"
+            app:civ_border_color="#00899B"
+            app:civ_border_width="3dp"/>
+
+
+        <View
+            android:id="@+id/dividerk"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/circle_image_view"
+            android:background="@android:color/black"/>
+
+        <LinearLayout
+            android:id="@+id/fullName_ET_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/circle_image_view"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#00889B"
+                android:gravity="center"
+                android:text="Name :"
+                android:textColor="#000"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/fullName_ET"
+                android:layout_width="0dp"
+                android:layout_height="71dp"
+                android:layout_marginLeft="2sp"
+                android:layout_weight="2"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Full Name"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:textColor="#000"
+                android:textCursorDrawable="@drawable/coursor_color"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/below_id_View_"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/fullName_ET_layout"
+            android:layout_marginBottom="5sp"
+            android:background="@android:color/black"/>
+
+        <LinearLayout
+            android:id="@+id/department_ET_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/below_id_View_"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#00889B"
+                android:gravity="center"
+                android:text="Department :"
+                android:textColor="#000"
+                android:textSize="17sp"/>
+
+            <EditText
+                android:id="@+id/department_ET"
+                android:layout_width="0dp"
+                android:layout_height="63dp"
+                android:layout_below="@id/fullName_ET_layout"
+                android:layout_weight="2"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Department"
+                android:inputType="textPersonName"
+                android:textColor="#000"
+                android:textCursorDrawable="@drawable/coursor_color"/>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/below_id_View"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/department_ET_layout"
+            android:layout_marginBottom="5sp"
+            android:background="@android:color/black"/>
+
+        <LinearLayout
+            android:id="@+id/batch_ET_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/below_id_View"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#00889B"
+                android:gravity="center"
+                android:text="Batch :"
+                android:textColor="#000"
+                android:textSize="17sp"/>
+
+            <EditText
+                android:id="@+id/batch_ET"
+                android:layout_width="0dp"
+                android:layout_height="63dp"
+                android:layout_below="@id/fullName_ET_layout"
+                android:layout_weight="2"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="batch"
+                android:inputType="number"
+                android:textColor="#000"
+                android:textCursorDrawable="@drawable/coursor_color"/>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/below_batch_View"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/batch_ET_layout"
+            android:layout_marginBottom="5sp"
+            android:background="@android:color/black"/>
+
+        <LinearLayout
+            android:id="@+id/phone_number_ET_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/below_batch_View"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#00889B"
+                android:gravity="center"
+                android:text="Contact :"
+                android:textColor="#000"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/phone_number_ET"
+                android:layout_width="0dp"
+                android:layout_height="53dp"
+                android:layout_below="@id/below_id_View"
+                android:layout_weight="2"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="01687870058"
+                android:inputType="number"
+                android:textColor="#000"
+                android:textCursorDrawable="@drawable/coursor_color"/>
+        </LinearLayout>
+
+
+        <View
+            android:id="@+id/below_phone_View"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/phone_number_ET_layout"
+            android:layout_marginBottom="5sp"
+            android:layout_marginTop="5sp"
+            android:background="@android:color/black"/>
+
+        <LinearLayout
+            android:id="@+id/address_ET_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/below_phone_View"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#00889B"
+                android:gravity="center"
+                android:text="Address :"
+                android:textColor="#000"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/address_ET"
+                android:layout_width="0dp"
+                android:layout_height="53dp"
+                android:layout_below="@id/below_id_View"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:hint="Address"
+                android:inputType="textPersonName"
+                android:textColor="#000"
+                android:textCursorDrawable="@drawable/coursor_color"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/below_address_View"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/address_ET_layout"
+            android:layout_marginBottom="5sp"
+            android:layout_marginTop="5sp"
+            android:background="@android:color/black"/>
+
+
+    </RelativeLayout>
+</ScrollView>

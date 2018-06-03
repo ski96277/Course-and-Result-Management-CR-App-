@@ -44,6 +44,7 @@ public class ShowUserProfile_By_AdminF extends Fragment {
     String email_id;
     String phone_number;
     String image_url;
+    String address;
 
     FirebaseDatabase firebaseDatabase;
 
@@ -69,6 +70,7 @@ public class ShowUserProfile_By_AdminF extends Fragment {
         id_number_show = view.findViewById(R.id.admin_can_see_user_id_show);
         user_type_show = view.findViewById(R.id.admin_can_see_user_type_show);
 
+
         deleteButton = view.findViewById(R.id.deleteAccountBtn);
         approveButton = view.findViewById(R.id.approveAccountBtn);
 
@@ -86,6 +88,7 @@ public class ShowUserProfile_By_AdminF extends Fragment {
         email_id = bundle.getString("email_id");
         phone_number = bundle.getString("phone");
         image_url = bundle.getString("imageUrl");
+        address=bundle.getString("address");
 
         Picasso.with(getContext()).load(image_url).into(imageView);
         name_TV_show.append(name);
@@ -103,7 +106,7 @@ public class ShowUserProfile_By_AdminF extends Fragment {
 
 //set status 1 by default inside DataBase useing pojo class
                 SignUpPojo signUpPojoForset = new SignUpPojo("1", user_id, user_type, email_id, name,
-                        department, batch, phone_number, id_roll, image_url);
+                        department, batch, phone_number, id_roll, image_url,address);
                 //get Referance
                 firebaseDatabase = FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference = firebaseDatabase.getReference().child(signUpPojoForset.getType()).child(signUpPojoForset.getUser_id());
@@ -134,11 +137,4 @@ public class ShowUserProfile_By_AdminF extends Fragment {
             }
         });
     }
-/*
-//After Distroy app Run again
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        startActivity(new Intent(getContext(), LoginSuccessActivity.class));
-    }*/
 }

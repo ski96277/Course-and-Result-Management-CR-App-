@@ -17,13 +17,15 @@ public class SignUpPojo {
     String phoneNumber;
     String iD;
     String imageUri_download_Link;
+    String address;
 
     //use empty Constructor for prograund Tool
     public SignUpPojo() {
     }
 
     public SignUpPojo(String status, String user_id, String type, String email, String full_name,
-                      String department_name, String batch_number,String phoneNumber,String iD, String imageUri_download_Link) {
+                      String department_name, String batch_number,String phoneNumber,String iD,
+                      String imageUri_download_Link,String address) {
         this.status = status;
         this.user_id = user_id;
         this.type = type;
@@ -34,6 +36,11 @@ public class SignUpPojo {
         this.phoneNumber=phoneNumber;
         this.iD=iD;
         this.imageUri_download_Link = imageUri_download_Link;
+        this.address=address;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public String getFull_name() {

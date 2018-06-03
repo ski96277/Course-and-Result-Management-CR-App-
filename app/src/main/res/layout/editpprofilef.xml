@@ -5,9 +5,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#00899B"
-    android:fillViewport="true">
+            android:fillViewport="true" >
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/full_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="10sp"
@@ -18,7 +19,6 @@
             android:id="@+id/user_image_view_ET"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_below="@id/userinformationTV"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_marginBottom="4dp"
@@ -28,6 +28,8 @@
             app:civ_border_width="5sp"/>
 
         <LinearLayout
+            android:id="@+id/name_layout"
+            android:layout_below="@id/user_image_view_ET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -60,6 +62,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/department_layout"
+            android:layout_below="@id/name_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -93,6 +97,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/batch_layout"
+            android:layout_below="@id/department_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -127,6 +133,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/phone_layout"
+            android:layout_below="@id/batch_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -160,6 +168,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/id_layout"
+            android:layout_below="@id/phone_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -193,10 +203,13 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/email_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_below="@id/id_layout"
+            >
 
             <EditText
                 android:layout_width="0dp"
@@ -226,6 +239,8 @@
                 android:textCursorDrawable="@drawable/coursor_color"/>
         </LinearLayout>
 <LinearLayout
+    android:id="@+id/button_layout"
+    android:layout_below="@id/email_layout"
     android:layout_width="match_parent"
     android:gravity="center"
     android:layout_height="wrap_content">
@@ -244,6 +259,6 @@
         android:textSize="25sp"/>
 
 </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 </ScrollView>

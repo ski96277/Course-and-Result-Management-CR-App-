@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -53,7 +54,8 @@ import java.util.regex.Pattern;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SignUpActivity extends Activity {
-    private EditText email_input, password_input;
+    private EditText email_input;
+    private EditText password_input;
     private Button signIn_btn, signUp_btn;
     private ProgressBar progressBar;
     private RadioGroup radioGroup;
@@ -68,13 +70,15 @@ public class SignUpActivity extends Activity {
     private EditText full_name_ET;
     private TextView select_img_ET;
     private EditText depart_ET;
+    private EditText batch_ET;
+    private EditText address_ET;
     private EditText phone_num_ET;
-    private EditText id_ET;
     String fullName = "";
     String departmetnName = "";
     String batchNumber = "";
     String phoneNumber = "";
     String iD = "";
+    String address = "";
 
     String semester_number;
     String roll_number;
@@ -111,14 +115,6 @@ public class SignUpActivity extends Activity {
 
         Log.e("      day ", "onCreate: " + now.get(Calendar.DATE));
 
-
-
-/*    String dayOfTheWeek = (String) DateFormat.format("EEEE", date); // Thursday
-        String day          = (String) DateFormat.format("dd",   date); // 20
-        String monthString  = (String) DateFormat.format("MMM",  date); // Jun
-        String monthNumber  = (String) DateFormat.format("MM",   date); // 06
-        String year         = (String) DateFormat.format("yyyy", date); // 2013
-*/
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -216,12 +212,21 @@ public class SignUpActivity extends Activity {
 
         dialogView = inflater.inflate(R.layout.customdialogwithinput, null);
         dialogBuilder.setView(dialogView);
+
+        rdGroup = ((RadioButton) findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
+
+        if (rdGroup.equals("faculty")){
+            LinearLayout linearLayout=(LinearLayout)dialogView.findViewById(R.id.batch_ET_layout);
+            linearLayout.setVisibility(View.GONE);
+        }
+
         full_name_ET = (EditText) dialogView.findViewById(R.id.fullName_ET);
         select_img_ET = (TextView) dialogView.findViewById(R.id.select_image_TV);
         depart_ET = (EditText) dialogView.findViewById(R.id.department_ET);
-
+        batch_ET = dialogView.findViewById(R.id.batch_ET);
+        address_ET = dialogView.findViewById(R.id.address_ET);
         phone_num_ET = (EditText) dialogView.findViewById(R.id.phone_number_ET);
-//        id_ET = (EditText) dialogView.findViewById(R.id.iD_ET);
+        address_ET = dialogView.findViewById(R.id.address_ET);
 
 
         circleImageView = (CircleImageView) dialogView.findViewById(R.id.circle_image_view);
@@ -238,6 +243,8 @@ public class SignUpActivity extends Activity {
             }
         });
         dialogBuilder.setCancelable(false);
+
+
         dialogBuilder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
 
@@ -251,32 +258,13 @@ public class SignUpActivity extends Activity {
         }).create();
 
         dialogBuilder.show();
+
     }
 
     public void signUP() {
 
         FirebaseDatabase firebaseDatabase2 = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase2.getReference();
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                batchNumber = dataSnapshot.child("Batch for register").child("batch_number")
-                        .getValue().toString();
-                roll_number = dataSnapshot.child("Roll Number").child("roll")
-                        .getValue().toString();
-
-
-                iD = String.valueOf(year).toString() + semester_number + "10" + batchNumber + roll_number.toString();
-
-                Log.e("     batch database ", "onDataChange: " + batchNumber);
-                Log.e("     id database ", "onDataChange: " + iD);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
 //      semester_number create
 
@@ -292,18 +280,44 @@ public class SignUpActivity extends Activity {
         Log.e("        semester Numebr", "signUP:    " + semester_number);
 
 
+        //Get Text from Information alert dialog
+
+        batchNumber = batch_ET.getText().toString();
+        fullName = full_name_ET.getText().toString();
+        departmetnName = depart_ET.getText().toString();
+        phoneNumber = phone_num_ET.getText().toString();
+        address = address_ET.getText().toString();
+
 //get radio button status
 
         rdGroup = ((RadioButton) findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
 
 
-        //Get Text from Information alert dialog
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-        fullName = full_name_ET.getText().toString();
-        departmetnName = depart_ET.getText().toString();
-//        batchNumber = batch_ET.getText().toString();
-        phoneNumber = phone_num_ET.getText().toString();
-//        iD = id_ET.getText().toString();
+                if (rdGroup.equals("Student")) {
+                    roll_number = dataSnapshot.child("Roll Number").child("student_roll")
+                            .getValue().toString();
+                    iD = String.valueOf(year).toString() + semester_number + "10" + batchNumber + roll_number.toString();
+                }
+
+                if (rdGroup.equals("faculty")){
+                    roll_number = dataSnapshot.child("Roll Number").child("faculty_roll")
+                            .getValue().toString();
+                    iD = String.valueOf(year).toString() +"10" +roll_number.toString();
+                }
+
+                Log.e("     batch database ", "onDataChange: " + batchNumber);
+                Log.e("     id database ", "onDataChange: " + iD);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
 //        Toast.makeText(this, "" + rdGroup, Toast.LENGTH_SHORT).show();
@@ -317,8 +331,12 @@ public class SignUpActivity extends Activity {
         //create user
         final String finalRdGroup = rdGroup;
 
+        if (rdGroup.equals("faculty")){
+            batchNumber="having no batch";
+        }
+
         // Image and text field is not complete  it's can't sign in
-        if (imageUri != null && !fullName.isEmpty() && !departmetnName.isEmpty() && !phoneNumber.isEmpty()) {
+        if (imageUri != null && !fullName.isEmpty() && !departmetnName.isEmpty() && !batchNumber.isEmpty() && !phoneNumber.isEmpty() && !address.isEmpty()) {
 
             auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -350,7 +368,7 @@ public class SignUpActivity extends Activity {
                                                 imageUri_download_Link = taskSnapshot.getDownloadUrl();
                                                 Log.e("image uri ------ ", "onSuccess: " + imageUri_download_Link);
 
-                                                final SignUpPojo signUpPojo = new SignUpPojo(status, userID, finalRdGroup, email, fullName, departmetnName, batchNumber, phoneNumber, iD, String.valueOf(imageUri_download_Link));
+                                                final SignUpPojo signUpPojo = new SignUpPojo(status, userID, finalRdGroup, email, fullName, departmetnName, batchNumber, phoneNumber, iD, String.valueOf(imageUri_download_Link), address);
 
                                                 databaseReference.child(userID).setValue(signUpPojo);
                                                 progressBar.setVisibility(View.GONE);
@@ -368,7 +386,13 @@ public class SignUpActivity extends Activity {
                                                 if (roll_string.length() == 2) {
                                                     roll_string = "0" + roll_string;
                                                 }
-                                                firebaseDatabase.getReference().child("Roll Number").child("roll").setValue(roll_string);
+                                                if (rdGroup.equals("Student")){
+                                                    firebaseDatabase.getReference().child("Roll Number").child("student_roll").setValue(roll_string);
+                                                }
+                                                if (rdGroup.equals("faculty")){
+                                                    firebaseDatabase.getReference().child("Roll Number").child("faculty_roll").setValue(roll_string);
+
+                                                }
                                                 //go Login Activity and than go LoginSuccess Activity
                                                 startActivity(new Intent(getApplicationContext(), LogInActivity.class));
                                                 finish();
@@ -381,8 +405,6 @@ public class SignUpActivity extends Activity {
                                     }
                                 });
 //image upload end
-
-
                             } else {
                                 // If sign in fails, display a message to the user.
 
@@ -406,8 +428,14 @@ public class SignUpActivity extends Activity {
             } else if (departmetnName.isEmpty()) {
                 Toast.makeText(this, "Enter department Name", Toast.LENGTH_SHORT).show();
 
+            } else if (batchNumber.isEmpty()) {
+                Toast.makeText(this, "Enter batch number", Toast.LENGTH_SHORT).show();
+
             } else if (phoneNumber.isEmpty()) {
                 Toast.makeText(this, "Enter phone number", Toast.LENGTH_SHORT).show();
+
+            } else if (address.isEmpty()) {
+                Toast.makeText(this, "Enter Address number", Toast.LENGTH_SHORT).show();
 
             }
 

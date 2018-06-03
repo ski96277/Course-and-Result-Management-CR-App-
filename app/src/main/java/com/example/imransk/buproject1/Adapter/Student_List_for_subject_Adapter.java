@@ -102,6 +102,7 @@ public class Student_List_for_subject_Adapter extends BaseAdapter {
                 if (fragment != null) {
                     FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
                     fragment.setArguments(bundle);
+                    fragmentTransaction.addToBackStack("");
                     fragmentTransaction.replace(R.id.screenArea, fragment);
                     fragmentTransaction.commit();
                 }

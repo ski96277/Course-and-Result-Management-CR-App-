@@ -48,6 +48,7 @@ public class UpdateStudentProfile extends Fragment {
     String email_id;
     String phone_number;
     String image_url;
+    String address;
 
 
     @Nullable
@@ -76,6 +77,7 @@ public class UpdateStudentProfile extends Fragment {
         email_id=bundle.getString("email_id");
         phone_number=bundle.getString("phone");
         image_url=bundle.getString("imageUrl");
+        address=bundle.getString("address");
 
         Picasso.with(getContext()).load(image_url).into(imageView);
         name_ET_show.setText(name);
@@ -99,7 +101,7 @@ public SignUpPojo(String status, String user_id, String type, String email, Stri
                     SignUpPojo signUpPojo=new SignUpPojo("1",user_id,user_type_ET_show.getText().toString()
                             ,email_ET_show.getText().toString(),name_ET_show.getText().toString(),depart_ET_show.getText().toString(),
                             batch_ET_show.getText().toString(),phone_number_ET_show.getText().toString(),
-                            id_number__ET_show.getText().toString(),image_url);
+                            id_number__ET_show.getText().toString(),image_url,address);
 
                 Log.e("Log e ", "onClick: "+user_id );
                 databaseReference.child(user_id).setValue(signUpPojo);

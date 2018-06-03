@@ -103,7 +103,7 @@ public class UserListAdapter extends BaseAdapter {
             public void onClick(View view) {
 
 //set status 1 by default inside DataBase useing pojo class
-                SignUpPojo signUpPojoForset = new SignUpPojo("1", signUpPojo.getUser_id(), signUpPojo.getType(), signUpPojo.getEmail(), signUpPojo.getFull_name(), signUpPojo.getDepartment_name(), signUpPojo.getBatch_number(), signUpPojo.getPhoneNumber(), signUpPojo.getiD(), signUpPojo.getImageUri_download_Link());
+                SignUpPojo signUpPojoForset = new SignUpPojo("1", signUpPojo.getUser_id(), signUpPojo.getType(), signUpPojo.getEmail(), signUpPojo.getFull_name(), signUpPojo.getDepartment_name(), signUpPojo.getBatch_number(), signUpPojo.getPhoneNumber(), signUpPojo.getiD(), signUpPojo.getImageUri_download_Link(),signUpPojo.getAddress());
                 //get Referance
                 firebaseDatabase = FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -123,6 +123,7 @@ public class UserListAdapter extends BaseAdapter {
         bundle.putString("phone",signUpPojo.getPhoneNumber().toString());
         bundle.putString("imageUrl",signUpPojo.getImageUri_download_Link());
         bundle.putString("userType",signUpPojo.getType());
+        bundle.putString("address",signUpPojo.getAddress());
 
 
         imageView_p.setOnClickListener(new View.OnClickListener() {

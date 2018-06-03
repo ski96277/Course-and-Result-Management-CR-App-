@@ -107,6 +107,7 @@ public class FacultyListAdapter extends BaseAdapter {
         bundle.putString("phone",signUpPojo_for_faculty.getPhoneNumber().toString());
         bundle.putString("imageUrl",signUpPojo_for_faculty.getImageUri_download_Link());
         bundle.putString("userType",signUpPojo_for_faculty.getType());
+        bundle.putString("address",signUpPojo_for_faculty.getAddress());
 
         myHolderObj.faculty_NameET.setOnClickListener(new View.OnClickListener() {
             @Override
