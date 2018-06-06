@@ -11,18 +11,50 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
+<!--
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">-->
+
+            <EditText
+                android:id="@+id/file_details_ET"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:layout_marginBottom="10sp"
+                android:hint="Enter file details"/>
+            <EditText
+                android:id="@+id/batch_note_ET"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:layout_marginBottom="10sp"
+                android:hint="batch"/>
+
+        <!--</LinearLayout>-->
 
         <Button
             android:id="@+id/choose_file_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="80dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/buttonshape"
             android:gravity="center"
             android:text="Choose File"
             android:textAllCaps="false"
             />
+        <TextView
+            android:id="@+id/file_name_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:visibility="gone"
+            android:layout_marginBottom="50dp"
+            android:text="file_name_show"/>
         <Button
             android:id="@+id/upload_file_btn"
             android:layout_width="wrap_content"
@@ -34,5 +66,10 @@
             android:textAllCaps="false"
             android:text="Upload File"
             />
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/progressbar_for_uploading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </ScrollView>

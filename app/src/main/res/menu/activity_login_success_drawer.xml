@@ -31,8 +31,16 @@
            android:id="@+id/nav_message_group">
         <item
             android:id="@+id/nav_message"
-            android:icon="@drawable/note"
+            android:icon="@drawable/messageicon"
             android:title="Message"
+            android:visible="false"/>
+    </group>
+    <group android:checkableBehavior="single"
+           android:id="@+id/nav_class_note_group">
+        <item
+            android:id="@+id/nav_class_note"
+            android:icon="@drawable/note"
+            android:title="Class Note"
             android:visible="false"/>
     </group>
     <group android:checkableBehavior="single"

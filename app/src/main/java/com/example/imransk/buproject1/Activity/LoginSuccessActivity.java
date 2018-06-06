@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.imransk.buproject1.FragmentClass.Add_Class_Note_F;
 import com.example.imransk.buproject1.FragmentClass.Add_Notice_F;
+import com.example.imransk.buproject1.FragmentClass.Class_Note_list_F;
 import com.example.imransk.buproject1.FragmentClass.Course_Assign_To_Batch;
 import com.example.imransk.buproject1.FragmentClass.EditProfileF;
 import com.example.imransk.buproject1.FragmentClass.Faculty_List_For_Course_AssigneF;
@@ -100,6 +101,7 @@ public class LoginSuccessActivity extends AppCompatActivity
 
 //                     set nav button visible true
                     navigationView.getMenu().findItem(R.id.nav_message).setVisible(true);
+                    navigationView.getMenu().findItem(R.id.nav_class_note).setVisible(true);
 
                     //set information on nav header tv and image view
                     name = dataSnapshot.child("Student").child(userId).child("full_name").getValue().toString();
@@ -213,6 +215,9 @@ public class LoginSuccessActivity extends AppCompatActivity
 
         }  else if (id == R.id.nav_message) {
             fragment=new Message_List_F();
+        }  else if (id == R.id.nav_class_note) {
+            fragment=new Class_Note_list_F();
+
         } else if (id == R.id.nav_add_class_note) {
             fragment=new Add_Class_Note_F();
 

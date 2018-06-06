@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.icu.text.DecimalFormat;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -139,8 +140,12 @@ public class HomePageF extends Fragment {
                             }
 //set total credit and CGPA
                             Log.e("Total point -- - -- ", " Home page "+total_point );
-                            statusTV.setText("Total Credit - " + String.valueOf(total_credit)+"Total CGPA - "+String.valueOf(total_point/total_credit));
-
+                            statusTV.setText("Total Credit - " + String.valueOf(total_credit)+"Total CGPA - ");
+                            Double point=total_point/total_credit;
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                statusTV.append(new DecimalFormat("##.##").format(point));
+                            }
+                            ;
 
                             listViewUser.setVisibility(View.VISIBLE);
                             SubjetResultAdapter subjetResultAdapter = new SubjetResultAdapter(getContext(), result_list, batch_number, iD_number);

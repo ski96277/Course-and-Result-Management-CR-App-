@@ -7,17 +7,17 @@ import android.net.Uri;
  */
 
 public class SignUpPojo {
-    String status;
-    String user_id;
-    String type;
-    String email;
-    String full_name;
-    String department_name;
-    String batch_number;
-    String phoneNumber;
-    String iD;
-    String imageUri_download_Link;
-    String address;
+    public String status;
+    public String user_id;
+    public String type;
+    public String email;
+    public String full_name;
+    public String department_name;
+    public String batch_number;
+    public String phoneNumber;
+    public String iD;
+    public String imageUri_download_Link;
+    public String address;
 
     //use empty Constructor for prograund Tool
     public SignUpPojo() {

@@ -1,6 +1,6 @@
 package com.example.imransk.buproject1.FragmentClass;
 
-import android.app.DownloadManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,12 +8,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.example.imransk.buproject1.Adapter.Message_Adapter;
+import com.example.imransk.buproject1.Adapter.Class_Note_ListView_Adapter;
 import com.example.imransk.buproject1.R;
-import com.example.imransk.buproject1.pojoClass.Add_notice_pojo;
 import com.example.imransk.buproject1.pojoClass.SignUpPojo;
+import com.example.imransk.buproject1.pojoClass.Upload_file;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,40 +26,38 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 /**
- * Created by imran sk on 6/1/2018.
+ * Created by imran sk on 6/5/2018.
  */
 
-public class Message_List_F extends Fragment {
-    ListView message_list;
-    FirebaseDatabase firebaseDatabase;
+public class Class_Note_list_F extends Fragment {
+
+    ListView file_listView;
+
     DatabaseReference databaseReference;
     FirebaseUser firebaseUser;
-
-    String TAG = "                    Message List Fragment";
     String user_id;
-    String batch;
-    ArrayList<Add_notice_pojo> addNoticesList;
+    String batch="";
+    ArrayList<Upload_file> addFile_List;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.message_list_f, null);
+        return inflater.inflate(R.layout.class_note_list_f,null);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable final Bundle savedInstanceState) {
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        message_list = view.findViewById(R.id.message_listView);
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        user_id = firebaseUser.getUid();
+        file_listView=view.findViewById(R.id.note_listView);
 
-        addNoticesList = new ArrayList<>();
+        firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        user_id=firebaseUser.getUid();
 
-        Log.e(TAG, "user ID - - - " + user_id);
+        addFile_List=new ArrayList<>();
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
+        databaseReference= FirebaseDatabase.getInstance().getReference();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -70,26 +69,30 @@ public class Message_List_F extends Fragment {
 
                     if (signUpPojo.getUser_id().equals(user_id)) {
                         batch = signUpPojo.getBatch_number();
-                        databaseReference = firebaseDatabase.getReference("Notice").child(batch);
+                        databaseReference = FirebaseDatabase.getInstance().getReference("file").child(batch);
                     }
                 }
-                Log.e(TAG, "batch Number - - - " + batch);
-                Add_notice_pojo add_noticePojo = null;
-                addNoticesList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.child("Notice").child(batch).getChildren()) {
 
-                    Log.e(TAG, "onDataChange: " + snapshot.getKey());
-                    add_noticePojo = snapshot.getValue(Add_notice_pojo.class);
-                    Log.e(TAG, "onDataChange: " + add_noticePojo.getNotice());
 
-                    addNoticesList.add(add_noticePojo);
+                Log.e("     Class Note ", "batch Number - - - " + batch);
+                Upload_file upload_file= null;
+                addFile_List.clear();
+                for (DataSnapshot snapshot : dataSnapshot.child("file").child(batch).getChildren()) {
 
-                    Message_Adapter message_adapter=new Message_Adapter(getContext(),addNoticesList);
-                    message_list.setAdapter(message_adapter);
+                    Log.e("     Class Note ", "key      : " + snapshot.getKey());
+                    upload_file = snapshot.getValue(Upload_file.class);
+                    Log.e("     class note", "  Details: " + upload_file.getDetails());
+
+                    addFile_List.add(upload_file);
+
+                    Class_Note_ListView_Adapter class_note_listView_adapter=new Class_Note_ListView_Adapter(getContext(),addFile_List);
+                    file_listView.setAdapter(class_note_listView_adapter);
 
 
 
                 }
+
+
             }
 
             @Override

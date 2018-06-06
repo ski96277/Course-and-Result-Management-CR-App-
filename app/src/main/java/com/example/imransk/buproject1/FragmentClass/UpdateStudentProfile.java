@@ -95,10 +95,9 @@ public class UpdateStudentProfile extends Fragment {
                 DatabaseReference databaseReference;
                 firebaseDatabase=FirebaseDatabase.getInstance();
                 databaseReference=firebaseDatabase.getReference("Student");
-/*
-public SignUpPojo(String status, String user_id, String type, String email, String full_name,
-                        String department_name, String batch_number,String phoneNumber,String iD, String imageUri_download_Link) {*/
-                    SignUpPojo signUpPojo=new SignUpPojo("1",user_id,user_type_ET_show.getText().toString()
+
+
+    SignUpPojo signUpPojo=new SignUpPojo("1",user_id,user_type_ET_show.getText().toString()
                             ,email_ET_show.getText().toString(),name_ET_show.getText().toString(),depart_ET_show.getText().toString(),
                             batch_ET_show.getText().toString(),phone_number_ET_show.getText().toString(),
                             id_number__ET_show.getText().toString(),image_url,address);
