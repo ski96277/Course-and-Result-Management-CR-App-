@@ -148,8 +148,11 @@ public class HomePageF extends Fragment {
                             ;
 
                             listViewUser.setVisibility(View.VISIBLE);
-                            SubjetResultAdapter subjetResultAdapter = new SubjetResultAdapter(getContext(), result_list, batch_number, iD_number);
-                            listViewUser.setAdapter(subjetResultAdapter);
+                            if (getActivity()!=null){
+
+                                SubjetResultAdapter subjetResultAdapter = new SubjetResultAdapter(getContext(), result_list, batch_number, iD_number);
+                                listViewUser.setAdapter(subjetResultAdapter);
+                            }
                         } else {
                             statusTV.setText("You have No Result yet .... ");
                             Toast.makeText(view.getContext(), "" + status_student, Toast.LENGTH_SHORT).show();

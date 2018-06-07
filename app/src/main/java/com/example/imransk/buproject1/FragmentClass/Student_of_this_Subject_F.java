@@ -118,9 +118,12 @@ public class Student_of_this_Subject_F extends Fragment {
                         Log.e("hello  --  - -", "50 - -: " + signUpPojo.getBatch_number());
 
                     }
-                    Student_List_for_subject_Adapter student_list_for_subjectAdapter = new Student_List_for_subject_Adapter(getActivity(), signUpList,sub_name);
+                    if (getActivity()!=null){
 
-                    student_list.setAdapter(student_list_for_subjectAdapter);
+                        Student_List_for_subject_Adapter student_list_for_subjectAdapter = new Student_List_for_subject_Adapter(getActivity(), signUpList,sub_name);
+
+                        student_list.setAdapter(student_list_for_subjectAdapter);
+                    }
 
                 }
 
