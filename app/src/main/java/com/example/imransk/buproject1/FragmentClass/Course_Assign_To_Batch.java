@@ -37,6 +37,8 @@ public class Course_Assign_To_Batch extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        getActivity().setTitle("Course Assign");
         return inflater.inflate(R.layout.course_assign_to_batch, null);
     }
 

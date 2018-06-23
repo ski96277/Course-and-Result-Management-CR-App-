@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,6 +84,7 @@ public class Add_Class_Note_F extends Fragment {
 
 
 
+
         select_file_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,6 +129,15 @@ public class Add_Class_Note_F extends Fragment {
 //        Log.e("       Uri --- --- --- ", "upload_file: "+uri.toString() );
         file_details_string=file_details.getText().toString();
         batch_string=batch_number.getText().toString();
+
+        if (TextUtils.isEmpty(file_details_string)){
+            file_name_tv.setError("Enter file name");
+            file_name_tv.requestFocus();
+        }
+        if (TextUtils.isEmpty(batch_string)){
+            batch_number.setError("Enter batch number");
+            batch_number.requestFocus();
+        }
 
         Log.e("         text", "upload_file: "+file_details_string );
         Log.e("         text", "upload_file: "+batch_string );

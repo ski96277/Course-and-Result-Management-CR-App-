@@ -84,8 +84,10 @@ public class Message_List_F extends Fragment {
 
                     addNoticesList.add(add_noticePojo);
 
-                    Message_Adapter message_adapter=new Message_Adapter(getContext(),addNoticesList);
-                    message_list.setAdapter(message_adapter);
+                    if (getActivity()!=null){
+                        Message_Adapter message_adapter=new Message_Adapter(getContext(),addNoticesList);
+                        message_list.setAdapter(message_adapter);
+                    }
 
 
 

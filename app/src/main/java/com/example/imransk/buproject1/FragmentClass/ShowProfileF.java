@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -138,6 +139,8 @@ public class ShowProfileF extends Fragment {
                     image_uri = dataSnapshot.child("faculty").child(user_ID).child("imageUri_download_Link").getValue(String.class).trim();
 
 
+                    LinearLayout linearLayout=view.findViewById(R.id.batch_remove_faculty);
+                    linearLayout.setVisibility(View.GONE);
                     name_TV_show.append(name);
                     user_type_TV_show.append(type);
                     depart_TV_show.append(department);
