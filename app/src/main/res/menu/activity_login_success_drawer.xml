@@ -83,7 +83,7 @@
         <item
             android:id="@+id/nav_student_course_assign_list"
             android:icon="@drawable/courseassign"
-            android:title="Batch Course Assign"
+            android:title="Course Assign to Batch"
             android:visible="false"/>
     </group>
 

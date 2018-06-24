@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-
-    android:background="#00899B">
+              android:background="#00899B"
+              android:orientation="vertical">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/class_note_not_found"
+    android:text="No Class Note"
+    android:textSize="25sp"
+    android:gravity="center"
+    android:visibility="gone"/>
     <ListView
-        android:layout_marginTop="10sp"
         android:id="@+id/note_listView"
         android:layout_width="match_parent"
-        android:padding="10sp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10sp"
         android:dividerHeight="10sp"
-        android:layout_height="match_parent"></ListView>
+        android:padding="10sp"></ListView>
 
 </LinearLayout>

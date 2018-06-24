@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.imransk.buproject1.Adapter.Message_Adapter;
 import com.example.imransk.buproject1.R;
@@ -29,7 +30,10 @@ import java.util.ArrayList;
  */
 
 public class Message_List_F extends Fragment {
+
     ListView message_list;
+    TextView textView;
+
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     FirebaseUser firebaseUser;
@@ -49,6 +53,7 @@ public class Message_List_F extends Fragment {
     public void onViewCreated(View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         message_list = view.findViewById(R.id.message_listView);
+        textView=view.findViewById(R.id.no_Message_found);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         user_id = firebaseUser.getUid();
@@ -88,9 +93,11 @@ public class Message_List_F extends Fragment {
                         Message_Adapter message_adapter=new Message_Adapter(getContext(),addNoticesList);
                         message_list.setAdapter(message_adapter);
                     }
+                }
 
-
-
+                if (addNoticesList.isEmpty()){
+                    textView.setVisibility(View.VISIBLE);
+                    message_list.setVisibility(View.GONE);
                 }
             }
 

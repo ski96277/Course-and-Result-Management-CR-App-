@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.imransk.buproject1.Adapter.Class_Note_ListView_Adapter;
 import com.example.imransk.buproject1.R;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 public class Class_Note_list_F extends Fragment {
 
     ListView file_listView;
+    TextView class_note_TV;
 
     DatabaseReference databaseReference;
     FirebaseUser firebaseUser;
@@ -51,6 +53,7 @@ public class Class_Note_list_F extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         file_listView=view.findViewById(R.id.note_listView);
+        class_note_TV=view.findViewById(R.id.class_note_not_found);
 
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
         user_id=firebaseUser.getUid();
@@ -87,9 +90,11 @@ public class Class_Note_list_F extends Fragment {
 
                     Class_Note_ListView_Adapter class_note_listView_adapter=new Class_Note_ListView_Adapter(getContext(),addFile_List);
                     file_listView.setAdapter(class_note_listView_adapter);
+                }
 
-
-
+                if (addFile_List.isEmpty()){
+                    class_note_TV.setVisibility(View.VISIBLE);
+                    file_listView.setVisibility(View.GONE);
                 }
 
 

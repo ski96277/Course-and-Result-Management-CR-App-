@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#00899B"
-            android:fillViewport="true">
-
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00899B"
+    android:fillViewport="true"
+    android:orientation="vertical">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="25sp"
+    android:id="@+id/no_Message_found"
+    android:text="No Message Found"
+    android:gravity="center"
+    android:visibility="gone"/>
     <ListView
-        android:layout_marginTop="10sp"
         android:id="@+id/message_listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10sp"
         android:dividerHeight="10sp"></ListView>
-</ScrollView>
+</LinearLayout>
