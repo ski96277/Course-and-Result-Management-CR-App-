@@ -25,6 +25,7 @@ import com.example.imransk.buproject1.FragmentClass.EditProfileF;
 import com.example.imransk.buproject1.FragmentClass.Faculty_List_For_Course_AssigneF;
 import com.example.imransk.buproject1.FragmentClass.HomePageF;
 import com.example.imransk.buproject1.FragmentClass.Message_List_F;
+import com.example.imransk.buproject1.FragmentClass.Set_Batch_F;
 import com.example.imransk.buproject1.FragmentClass.ShowProfileF;
 import com.example.imransk.buproject1.FragmentClass.Student_list;
 import com.example.imransk.buproject1.R;
@@ -131,6 +132,7 @@ public class LoginSuccessActivity extends AppCompatActivity
                     navigationView.getMenu().findItem(R.id.nav_faculty_list).setVisible(true);
                     navigationView.getMenu().findItem(R.id.nav_student_list).setVisible(true);
                     navigationView.getMenu().findItem(R.id.nav_student_course_assign_list).setVisible(true);
+                    navigationView.getMenu().findItem(R.id.nav_set_batch).setVisible(true);
 
                     //set information on nav header tv and image view
                     name = dataSnapshot.child("admin").child(userId).child("full_name").getValue().toString();
@@ -231,6 +233,9 @@ public class LoginSuccessActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_student_course_assign_list) {
             fragment=new Course_Assign_To_Batch();
+
+        } else if (id == R.id.nav_set_batch) {
+            fragment=new Set_Batch_F();
 
         } else if (id == R.id.nav_log_out) {
             firebaseAuth.signOut();

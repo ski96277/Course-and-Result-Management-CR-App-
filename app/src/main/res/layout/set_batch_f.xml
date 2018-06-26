@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00899B">
+
+
+    <EditText
+        android:id="@+id/set_batch_number_ET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:minLines="1"
+        android:inputType="number"
+        android:textColor="#fff"
+        android:hint="Batch Number"
+        android:textColorHint="#fff"
+        android:layout_marginTop="50sp"
+        android:minWidth="200dp"
+        android:textSize="25sp"/>
+    <Button
+        android:id="@+id/set_batch_number_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="50sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40sp"
+        android:background="@drawable/buttonshape"
+        android:text="Set Batch Number"
+        android:textAllCaps="false"
+        android:textSize="25sp"/>
+</LinearLayout>

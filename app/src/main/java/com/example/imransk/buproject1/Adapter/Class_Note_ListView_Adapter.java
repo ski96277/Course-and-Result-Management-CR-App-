@@ -74,14 +74,19 @@ public class Class_Note_ListView_Adapter extends BaseAdapter {
         class_note_list_View.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show();
+
+                Intent intent=new Intent();
+                intent.setType(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(download_link));
+                context.startActivity(intent);
             }
         });
         download_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                File file=new File(download_link);
-                Toast.makeText(context, "btn", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "btn", Toast.LENGTH_SHORT).show();
 
                 Intent intent=new Intent();
                 intent.setType(Intent.ACTION_VIEW);

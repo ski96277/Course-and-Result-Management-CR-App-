@@ -4,55 +4,62 @@
       tools:showIn="navigation_view"
     >
 
-    <group  android:id="@+id/nav_open_home_group"
+    <group
+        android:id="@+id/nav_open_home_group"
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home_page"
             android:icon="@drawable/home"
             android:title="Home Page"/>
     </group>
-    <group android:checkableBehavior="single"
-           android:id="@+id/nav_open_profile_group">
-    <item
+    <group
+        android:id="@+id/nav_open_profile_group"
+        android:checkableBehavior="single">
+        <item
             android:id="@+id/nav_show_profile"
             android:icon="@drawable/profile"
             android:title="Show Profile"/>
     </group>
 
-    <group android:checkableBehavior="single"
-           android:id="@+id/nav_edit_account_group">
+    <group
+        android:id="@+id/nav_edit_account_group"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_edit_profile"
             android:icon="@drawable/edit_profile"
             android:title="Edit Profile"/>
     </group>
 
-    <group android:checkableBehavior="single"
-           android:id="@+id/nav_message_group">
+    <group
+        android:id="@+id/nav_message_group"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_message"
             android:icon="@drawable/messageicon"
             android:title="Message"
             android:visible="false"/>
     </group>
-    <group android:checkableBehavior="single"
-           android:id="@+id/nav_class_note_group">
+    <group
+        android:id="@+id/nav_class_note_group"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_class_note"
             android:icon="@drawable/note"
             android:title="Class Note"
             android:visible="false"/>
     </group>
-    <group android:checkableBehavior="single"
-           android:id="@+id/nav_add_class_note_group">
+    <group
+        android:id="@+id/nav_add_class_note_group"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_add_class_note"
-            android:icon="@drawable/note"
+            android:icon="@drawable/classnote"
             android:title="Add class note"
             android:visible="false"/>
     </group>
-    <group android:checkableBehavior="single"
-           android:id="@+id/nav_add_class_notice_group">
+    <group
+        android:id="@+id/nav_add_class_notice_group"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_add_class_notice"
             android:icon="@drawable/notice"
@@ -60,26 +67,29 @@
             android:visible="false"/>
     </group>
 
-    <group android:checkableBehavior="single"
-           android:id="@+id/nav_open_couser_group">
+    <group
+        android:id="@+id/nav_open_couser_group"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_faculty_list"
-            android:icon="@drawable/courseassign"
+            android:icon="@drawable/list"
             android:title="Faculty List"
             android:visible="false"/>
     </group>
 
-    <group android:checkableBehavior="single"
-           android:id="@+id/nav_open_stuedent_group">
+    <group
+        android:id="@+id/nav_open_stuedent_group"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_student_list"
-            android:icon="@drawable/courseassign"
+            android:icon="@drawable/list"
             android:title="Student List"
             android:visible="false"/>
     </group>
 
-    <group android:checkableBehavior="single"
-           android:id="@+id/nav_open_stuedent_couser_group">
+    <group
+        android:id="@+id/nav_open_stuedent_couser_group"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_student_course_assign_list"
             android:icon="@drawable/courseassign"
@@ -87,16 +97,29 @@
             android:visible="false"/>
     </group>
 
-
-    <group android:checkableBehavior="single"
-           android:id="@+id/nav_log_out_account_group">
+    <group
+        android:id="@+id/nav_set_batch_group"
+        android:checkableBehavior="single">
         <item
-        android:id="@+id/nav_log_out"
-        android:icon="@drawable/log_out"
-        android:title="Log Out"/>
+            android:id="@+id/nav_set_batch"
+            android:icon="@drawable/batchnumber"
+            android:title="Set Batch Number"
+            android:visible="false"
+            />
     </group>
 
-    <item android:title="Communicate"
+
+    <group
+        android:id="@+id/nav_log_out_account_group"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_log_out"
+            android:icon="@drawable/log_out"
+            android:title="Log Out"/>
+    </group>
+
+    <item
+        android:title="Communicate"
         android:visible="false">
         <menu>
             <item

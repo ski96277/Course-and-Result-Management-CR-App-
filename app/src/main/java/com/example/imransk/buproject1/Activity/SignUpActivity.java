@@ -70,7 +70,7 @@ public class SignUpActivity extends Activity {
     private EditText full_name_ET;
     private TextView select_img_ET;
     private EditText depart_ET;
-    private EditText batch_ET;
+//    private EditText batch_ET;
     private EditText address_ET;
     private EditText phone_num_ET;
     String fullName = "";
@@ -215,15 +215,15 @@ public class SignUpActivity extends Activity {
 
         rdGroup = ((RadioButton) findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString();
 
-        if (rdGroup.equals("faculty")){
+        /*if (rdGroup.equals("faculty")){*//*
             LinearLayout linearLayout=(LinearLayout)dialogView.findViewById(R.id.batch_ET_layout);
-            linearLayout.setVisibility(View.GONE);
-        }
+            linearLayout.setVisibility(View.GONE);*//*
+        }*/
 
         full_name_ET = (EditText) dialogView.findViewById(R.id.fullName_ET);
         select_img_ET = (TextView) dialogView.findViewById(R.id.select_image_TV);
         depart_ET = (EditText) dialogView.findViewById(R.id.department_ET);
-        batch_ET = dialogView.findViewById(R.id.batch_ET);
+//        batch_ET = dialogView.findViewById(R.id.batch_ET);
         address_ET = dialogView.findViewById(R.id.address_ET);
         phone_num_ET = (EditText) dialogView.findViewById(R.id.phone_number_ET);
         address_ET = dialogView.findViewById(R.id.address_ET);
@@ -282,7 +282,7 @@ public class SignUpActivity extends Activity {
 
         //Get Text from Information alert dialog
 
-        batchNumber = batch_ET.getText().toString();
+//        batchNumber = batch_ET.getText().toString();
         fullName = full_name_ET.getText().toString();
         departmetnName = depart_ET.getText().toString();
         phoneNumber = phone_num_ET.getText().toString();
@@ -300,6 +300,7 @@ public class SignUpActivity extends Activity {
                 if (rdGroup.equals("Student")) {
                     roll_number = dataSnapshot.child("Roll Number").child("student_roll")
                             .getValue().toString();
+                    batchNumber=dataSnapshot.child("Batch Number").child("batch_number").getValue().toString();
                     iD = String.valueOf(year).toString() + semester_number + "10" + batchNumber + roll_number.toString();
                 }
 
@@ -336,7 +337,7 @@ public class SignUpActivity extends Activity {
         }
 
         // Image and text field is not complete  it's can't sign in
-        if (imageUri != null && !fullName.isEmpty() && !departmetnName.isEmpty() && !batchNumber.isEmpty() && !phoneNumber.isEmpty() && !address.isEmpty()) {
+        if (imageUri != null && !fullName.isEmpty() && !departmetnName.isEmpty() && !phoneNumber.isEmpty() && !address.isEmpty()) {
 
             auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -427,9 +428,6 @@ public class SignUpActivity extends Activity {
 
             } else if (departmetnName.isEmpty()) {
                 Toast.makeText(this, "Enter department Name", Toast.LENGTH_SHORT).show();
-
-            } else if (batchNumber.isEmpty()) {
-                Toast.makeText(this, "Enter batch number", Toast.LENGTH_SHORT).show();
 
             } else if (phoneNumber.isEmpty()) {
                 Toast.makeText(this, "Enter phone number", Toast.LENGTH_SHORT).show();

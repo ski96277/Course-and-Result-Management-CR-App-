@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#66ACB6"
     >
 
 
@@ -13,7 +14,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="20dp"
-                    android:background="#66ACB6"
+                   
                     android:orientation="vertical">
 
         <TextView
@@ -139,14 +140,14 @@
             android:layout_marginBottom="5sp"
             android:background="@android:color/black"/>
 
-        <LinearLayout
+      <!--  <LinearLayout
             android:id="@+id/batch_ET_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/below_id_View"
             android:gravity="center"
             android:orientation="horizontal">
-
+&lt;!&ndash;
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="60sp"
@@ -169,23 +170,23 @@
                 android:hint="batch"
                 android:inputType="number"
                 android:textColor="#000"
-                android:textCursorDrawable="@drawable/coursor_color"/>
+                android:textCursorDrawable="@drawable/coursor_color"/>&ndash;&gt;
 
-        </LinearLayout>
+        </LinearLayout>-->
 
-        <View
+        <!--<View
             android:id="@+id/below_batch_View"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_below="@id/batch_ET_layout"
+            android:layout_below="@id/below_id_View"
             android:layout_marginBottom="5sp"
-            android:background="@android:color/black"/>
+            android:background="@android:color/black"/>-->
 
         <LinearLayout
             android:id="@+id/phone_number_ET_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/below_batch_View"
+            android:layout_below="@id/below_id_View"
             android:gravity="center"
             android:orientation="horizontal">
 
