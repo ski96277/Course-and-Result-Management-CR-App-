@@ -140,7 +140,7 @@ public class HomePageF extends Fragment {
                             }
 //set total credit and CGPA
                             Log.e("Total point -- - -- ", " Home page "+total_point );
-                            statusTV.setText("Total Credit - " + String.valueOf(total_credit)+"Total CGPA - ");
+                            statusTV.setText("Total Credit- " + String.valueOf(total_credit)+"\nCGPA- ");
                             Double point=total_point/total_credit;
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                                 statusTV.append(new DecimalFormat("##.##").format(point));

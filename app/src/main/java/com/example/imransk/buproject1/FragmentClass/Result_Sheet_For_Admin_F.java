@@ -32,29 +32,30 @@ public class Result_Sheet_For_Admin_F extends Fragment {
 
     TextView cgpa_TV;
     ListView listView_result;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getActivity().setTitle("Result Sheet");
 
-        return inflater.inflate(R.layout.result_sheet_for_admin_f,null);
+        return inflater.inflate(R.layout.result_sheet_for_admin_f, null);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        cgpa_TV=view.findViewById(R.id.cgpa_for_admin);
-        listView_result=view.findViewById(R.id.result_list_for_admin);
+        cgpa_TV = view.findViewById(R.id.cgpa_for_admin);
+        listView_result = view.findViewById(R.id.result_list_for_admin);
 
-        Bundle bundle=getArguments();
-       final String batch_number=bundle.getString("batch");
-        final String id_roll=bundle.getString("id_roll");
+        Bundle bundle = getArguments();
+        final String batch_number = bundle.getString("batch");
+        final String id_roll = bundle.getString("id_roll");
 
-        result_list=new ArrayList<>();
+        result_list = new ArrayList<>();
 
-        firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -85,7 +86,7 @@ public class Result_Sheet_For_Admin_F extends Fragment {
                         String course_point_st = dataSnapshot.child("Result Sheet").child(batch_number)
                                 .child(id_roll).child(subject).child("total_point").getValue().toString();
 
-                        total_point=total_point+Integer.parseInt(course_point_st);
+                        total_point = total_point + Integer.parseInt(course_point_st);
 
                         total_credit = total_credit + Integer.parseInt(course_credit_st);
 
@@ -93,13 +94,15 @@ public class Result_Sheet_For_Admin_F extends Fragment {
 
                     }
 //set total credit and CGPA
-                    Log.e("Total point -- - -- ", " Home page "+total_point );
-                    cgpa_TV.setText("Total Credit - " + String.valueOf(total_credit)+"Total CGPA - "+String.valueOf(total_point/total_credit));
+                    Log.e("Total point -- - -- ", " Home page " + total_point);
+                    cgpa_TV.setText("Total Credit - " + String.valueOf(total_credit) + "Total CGPA - " + String.valueOf(total_point / total_credit));
 
+                    if (getActivity() != null) {
 
-                    listView_result.setVisibility(View.VISIBLE);
-                    SubjetResultAdapter subjetResultAdapter = new SubjetResultAdapter(getActivity(), result_list, batch_number, id_roll);
-                    listView_result.setAdapter(subjetResultAdapter);
+                        listView_result.setVisibility(View.VISIBLE);
+                        SubjetResultAdapter subjetResultAdapter = new SubjetResultAdapter(getActivity(), result_list, batch_number, id_roll);
+                        listView_result.setAdapter(subjetResultAdapter);
+                    }
                 } else {
                     cgpa_TV.setText("Student have No Result yet .... ");
                 }

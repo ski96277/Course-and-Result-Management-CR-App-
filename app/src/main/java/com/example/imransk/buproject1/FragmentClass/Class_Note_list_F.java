@@ -45,6 +45,7 @@ public class Class_Note_list_F extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getActivity().setTitle("Class Note");
         return inflater.inflate(R.layout.class_note_list_f,null);
     }
 

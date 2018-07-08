@@ -22,6 +22,7 @@ public class Message_Details_F extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getActivity().setTitle("Message Details");
         return inflater.inflate(R.layout.message_details_f,null);
     }
 

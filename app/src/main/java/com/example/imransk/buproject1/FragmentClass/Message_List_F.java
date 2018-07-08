@@ -46,6 +46,7 @@ public class Message_List_F extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getActivity().setTitle("Message List");
         return inflater.inflate(R.layout.message_list_f, null);
     }
 
