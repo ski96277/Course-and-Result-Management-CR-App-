@@ -50,12 +50,11 @@ public class Set_Batch_F extends Fragment {
                     batch_number_ET.requestFocus();
                     return;
                 }
-
                 firebaseDatabase=FirebaseDatabase.getInstance();
                 databaseReference=firebaseDatabase.getReference();
                 databaseReference.child("Batch Number").child("batch_number").setValue(batch_number_ET.getText().toString());
-                databaseReference.child("Roll Number").child("student_roll").setValue("000");
-                Toast.makeText(getContext(), "Set batch "+batch_number_ET.getText().toString()+"\nAnd\nID number 000", Toast.LENGTH_LONG).show();
+                databaseReference.child("Roll Number").child("student_roll").setValue("001");
+                Toast.makeText(getContext(), "Set batch "+batch_number_ET.getText().toString()+"\nAnd\nID number 001", Toast.LENGTH_LONG).show();
 
                 batch_number_ET.setText("");
             }
